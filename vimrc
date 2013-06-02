@@ -22,7 +22,7 @@ vmap <D-]> >gv
 
 execute pathogen#infect()
 
-colorscheme slate
+colorscheme railscasts
 set shell=/bin/zsh\ -i
 set clipboard=unnamed
 

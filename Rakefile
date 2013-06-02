@@ -12,10 +12,8 @@ task :config_link do
     if File.exist? dotfile
       warn "file #{dotfile} already exist"
       rm dotfile
-      ln_s fullname,dotfile
-    else
-      ln_s fullname,dotfile
-     end
+    end
+    ln_s fullname,dotfile
   end
 end
 
