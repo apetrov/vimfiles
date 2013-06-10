@@ -4,9 +4,11 @@ if !exists(":Abolish")
 endif
 
 
+Abolish doeasnt doesn't
+Abolish dont don't
+Abolish lenght length
+Abolish rigth right
+Abolish teh the
+Abolish uese{,s} user{}
 Abolish uesr user
 Abolish uesr{,s} user{}
-Abolish uese{,s} user{}
-Abolish teh the
-
-

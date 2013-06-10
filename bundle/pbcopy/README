@@ -1,0 +1,47 @@
+== pbcopy.vim - vim interaction with the Mac OS X pasteboard
+
+This is a tiny plugin to enable communication with the Mac
+OS X pasteboard from Vim when running inside a program (such
+as tmux) which cannot directly interact with the pbcopy
+command.
+
+== HOW TO
+
+# Make sure 'remote login' is enabled under Sharing in
+  System Preferences
+# Yank or delete some text using normal vim commands
+# Call :PBCopy
+# Paste into your favourite OS X application
+
+# Copy from your favourite OS X application
+# Call :PBPaste
+# Put into vim as normal
+
+== KNOWN ISSUES/TODO
+
+* This plugin doesn't work on OS X 10.5.8. 
+  For details, see https://discussions.apple.com/message/11257647?messageID=11257647#11257647?messageID=11257647
+  If you're running that version, you could try https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
+  but I have been told that even this doesn't work. Oh, the humanity!
+
+== ACKNOWLEDGEMENTS
+
+* Seth Milliken (@sethmilliken) who told me about the
+  workaround. All I've done is take his code snippet and
+  make a plugin from it.
+* Notch8 for the ability to paste as well as copy. It is indeed nice to have symmetry in life.
+
+== LICENSE
+
+DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+  Version 2, December 2004
+
+Copyright (C) 2011 Tom Stuart
+Everyone is permitted to copy and distribute verbatim or modified
+copies of this license document, and changing it is allowed as long
+as the name is changed.
+
+DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+
+0. You just DO WHAT THE FUCK YOU WANT TO.
