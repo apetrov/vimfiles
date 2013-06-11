@@ -2,6 +2,7 @@ task :default => [:update, :config_link, :bundles ]
 
 task :update do
   sh 'git pull'
+  sh 'git submodule sync'
 end
 
 task :config_link do
