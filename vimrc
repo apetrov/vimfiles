@@ -24,6 +24,11 @@ set visualbell
 set noerrorbells 
 set cmdheight=2
 set shortmess=aAWTsI
+set hlsearch      " highlight search terms
+set incsearch     " show search matches as you type
+set wildignore=*.swp,*.bak,*.pyc,*.class
+set nobackup
+set noswapfile
 execute pathogen#infect()
 
 if has("autocmd")
@@ -50,4 +55,3 @@ vnoremap . :norm.<CR>
 set pastetoggle=<F2>
 nnoremap j gj
 nnoremap k gk
-
