@@ -15,3 +15,5 @@ Prerequisites: ruby, rake, git
    `cd ~/projects/vimfiles && rake`
 
 4. It will install .vimrc & .vim symlinks that point to files inside local directory 
+
+5. Keep updated: `git submodule foreach git pull origin master`
