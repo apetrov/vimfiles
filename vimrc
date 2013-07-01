@@ -86,3 +86,8 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 nnoremap <leader>r :<C-u>Unite -start-insert file_rec/async:!<CR>
 nnoremap <leader>m :<C-u>Unite -start-insert file_mru<CR>
 nnoremap <silent> <leader>f :<C-u>Unite buffer file_mru bookmark<CR>
+
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
