@@ -52,3 +52,6 @@
 [submodule "bundle/unite"]
 	path = bundle/unite
 	url = https://github.com/Shougo/unite.vim.git
+[submodule "bundle/rspec"]
+	path = bundle/rspec
+	url = https://github.com/thoughtbot/vim-rspec.git
