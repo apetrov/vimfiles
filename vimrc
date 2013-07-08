@@ -84,18 +84,28 @@ inoremap <Up>      <NOP>
 inoremap <Down>    <NOP>
 inoremap <Left>    <NOP>
 inoremap <Right>   <NOP>
-noremap <Up>       <NOP>
-noremap <Down>     <NOP>
-noremap <Left>     <NOP>
-noremap <Right>    <NOP>
+
+" [a and ]a to move between arguments
+nmap ]a :next!<CR>
+nmap [a :Next!<CR>
+" quickfix list helpers
+nmap <left> :cprev!<CR>
+nmap <right> :cnext!<CR>
+nmap <up> :cpfile!<CR>
+nmap <down> :cnfile!<CR>
+nmap [q :cprev!<CR>
+nmap ]q :cnext!<CR>
+nmap [Q :cfirst!<CR>
+nmap ]Q :clast!<CR>
+nmap Q <Nop>
+
 
 " Smooth scrolling. keep cursor in center
 nnoremap j gj
 nnoremap k gk
-nnoremap } }zz
-nnoremap { {zz
-nnoremap Q <nop>
-nnoremap Y y$
+"map } ]m
+"map { [m
+map Y y$
 
 " Iterate buffers
 map gk :bp!<cr>
@@ -103,8 +113,9 @@ map gl :bn!<cr>
 
 " Unite
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-nnoremap <leader>r :<C-u>Unite -start-insert file_rec/async:!<CR>
-nnoremap <leader>m :<C-u>Unite -start-insert file_mru<CR>
+nnoremap <leader>R :<C-u>Unite file<CR>
+nnoremap <C-p> :<C-u>Unite -start-insert file_rec/async<CR>
+nnoremap <silent> <leader>m :<C-u>Unite -start-insert file_mru<CR>
 nnoremap <silent> <leader>f :<C-u>Unite buffer file_mru bookmark<CR>
 
 " RSpec
@@ -112,3 +123,4 @@ map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
+nmap <silent> <leader>d <Plug>DashSearch
