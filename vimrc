@@ -10,7 +10,6 @@ set softtabstop=2
 set expandtab
 set nowrap
 
-set nu
 set autowrite
 set shell=/bin/bash "zsh cause multiple issues, it's easier to use bash
 set hlsearch      " highlight search terms
@@ -24,10 +23,10 @@ set noswapfile
 
 " Avoid nag beeps
 set visualbell
-set noerrorbells 
+set noerrorbells
 
 " Avoid 'Please press enter'
-set shortmess=aAWTsI 
+set shortmess=aAWTsI
 set cmdheight=2
 
 " share clipboard with OSX
@@ -38,9 +37,13 @@ set notimeout
 set ttimeout
 set ttimeoutlen=100
 
-colorscheme railscasts
+colorscheme zenburn
+"colorscheme railscasts
 
 execute pathogen#infect()
+function! TrimWhiteSpace()
+    %s/\s\+$//e
+endfunction
 
 if has("autocmd")
   autocmd BufRead,BufNewFile Gemfile set filetype=ruby
@@ -53,6 +56,10 @@ if has("autocmd")
   " not sure how to make ruby and rspce at the same time. this solution breaks
   " ruby syntax and snippets but make rspec working
   " autocmd BufRead,BufNewFile *_spec.rb, set filetype=ruby-rspec
+  autocmd FileWritePre    * :call TrimWhiteSpace()
+  autocmd FileAppendPre   * :call TrimWhiteSpace()
+  autocmd FilterWritePre  * :call TrimWhiteSpace()
+  autocmd BufWritePre     * :call TrimWhiteSpace()
 end
 
 function! NumberToggle()
@@ -71,7 +78,7 @@ nnoremap <silent> gw "_yiw:s/\(\%#\w\+\)\(\W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>
 vnoremap . :norm.<CR>
 
 " jump up and start text
-nnoremap gO ^O  
+nnoremap gO ^O
 
 " switch between panes with Ctrl+h|j|k|l combo
 map <C-j> <C-W>j
@@ -124,3 +131,26 @@ map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 nmap <silent> <leader>d <Plug>DashSearch
+
+map <D-S-]> gt
+map <D-S-[> gT
+map <D-1> 1gt
+map <D-2> 2gt
+map <D-3> 3gt
+map <D-4> 4gt
+map <D-5> 5gt
+map <D-6> 6gt
+map <D-7> 7gt
+map <D-8> 8gt
+map <D-9> 9gt
+map <D-0> :tablast<CR>
+
+" Column scroll-binding on <leader>sb
+noremap <silent> <leader>sb :<C-u>let @z=&so<CR>:set so=0 noscb<CR>:bo vs<CR>Ljzt:setl scb<CR><C-w>p:setl scb<CR>:let &so=@z<CR>
+
+au WinEnter * :setlocal number
+au WinLeave * :setlocal nonumber
+
+" Automatically resize vertical splits.
+au WinEnter * :set winfixheight
+au WinEnter * :wincmd =
