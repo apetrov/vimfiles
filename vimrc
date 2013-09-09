@@ -1,9 +1,11 @@
 source ~/.vim/autoload/pathogen.vim
 syntax on
 filetype plugin on
+set t_Co=256
 
 ""Intent
-set smartindent
+"set smartindent
+set autoindent
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
@@ -117,7 +119,7 @@ map Y y$
 " Iterate buffers
 map gk :bp!<cr>
 map gl :bn!<cr>
-
+let g:ackprg = 'ag --nogroup --column'
 " Unite
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 nnoremap <leader>R :<C-u>Unite file<CR>
@@ -154,3 +156,13 @@ au WinLeave * :setlocal nonumber
 " Automatically resize vertical splits.
 au WinEnter * :set winfixheight
 au WinEnter * :wincmd =
+set mouse=a
+if exists('$TMUX')
+  set ttymouse=xterm2
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
