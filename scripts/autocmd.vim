@@ -1,3 +1,8 @@
+function! SetRspecCommand()
+  if filereadable(getcwd(). "/Gemfile")
+    let g:rspec_command = "!echo bundle exec rspec {spec} && bundle exec rspec {spec}"
+  endif
+endfunction
 
 if has("autocmd")
   autocmd BufRead,BufNewFile Gemfile set filetype=ruby
@@ -7,6 +12,7 @@ if has("autocmd")
   autocmd BufRead,BufNewFile config.ru, set filetype=ruby
   autocmd BufRead,BufNewFile config, set filetype=ruby
   autocmd BufRead,BufNewFile Guardfile, set filetype=ruby
+  autocmd FileType ruby :call SetRspecCommand()
   " not necessary
   " autocmd BufRead,BufNewFile *.rb, set makeprg=ruby\ %
   " not sure how to make ruby and rspce at the same time. this solution breaks
@@ -20,3 +26,6 @@ if has("autocmd")
   autocmd FilterWritePre  * :call TrimWhiteSpace()
   autocmd BufWritePre     * :call TrimWhiteSpace()
 end
+
+
+
