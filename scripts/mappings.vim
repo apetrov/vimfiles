@@ -33,16 +33,6 @@ nnoremap j gj
 nnoremap k gk
 map Y y$
 
-
-" Unite
-"navigate through file tree, not really useful
-nnoremap <leader>R :<C-u>Unite file<CR>
-
-nnoremap <C-p> :<C-u>Unite -start-insert file_rec/async<CR>
-" recent files
-nnoremap <silent> <leader>m :<C-u>Unite -start-insert file_mru<CR>
-nnoremap <silent> <leader>f :<C-u>Unite buffer file_mru bookmark<CR>
-
 " RSpec, doesn't work as of today.
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>

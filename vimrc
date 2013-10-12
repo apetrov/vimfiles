@@ -50,8 +50,6 @@ execute pathogen#infect()
 source ~/.vim/scripts/functions.vim
 source ~/.vim/scripts/autocmd.vim
 let g:ackprg = 'ag --nogroup --column'
-" Unite
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
 " As I use only narrow screen displays screen realestate is very valuable
 au WinEnter * :setlocal number
