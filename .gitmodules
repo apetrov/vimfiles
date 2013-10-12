@@ -49,9 +49,6 @@
 [submodule "bundle/rubyblock"]
 	path = bundle/rubyblock
 	url = https://github.com/nelstrom/vim-textobj-rubyblock.git
-[submodule "bundle/unite"]
-	path = bundle/unite
-	url = https://github.com/Shougo/unite.vim.git
 [submodule "bundle/rspec"]
 	path = bundle/rspec
 	url = https://github.com/thoughtbot/vim-rspec.git
@@ -76,3 +73,6 @@
 [submodule "bundle/dispatch"]
 	path = bundle/dispatch
 	url = git://github.com/tpope/vim-dispatch.git
+[submodule "bundle/coffee-script"]
+	path = bundle/coffee-script
+	url = https://github.com/kchmck/vim-coffee-script.git
