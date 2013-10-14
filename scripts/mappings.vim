@@ -11,6 +11,7 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+map <C-_> <C-w>_
 
 " [a and ]a to move between arguments
 nmap ]a :next!<CR>
@@ -47,3 +48,9 @@ noremap <silent> <leader>sb :<C-u>let @z=&so<CR>:set so=0 noscb<CR>:bo vs<CR>Ljz
 " comment uncomment
 noremap   <buffer> K      :s,^\(\s*\)[^# \t]\@=,\1#,e<CR>:nohls<CR>zvj
 noremap   <buffer> <C-K>  :s,^\(\s*\)#\s\@!,\1,e<CR>:nohls<CR>zvj
+if !has("gui")
+  " set custom cursor -- vertical bar in insert mode (iTerm2)
+  " from http://www.iterm2.com/#/section/documentation/escape_codes
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif

@@ -20,11 +20,20 @@ set shell=/bin/bash "zsh cause multiple issues, it's easier to use bash
 set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
 set pastetoggle=<F2>
+set laststatus=2
 
 " Avoid vim backup files
 set wildignore=*.swp,*.bak,*.pyc,*.class
 set nobackup
 set noswapfile
+set autoread
+
+set history=1000
+
+set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.class,.svn,*.gem
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+set wildignore+=vendor/gems/*,vendor/cache/*,.bundle/*,.sass-cache/*
+set wildignore+=*.swp,*~,._*
 
 " Avoid nag beeps
 set visualbell
@@ -56,4 +65,5 @@ au WinEnter * :setlocal number
 au WinLeave * :setlocal nonumber
 
 source ~/.vim/scripts/mappings.vim
+source ~/.vim/scripts/status.vim
 source ~/.vim/scripts/tmux.vim
