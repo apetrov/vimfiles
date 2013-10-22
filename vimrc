@@ -67,3 +67,4 @@ au WinLeave * :setlocal nonumber
 source ~/.vim/scripts/mappings.vim
 source ~/.vim/scripts/status.vim
 source ~/.vim/scripts/tmux.vim
+set tags=.git/tags;

@@ -28,6 +28,8 @@ nmap [Q :cfirst!<CR>
 nmap ]Q :clast!<CR>
 nmap Q <Nop>
 
+nnoremap <C-]> <C-]>zz
+nnoremap ]m ]mzz
 
 " Smooth scrolling. keep cursor in center
 nnoremap j gj
