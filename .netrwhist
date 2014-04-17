@@ -1,6 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/Users/apetrov/projects/dotfiles'
-let g:netrw_dirhist_2='/Users/apetrov/projects/rails/actionmailer'
-let g:netrw_dirhist_3='/Users/apetrov/projects/dotfiles'
-let g:netrw_dirhist_4='/Users/apetrov/projects/dotfiles/templates'
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/Users/apetrov/projects/virool-chef'
+let g:netrw_dirhist_2='/Users/apetrov/projects/virool-chef/inhouse-cookbooks'
+let g:netrw_dirhist_3='/Users/apetrov/projects/virool-chef/inhouse-cookbooks/virool'
+let g:netrw_dirhist_4='/Users/apetrov/projects/virool-chef/inhouse-cookbooks'
+let g:netrw_dirhist_5='/Users/apetrov/projects/vimfiles'
+let g:netrw_dirhist_6='/Users/apetrov/projects/virool/config/deploy'
+let g:netrw_dirhist_7='/Users/apetrov/projects/dotfiles'
+let g:netrw_dirhist_8='/Users/apetrov/Downloads/virool/app/views/sites'

@@ -1,7 +1,5 @@
-
 nnoremap <C-n> :call NumberToggle()<cr>
 " Transpose words
-nnoremap <silent> gw "_yiw:s/\(\%#\w\+\)\(\W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>
 
 " Use dot command in visual mode
 vnoremap . :norm.<CR>
@@ -22,11 +20,6 @@ nmap <right> :bn!<CR>
 
 nmap <up> :cpfile!<CR>
 nmap <down> :cnfile!<CR>
-nmap [q :cprev!<CR>
-nmap ]q :cnext!<CR>
-nmap [Q :cfirst!<CR>
-nmap ]Q :clast!<CR>
-nmap Q <Nop>
 
 nnoremap <C-]> <C-]>zz
 nnoremap ]m ]mzz
@@ -35,21 +28,27 @@ nnoremap ]m ]mzz
 nnoremap j gj
 nnoremap k gk
 map Y y$
+" Evaluate current line
+nnoremap Q A=<ESC>0yt=A<C-r>=<C-r>"<CR><ESC>
 
-" RSpec, doesn't work as of today.
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
-nmap <silent> <leader>d <Plug>DashSearch
+map <Leader>f :A<CR>
+map <Leader>w :w<CR>
+map <Leader>F :AV<CR>
 map <leader>r :!ruby %<cr>
+map <leader>W :Gwrite<CR>:Gcommit<CR>i
+map <leader>q :wq<CR>
+map <leader>p :Git pull<CR>
+map <leader>P :Git push<CR>
+
+iab itb helloworld
 
 " Column scroll-binding on <leader>sb
 noremap <silent> <leader>sb :<C-u>let @z=&so<CR>:set so=0 noscb<CR>:bo vs<CR>Ljzt:setl scb<CR><C-w>p:setl scb<CR>:let &so=@z<CR>
 
 " comment uncomment
-noremap   <buffer> K      :s,^\(\s*\)[^# \t]\@=,\1#,e<CR>:nohls<CR>zvj
-noremap   <buffer> <C-K>  :s,^\(\s*\)#\s\@!,\1,e<CR>:nohls<CR>zvj
 if !has("gui")
   " set custom cursor -- vertical bar in insert mode (iTerm2)
   " from http://www.iterm2.com/#/section/documentation/escape_codes
