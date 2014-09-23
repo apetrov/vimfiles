@@ -79,3 +79,6 @@
 [submodule "bundle/vim-matchit"]
 	path = bundle/vim-matchit
 	url = git://github.com/vim-scripts/matchit.zip.git
+[submodule "bundle/clojure-static"]
+	path = bundle/clojure-static
+	url = git@github.com:guns/vim-clojure-static.git
