@@ -42,6 +42,7 @@ map <leader>W :Gwrite<CR>:Gcommit<CR>i
 map <leader>q :wq<CR>
 map <leader>p :Git pull<CR>
 map <leader>P :Git push<CR>
+map <leader>e :Eval<CR>
 
 iab itb helloworld
 
