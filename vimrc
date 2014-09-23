@@ -4,6 +4,7 @@ filetype indent on
 filetype plugin on
 set t_Co=256  "necessary for TMUX
 set grepprg=ack " faster grep, for :grep command
+let g:agprg='/usr/local/bin/ag --column'
 
 ""Intent
 "set smartindent
@@ -68,3 +69,13 @@ source ~/.vim/scripts/mappings.vim
 source ~/.vim/scripts/status.vim
 source ~/.vim/scripts/tmux.vim
 set tags=.git/tags;
+
+set splitbelow
+set splitright
+set winwidth=84
+
+" set winheight=40
+" set winminheight=5
+
+nmap <Leader>h :noh<cr>
+

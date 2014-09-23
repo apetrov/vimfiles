@@ -37,7 +37,7 @@ map <Leader>a :call RunAllSpecs()<CR>
 map <Leader>f :A<CR>
 map <Leader>w :w<CR>
 map <Leader>F :AV<CR>
-map <leader>r :!ruby %<cr>
+map <leader>r :!ruby %<CR><CR>
 map <leader>W :Gwrite<CR>:Gcommit<CR>i
 map <leader>q :wq<CR>
 map <leader>p :Git pull<CR>

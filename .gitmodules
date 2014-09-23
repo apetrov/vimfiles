@@ -43,9 +43,6 @@
 [submodule "bundle/textobj"]
 	path = bundle/textobj
 	url = https://github.com/kana/vim-textobj-user.git
-[submodule "bundle/matchit"]
-	path = bundle/matchit
-	url = https://github.com/tsaleh/vim-matchit
 [submodule "bundle/rubyblock"]
 	path = bundle/rubyblock
 	url = https://github.com/nelstrom/vim-textobj-rubyblock.git
@@ -76,3 +73,9 @@
 [submodule "bundle/scala"]
 	path = bundle/scala
 	url = git@github.com:derekwyatt/vim-scala.git
+[submodule "bundle/fireplace"]
+	path = bundle/fireplace
+	url = git://github.com/tpope/vim-fireplace.git
+[submodule "bundle/vim-matchit"]
+	path = bundle/vim-matchit
+	url = git://github.com/vim-scripts/matchit.zip.git
