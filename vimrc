@@ -1,3 +1,4 @@
+let g:closetag_html_style=1
 source ~/.vim/autoload/pathogen.vim
 syntax on
 filetype indent on
