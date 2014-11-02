@@ -82,3 +82,6 @@
 [submodule "bundle/clojure-static"]
 	path = bundle/clojure-static
 	url = git@github.com:guns/vim-clojure-static.git
+[submodule "bundle/closetag.vim"]
+	path = bundle/closetag.vim
+	url = git@github.com:vim-scripts/closetag.vim.git
