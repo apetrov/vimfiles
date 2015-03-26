@@ -82,3 +82,6 @@
 [submodule "bundle/clojure-static"]
 	path = bundle/clojure-static
 	url = git@github.com:guns/vim-clojure-static.git
+[submodule "bundle/vim-drake"]
+	path = bundle/vim-drake
+	url = https://bitbucket.org/larsyencken/vim-drake-syntax.git
