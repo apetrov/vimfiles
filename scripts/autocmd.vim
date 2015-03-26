@@ -25,6 +25,7 @@ if has("autocmd")
   autocmd FileAppendPre   * :call TrimWhiteSpace()
   autocmd FilterWritePre  * :call TrimWhiteSpace()
   autocmd BufWritePre     * :call TrimWhiteSpace()
+  autocmd FileType clojure map <leader>e :Eval<CR>
 end
 
 
