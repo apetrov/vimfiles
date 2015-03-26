@@ -3,6 +3,7 @@ task :default => [:update, :config_link, :bundles ]
 task :update do
   sh 'git pull'
   sh 'git submodule sync'
+  sh 'git submodule update --init --recursive'
 end
 
 task :config_link do
