@@ -78,4 +78,8 @@ set winwidth=84
 " set winminheight=5
 
 nmap <Leader>h :noh<cr>
+command! Path :echo join(split(&path, ","), "\n")
 
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\v[\/](cookbook|log|DS_Store|\.bundle|\.git|target|public|tmp|vendor)'
+\}
