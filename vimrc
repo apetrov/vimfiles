@@ -1,7 +1,16 @@
+set nocompatible
+filetype off 
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'tpope/vim-fugitive'
+
+call vundle#end() 
+filetype plugin indent on
+
+
+
 let g:closetag_html_style=1
-source ~/.vim/autoload/pathogen.vim
 syntax on
-filetype indent on
 filetype plugin on
 set t_Co=256  "necessary for TMUX
 set grepprg=ack " faster grep, for :grep command
@@ -55,8 +64,6 @@ set ttimeoutlen=100
 
 colorscheme zenburn
 "colorscheme railscasts
-
-execute pathogen#infect()
 
 source ~/.vim/scripts/functions.vim
 source ~/.vim/scripts/autocmd.vim
