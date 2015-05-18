@@ -1,10 +1,47 @@
 set nocompatible
-filetype off 
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'tpope/vim-fugitive'
+Bundle 'gmarik/vundle'
+Bundle 'tmhedberg/matchit'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-dispatch'
+Bundle 'tpope/vim-endwise.git'
+Bundle 'tpope/vim-abolish.git'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-commentary.git'
+Bundle 'shinzui/vim-idleFingers'
+Bundle 'ctrlpvim/ctrlp.vim'
+Bundle 'rking/ag.vim'
+Bundle 'rizzatti/funcoo.vim'
 
-call vundle#end() 
+" Textobj
+Bundle 'jgdavey/vim-blockle'
+Bundle 'kana/vim-textobj-user.git'
+Bundle 'kana/vim-textobj-entire.git'
+Bundle 'kana/vim-textobj-indent.git'
+Bundle 'kana/vim-textobj-syntax.git'
+Bundle 'kana/vim-textobj-line.git'
+Bundle 'nelstrom/vim-textobj-rubyblock'
+
+" Ruby
+Bundle 'tpope/vim-haml'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-rake.git'
+Bundle 'tpope/vim-bundler'
+Bundle 'thoughtbot/vim-rspec'
+Bundle 'Shougo/vimproc.vim'
+Bundle 'alvan/vim-closetag'
+
+"Clojure
+Bundle 'tpope/vim-leiningen'
+Bundle 'tpope/vim-projectionist'
+Bundle 'tpope/vim-fireplace'
+"Bundle 'larsyencken/vim-drake-syntax'
+Bundle 'guns/vim-clojure-static'
+
+call vundle#end()
 filetype plugin indent on
 
 
