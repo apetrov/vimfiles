@@ -17,6 +17,12 @@ Bundle 'rking/ag.vim'
 Bundle 'rizzatti/funcoo.vim'
 Bundle 'roman/golden-ratio'
 
+" Snippets
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "garbas/vim-snipmate"
+Bundle 'honza/vim-snippets'
+
 " Textobj
 Bundle 'jgdavey/vim-blockle'
 Bundle 'kana/vim-textobj-user.git'
