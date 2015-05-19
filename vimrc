@@ -15,6 +15,7 @@ Bundle 'shinzui/vim-idleFingers'
 Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'rking/ag.vim'
 Bundle 'rizzatti/funcoo.vim'
+Bundle 'roman/golden-ratio'
 
 " Textobj
 Bundle 'jgdavey/vim-blockle'
@@ -40,6 +41,8 @@ Bundle 'tpope/vim-projectionist'
 Bundle 'tpope/vim-fireplace'
 "Bundle 'larsyencken/vim-drake-syntax'
 Bundle 'guns/vim-clojure-static'
+
+Bundle 'Lokaltog/vim-easymotion'
 
 call vundle#end()
 filetype plugin indent on
@@ -77,6 +80,8 @@ set noswapfile
 set autoread
 
 set history=1000
+set showcmd
+
 
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.class,.svn,*.gem
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
@@ -86,6 +91,7 @@ set wildignore+=*.swp,*~,._*
 " Avoid nag beeps
 set visualbell
 set noerrorbells
+set guifont=Bitstream\ Vera\ Sans\ Mono:h13
 
 " Avoid 'Please press enter'
 set shortmess=aAWTsI
@@ -101,6 +107,10 @@ set ttimeoutlen=100
 
 colorscheme zenburn
 "colorscheme railscasts
+set cursorline
+hi CursorLine guibg=#2D2D2D ctermbg=235
+
+
 
 source ~/.vim/scripts/functions.vim
 source ~/.vim/scripts/autocmd.vim
