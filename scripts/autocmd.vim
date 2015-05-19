@@ -25,7 +25,10 @@ if has("autocmd")
   autocmd FileAppendPre   * :call TrimWhiteSpace()
   autocmd FilterWritePre  * :call TrimWhiteSpace()
   autocmd BufWritePre     * :call TrimWhiteSpace()
+
   autocmd FileType clojure map <leader>e :Eval<CR>
+
+  au FileType sql execute 'setlocal dict+=~/.vim/word/sql.txt'
 end
 
 

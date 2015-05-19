@@ -15,6 +15,7 @@ Bundle 'shinzui/vim-idleFingers'
 Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'rking/ag.vim'
 Bundle 'rizzatti/funcoo.vim'
+Bundle 'tpope/unimpaired.vim'
 Bundle 'roman/golden-ratio'
 
 " Snippets
@@ -35,7 +36,7 @@ Bundle 'nelstrom/vim-textobj-rubyblock'
 " Ruby
 Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-rake.git'
+Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-bundler'
 Bundle 'thoughtbot/vim-rspec'
 Bundle 'Shougo/vimproc.vim'
