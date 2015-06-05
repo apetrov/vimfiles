@@ -15,7 +15,7 @@ Bundle 'shinzui/vim-idleFingers'
 Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'rking/ag.vim'
 Bundle 'rizzatti/funcoo.vim'
-Bundle 'tpope/unimpaired.vim'
+Bundle 'tpope/vim-unimpaired'
 Bundle 'roman/golden-ratio'
 
 " Snippets
@@ -41,6 +41,7 @@ Bundle 'tpope/vim-bundler'
 Bundle 'thoughtbot/vim-rspec'
 Bundle 'Shougo/vimproc.vim'
 Bundle 'alvan/vim-closetag'
+Bundle 'jgdavey/tslime.vim'
 
 "Clojure
 Bundle 'tpope/vim-leiningen'
@@ -49,7 +50,7 @@ Bundle 'tpope/vim-fireplace'
 "Bundle 'larsyencken/vim-drake-syntax'
 Bundle 'guns/vim-clojure-static'
 
-Bundle 'Lokaltog/vim-easymotion'
+Bundle 'wakatime/vim-wakatime'
 
 call vundle#end()
 filetype plugin indent on

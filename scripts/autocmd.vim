@@ -1,6 +1,11 @@
 function! SetRspecCommand()
   if filereadable(getcwd(). "/Gemfile")
-    let g:rspec_command = "!echo bundle exec rspec {spec} && bundle exec rspec {spec}"
+    "let g:rspec_command = "!echo bundle exec rspec {spec} && bundle exec rspec {spec}"
+    let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec {spec}\n")'
+  else
+    "let g:rspec_command = "!echo bundle exec rspec {spec} && bundle exec rspec {spec}"
+    let g:rspec_command = 'call Send_to_Tmux("rspec {pec}n")rspec spec/models/account_spec.rb:24
+
   endif
 endfunction
 
