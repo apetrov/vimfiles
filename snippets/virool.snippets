@@ -1,0 +1,14 @@
+snippet table
+	echo "copy(select * from ${1:trackings_20150513}) to STDOUT with csv;" | psql -U postgres -h ${2:db05}.virool ${3:analytics_production} > ${4:test}.csv
+	cat $4.csv | psql -U postgres -h ${5:localhost} -c "truncate ${6:trackings};COPY $6 FROM STDIN DELIMITER ',' CSV;" ${7:virool_development}
+
+snippet story
+	As a ${1:user}, I want ${2:to} so that ${3}.
+
+snippet sce
+	Scenario: ${1:paint a wall}
+		Given ${2:I have some paint}
+		And ${3:I have a white wall}
+		When ${4:I paint the wall blue}
+		Then ${5:It} should ${6:become blue}
+
