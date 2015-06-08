@@ -31,7 +31,7 @@ map Y y$
 " Evaluate current line
 nnoremap Q A=<ESC>0yt=A<C-r>=<C-r>"<CR><ESC>
 
-function! CommitToTmux()
+function! CommitToTmux() range
   let [lnum1, col1] = getpos("'<")[1:2]
   let [lnum2, col2] = getpos("'>")[1:2]
   let lines = getline(lnum1, lnum2)
@@ -56,7 +56,6 @@ map <leader>q :wq<CR>
 map <leader>p :Git pull<CR>
 map <leader>P :Git push<CR>
 
-iab itb helloworld
 
 " Column scroll-binding on <leader>sb
 noremap <silent> <leader>sb :<C-u>let @z=&so<CR>:set so=0 noscb<CR>:bo vs<CR>Ljzt:setl scb<CR><C-w>p:setl scb<CR>:let &so=@z<CR>
