@@ -31,16 +31,22 @@ map Y y$
 " Evaluate current line
 nnoremap Q A=<ESC>0yt=A<C-r>=<C-r>"<CR><ESC>
 
-function! CommitToTmux(str)
-  let a = str + "\n"
-  "call Send_to_Tmux(str)
-  echo a
+function! CommitToTmux()
+  let [lnum1, col1] = getpos("'<")[1:2]
+  let [lnum2, col2] = getpos("'>")[1:2]
+  let lines = getline(lnum1, lnum2)
+  let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
+  let lines[0] = lines[0][col1 - 1:]
+  for i in lines
+    call Send_to_Tmux(join([i,"\n"], ""))
+  endfor
 endfunction
 
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 map <Leader>d :call Send_to_Tmux(join([getline('.'),"\n"], ""))<CR>
+vmap <Leader>d :call CommitToTmux()<CR>
 map <Leader>f :A<CR>
 map <Leader>w :w<CR>
 map <Leader>F :AV<CR>
