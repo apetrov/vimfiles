@@ -55,6 +55,7 @@ map <leader>W :Gwrite<CR>:Gcommit<CR>i
 map <leader>q :wq<CR>
 map <leader>p :Git pull<CR>
 map <leader>P :Git push<CR>
+map <leader>B :Gblame<CR>
 
 
 " Column scroll-binding on <leader>sb
