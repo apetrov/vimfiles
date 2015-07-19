@@ -1,68 +1,11 @@
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Bundle 'gmarik/Vundle.vim'
-Bundle 'tmhedberg/matchit'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-dispatch'
-Bundle 'tpope/vim-endwise.git'
-Bundle 'tpope/vim-abolish.git'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-commentary.git'
-Bundle 'shinzui/vim-idleFingers'
-Bundle 'ctrlpvim/ctrlp.vim'
-Bundle 'rking/ag.vim'
-Bundle 'rizzatti/funcoo.vim'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'roman/golden-ratio'
 
-" Snippets
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "garbas/vim-snipmate"
-Bundle 'honza/vim-snippets'
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\v[\/](cookbook|log|DS_Store|\.bundle|\.git|target|public|tmp|vendor|cookbook)'
+\}
 
-" Textobj
-Bundle 'jgdavey/vim-blockle'
-Bundle 'kana/vim-textobj-user.git'
-Bundle 'kana/vim-textobj-entire.git'
-Bundle 'kana/vim-textobj-indent.git'
-Bundle 'kana/vim-textobj-syntax.git'
-Bundle 'kana/vim-textobj-line.git'
-Bundle 'nelstrom/vim-textobj-rubyblock'
-
-" Ruby
-Bundle 'tpope/vim-haml'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-rake'
-Bundle 'tpope/vim-bundler'
-Bundle 'thoughtbot/vim-rspec'
-Bundle 'Shougo/vimproc.vim'
-Bundle 'alvan/vim-closetag'
-Bundle 'jgdavey/tslime.vim'
-
-"Clojure
-Bundle 'tpope/vim-leiningen'
-Bundle 'tpope/vim-projectionist'
-Bundle 'tpope/vim-fireplace'
-"Bundle 'larsyencken/vim-drake-syntax'
-Bundle 'guns/vim-clojure-static'
-
-Bundle 'wakatime/vim-wakatime'
-
-call vundle#end()
-filetype plugin indent on
-
-
-
-let g:closetag_html_style=1
-syntax on
-filetype plugin on
-set t_Co=256  "necessary for TMUX
-set grepprg=ack " faster grep, for :grep command
-let g:agprg='/usr/local/bin/ag --column'
+if filereadable(expand("~/.vim/vimrc.bundles"))
+  source ~/.vim/vimrc.bundles
+endif
 
 ""Intent
 "set smartindent
@@ -78,32 +21,16 @@ set shell=/bin/bash "zsh cause multiple issues, it's easier to use bash
 "set shell=/bin/zsh
 set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
-set pastetoggle=<F2>
-set laststatus=2
 
 " Avoid vim backup files
-set wildignore=*.swp,*.bak,*.pyc,*.class
 set nobackup
 set noswapfile
 set autoread
 
 set history=1000
 set showcmd
-
-
-set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.class,.svn,*.gem
-set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
-set wildignore+=vendor/gems/*,vendor/cache/*,.bundle/*,.sass-cache/*
-set wildignore+=*.swp,*~,._*
-
-" Avoid nag beeps
 set visualbell
 set noerrorbells
-set guifont=Bitstream\ Vera\ Sans\ Mono:h13
-
-" Avoid 'Please press enter'
-set shortmess=aAWTsI
-set cmdheight=2
 
 " share clipboard with OSX
 set clipboard=unnamed
@@ -113,36 +40,82 @@ set notimeout
 set ttimeout
 set ttimeoutlen=100
 
-colorscheme zenburn
-"colorscheme railscasts
-set cursorline
-hi CursorLine guibg=#2D2D2D ctermbg=235
-
-
-
-source ~/.vim/scripts/functions.vim
-source ~/.vim/scripts/autocmd.vim
-let g:ackprg = 'ag --nogroup --column'
-
-" As I use only narrow screen displays screen realestate is very valuable
-au WinEnter * :setlocal number
-au WinLeave * :setlocal nonumber
-
-source ~/.vim/scripts/mappings.vim
-source ~/.vim/scripts/status.vim
-source ~/.vim/scripts/tmux.vim
 set tags=.git/tags;
-
 set splitbelow
 set splitright
 set winwidth=84
 
-" set winheight=40
-" set winminheight=5
+set t_Co=256  "necessary for TMUX
 
-nmap <Leader>h :noh<cr>
-command! Path :echo join(split(&path, ","), "\n")
+set wildignore=*.swp,*.bak,*.pyc,*.class
+set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.class,.svn,*.gem
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+set wildignore+=vendor/gems/*,vendor/cache/*,.bundle/*,.sass-cache/*
+set wildignore+=*~,._*
+set laststatus=2 "display statusline
 
-let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v[\/](cookbook|log|DS_Store|\.bundle|\.git|target|public|tmp|vendor|cookbook)'
-\}
+let g:closetag_html_style=1
+let g:html_indent_tags = 'li\|p'
+
+
+function! SetRspecCommand()
+  if filereadable(getcwd(). "/Gemfile")
+    "let g:rspec_command = "!echo bundle exec rspec {spec} && bundle exec rspec {spec}"
+    let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec {spec}\n")'
+  else
+    "let g:rspec_command = "!echo bundle exec rspec {spec} && bundle exec rspec {spec}"
+    let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+  endif
+endfunction
+
+if has("autocmd")
+  autocmd BufRead,BufNewFile Gemfile set filetype=ruby
+  autocmd BufRead,BufNewFile Gemfile.lock set filetype=ruby
+  autocmd BufRead,BufNewFile Rakefile set filetype=ruby
+  autocmd BufRead,BufNewFile Capfile, set filetype=ruby
+  autocmd BufRead,BufNewFile config.ru, set filetype=ruby
+  autocmd BufRead,BufNewFile config, set filetype=ruby
+  autocmd BufRead,BufNewFile Guardfile, set filetype=ruby
+  autocmd FileType ruby :call SetRspecCommand()
+  " not necessary
+  " autocmd BufRead,BufNewFile *.rb, set makeprg=ruby\ %
+  " not sure how to make ruby and rspce at the same time. this solution breaks
+  " ruby syntax and snippets but make rspec working
+  " autocmd BufRead,BufNewFile *_spec.rb, set filetype=ruby-rspec
+
+  " Trim ending whitespaces
+  autocmd FileWritePre    * StripWhitespace
+  autocmd FileAppendPre   * StripWhitespace
+  autocmd FilterWritePre  * StripWhitespace
+  autocmd BufWritePre     * StripWhitespace
+
+  autocmd FileType clojure map <leader>e :Eval<CR>
+
+  " As I use only narrow screen displays screen realestate is very valuable
+  au WinEnter * :setlocal number
+  au WinLeave * :setlocal nonumber
+
+  au WinEnter * :set winfixheight
+  au WinEnter * :wincmd =
+
+  au FileType sql execute 'setlocal dict+=~/.vim/word/sql.txt'
+end
+
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+if filereadable(expand("~/.vim/vimrc.status"))
+  source ~/.vim/vimrc.status
+endif
+
+if filereadable(expand("~/.vim/vimrc.local"))
+  source ~/.vim/vimrc.local
+endif
