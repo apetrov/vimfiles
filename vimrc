@@ -1,7 +1,3 @@
-let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v[\/](cookbook|log|DS_Store|\.bundle|\.git|target|public|tmp|vendor|cookbook)'
-\}
-
 if filereadable(expand("~/.vim/vimrc.bundles"))
   source ~/.vim/vimrc.bundles
 endif
@@ -49,7 +45,8 @@ set t_Co=256  "necessary for TMUX
 set wildignore=*.swp,*.bak,*.pyc,*.class
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.class,.svn,*.gem
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
-set wildignore+=vendor/gems/*,vendor/cache/*,.bundle/*,.sass-cache/*
+set wildignore+=vendor/gems/*,vendor/cache/*,.bundle/*,.sass-cache/*,.git/*,cookbooks/*
+set wildignore+=log/*,target/*,.DS_Store/*,bin/*
 set wildignore+=*~,._*
 
 let g:closetag_html_style=1
@@ -92,10 +89,10 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
   " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 1
+  let g:ctrlp_use_caching = 0
 endif
 
 if filereadable(expand("~/.vim/vimrc.status"))
