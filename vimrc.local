@@ -1,0 +1,83 @@
+set pastetoggle=<F2>
+
+colorscheme zenburn
+
+set cursorline
+set guifont=Bitstream\ Vera\ Sans\ Mono:h13
+hi CursorLine guibg=#2D2D2D ctermbg=235
+
+let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+
+function! CommitToTmux() range
+  let [lnum1, col1] = getpos("'<")[1:2]
+  let [lnum2, col2] = getpos("'>")[1:2]
+  let lines = getline(lnum1, lnum2)
+  let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
+  let lines[0] = lines[0][col1 - 1:]
+  for i in lines
+    call Send_to_Tmux(join([i,"\n"], ""))
+  endfor
+endfunction
+
+command! Path :echo join(split(&path, ","), "\n")
+
+nnoremap <C-n> :call NumberToggle()<cr>
+
+" Use dot command in visual mode
+vnoremap . :norm.<CR>
+
+" switch between panes with Ctrl+h|j|k|l combo
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" [a and ]a to move between arguments
+nmap ]a :next!<CR>
+nmap [a :Next!<CR>
+
+nmap <left> :bp!<CR>
+nmap <right> :bn!<CR>
+nmap <up> :cpfile!<CR>
+nmap <down> :cnfile!<CR>
+
+" Smooth scrolling. keep cursor in center
+nnoremap j gj
+nnoremap k gk
+map Y y$
+" Evaluate current line
+nnoremap Q A=<ESC>0yt=A<C-r>=<C-r>"<CR><ESC>
+
+
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>d :call Send_to_Tmux(join([getline('.'),"\n"], ""))<CR>
+vmap <Leader>d :call CommitToTmux()<CR>
+map <Leader>f :A<CR>
+map <Leader>w :w<CR>
+map <Leader>F :AV<CR>
+map <leader>r :!ruby %<CR><CR>
+map <leader>W :Gwrite<CR>:Gcommit<CR>i
+map <leader>q :wq<CR>
+map <leader>p :Git pull<CR>
+map <leader>P :Git push<CR>
+map <leader>B :Gblame<CR>
+
+
