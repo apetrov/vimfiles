@@ -1,5 +1,7 @@
 """ statusline from scrooloose/vimfiles
 
+set laststatus=2 "display statusline
+
 "statusline setup
 set statusline=%f       "tail of the filename
 

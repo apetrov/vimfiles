@@ -1,4 +1,3 @@
-
 let g:ctrlp_custom_ignore = {
   \ 'dir': '\v[\/](cookbook|log|DS_Store|\.bundle|\.git|target|public|tmp|vendor|cookbook)'
 \}
@@ -52,21 +51,9 @@ set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.class,.svn,*.gem
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
 set wildignore+=vendor/gems/*,vendor/cache/*,.bundle/*,.sass-cache/*
 set wildignore+=*~,._*
-set laststatus=2 "display statusline
 
 let g:closetag_html_style=1
 let g:html_indent_tags = 'li\|p'
-
-
-function! SetRspecCommand()
-  if filereadable(getcwd(). "/Gemfile")
-    "let g:rspec_command = "!echo bundle exec rspec {spec} && bundle exec rspec {spec}"
-    let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec {spec}\n")'
-  else
-    "let g:rspec_command = "!echo bundle exec rspec {spec} && bundle exec rspec {spec}"
-    let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
-  endif
-endfunction
 
 if has("autocmd")
   autocmd BufRead,BufNewFile Gemfile set filetype=ruby
@@ -76,7 +63,6 @@ if has("autocmd")
   autocmd BufRead,BufNewFile config.ru, set filetype=ruby
   autocmd BufRead,BufNewFile config, set filetype=ruby
   autocmd BufRead,BufNewFile Guardfile, set filetype=ruby
-  autocmd FileType ruby :call SetRspecCommand()
   " not necessary
   " autocmd BufRead,BufNewFile *.rb, set makeprg=ruby\ %
   " not sure how to make ruby and rspce at the same time. this solution breaks
@@ -109,7 +95,7 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
   " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
+  let g:ctrlp_use_caching = 1
 endif
 
 if filereadable(expand("~/.vim/vimrc.status"))

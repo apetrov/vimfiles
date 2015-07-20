@@ -6,6 +6,8 @@ set cursorline
 set guifont=Bitstream\ Vera\ Sans\ Mono:h13
 hi CursorLine guibg=#2D2D2D ctermbg=235
 
+let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
   let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
