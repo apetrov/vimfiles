@@ -27,4 +27,4 @@ Bundle 'christoomey/vim-tmux-navigator'
 
 Bundle 'tpope/vim-projectionist'
 Bundle 'mhinz/vim-startify'
-
+Bundle 'jnurmine/Zenburn'
