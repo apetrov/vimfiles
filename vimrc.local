@@ -66,7 +66,6 @@ nnoremap Q A=<ESC>0yt=A<C-r>=<C-r>"<CR><ESC>
 
 
 map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>d :call Send_to_Tmux(join([getline('.'),"\n"], ""))<CR>
 vmap <Leader>d :call CommitToTmux()<CR>
@@ -79,5 +78,11 @@ map <leader>q :wq<CR>
 map <leader>p :Git pull<CR>
 map <leader>P :Git push<CR>
 map <leader>B :Gblame<CR>
+map <leader>s :Gstatus<CR>
+map <leader>l :Glog<CR>
+map <leader>c :Gcommit<CR>
+map <leader>a :AV<CR>
+map <leader>A :A<CR>
+map q: :q<CR>
 
 
