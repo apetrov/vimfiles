@@ -81,8 +81,8 @@ map <leader>B :Gblame<CR>
 map <leader>s :Gstatus<CR>
 map <leader>l :Glog<CR>
 map <leader>c :Gcommit<CR>
-map <leader>a :AV<CR>
-map <leader>A :A<CR>
+map <leader>a :A<CR>
+map <leader>A :AV<CR>
 map q: :q<CR>
 
 
