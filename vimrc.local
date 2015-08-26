@@ -6,7 +6,8 @@ set cursorline
 set guifont=Bitstream\ Vera\ Sans\ Mono:h13
 hi CursorLine guibg=#2D2D2D ctermbg=235
 
-let g:rspec_command = 'call Send_to_Tmux("spring rspec {spec}\n")'
+"let g:rspec_command = 'call Send_to_Tmux("spring rspec {spec}\n")'
+let g:rspec_command = "Dispatch spring rspec {spec}"
 
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
@@ -75,8 +76,8 @@ map <Leader>w :w<CR>
 map <Leader>F :AV<CR>
 map <leader>r :!ruby %<CR><CR>
 map <leader>W :Gwrite<CR>:Gcommit<CR>i
-map <leader>p :Git pull<CR>
-map <leader>P :Git push<CR>
+map <leader>p :Dispatch Git pull<CR>
+map <leader>P :Dispatch Git push<CR>
 map <Leader>c :Gcommit<CR>
 map <Leader>s :Gstatus<CR>
 map <Leader>s :Gstatus<CR>
