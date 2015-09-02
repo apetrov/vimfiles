@@ -83,4 +83,9 @@ map <Leader>s :Gstatus<CR>
 map <Leader>s :Gstatus<CR>
 map gb :Gblame<CR>
 map gl :Glog<CR>
+map gp :cclose<CR>
+
+
+command Schema execute "Dispatch RAILS_ENV=test bundle exec rake db:schema:load db:schema:load_additional"
+command Deploy execute "Dispatch bundle exec cap production deploy"
 
