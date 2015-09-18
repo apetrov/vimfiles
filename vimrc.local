@@ -7,6 +7,7 @@ set guifont=Bitstream\ Vera\ Sans\ Mono:h13
 hi CursorLine guibg=#2D2D2D ctermbg=235
 
 let g:rspec_command = 'call Send_to_Tmux("spring rspec {spec}\n")'
+"let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 "let g:rspec_command = "Dispatch rspec {spec}"
 
 if exists('$TMUX')
@@ -86,6 +87,7 @@ map gl :Glog<CR>
 map gp :cclose<CR>
 
 
-command Schema execute "Dispatch RAILS_ENV=test bundle exec rake db:schema:load db:schema:load_additional"
+command Schema execute "Dispatch bundle exec rake db:create db:test:load_schema"
 command Deploy execute "Dispatch bundle exec cap production deploy"
+command Master execute "Dispatch git checkout master"
 
