@@ -30,3 +30,6 @@ Bundle 'mhinz/vim-startify'
 Bundle 'jnurmine/Zenburn'
 Bundle 'tpope/vim-obsession'
 Bundle 'jlanzarotta/bufexplorer'
+Bundle 'jvirtanen/vim-octave'
+
+Bundle 'tpope/vim-fireplace'
