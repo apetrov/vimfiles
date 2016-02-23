@@ -77,9 +77,19 @@ map <leader>p :Dispatch Git pull<CR>
 map <leader>P :Dispatch Git push<CR>
 map <Leader>c :Gcommit<CR>
 map <Leader>s :Gstatus<CR>
+" replace ruby block with its content
+map <Leader>B vir"ay"bdirV%dk"apmagg=G`a<CR>
+" extract local variable to the method
+map <Leader>M ^"adiwdf="sDdd[m%odef "apoendO"spvap=<CR>
 map gb :Gblame<CR>
 map gl :Glog<CR>
-map gp :cclose<CR>
+map gq :cclose<CR>
+
+function Gist() range
+  echo system('echo '.shellescape(join(getline(a:firstline, a:lastline), "\n")).'| gist -p --copy')
+endfunction
+
+command! -range=% -nargs=0 Gist :<line1>,<line2>call Gist()
 
 command Schema execute "Dispatch bundle exec rake db:create db:test:load_schema"
 command Deploy execute "Dispatch bundle exec cap production deploy"
