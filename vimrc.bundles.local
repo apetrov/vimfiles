@@ -33,3 +33,6 @@ Bundle 'jlanzarotta/bufexplorer'
 Bundle 'jvirtanen/vim-octave'
 
 Bundle 'tpope/vim-fireplace'
+Bundle 'nanotech/jellybeans.vim'
+Bundle 'danro/rename.vim'
+Bundle 'godlygeek/tabular.git'
