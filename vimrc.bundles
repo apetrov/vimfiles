@@ -4,24 +4,38 @@ end
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+" Vundle plugin manager
 Bundle 'gmarik/Vundle.vim'
+" % extension
 Bundle 'tmhedberg/matchit'
+" git client
 Bundle 'tpope/vim-fugitive'
+" run shell command in background
 Bundle 'tpope/vim-dispatch'
+" . extension
 Bundle 'tpope/vim-repeat'
+" manage surroundings
 Bundle 'tpope/vim-surround'
+" comment in/out
 Bundle 'tpope/vim-commentary.git'
+" fuzzy search
 Bundle 'ctrlpvim/ctrlp.vim'
+" Fast find in files
 Bundle 'rking/ag.vim'
 
 " Ruby
+" ruby syntax and executable
 Bundle 'vim-ruby/vim-ruby'
-Bundle 'vim-scripts/tComment'
+" haml syntax
 Bundle 'tpope/vim-haml'
+" Rails project
 Bundle 'tpope/vim-rails'
+" support bundles
 Bundle 'tpope/vim-bundler'
+" Run rspec (incl. via TMUX)
 Bundle 'thoughtbot/vim-rspec'
 
+" Trim whitespaces
 Bundle 'ntpeters/vim-better-whitespace'
 
 if filereadable(expand("~/.vim/vimrc.bundles.local"))
