@@ -81,9 +81,12 @@ map <Leader>s :Gstatus<CR>
 map <Leader>B vir"ay"bdirV%dk"apmagg=G`a<CR>
 " extract local variable to the method
 map <Leader>M ^"adiwdf="sDdd[m%odef "apoendO"spvap=<CR>
+map <Leader>E ddvar^[%kp
 map gb :Gblame<CR>
 map gl :Glog<CR>
 map gq :cclose<CR>
+command! MDHeaderBreak :norm yyp:.s/\w/-/g<CR>:.s/\s/-/g<CR>
+
 
 function Gist() range
   echo system('echo '.shellescape(join(getline(a:firstline, a:lastline), "\n")).'| gist -p --copy')
