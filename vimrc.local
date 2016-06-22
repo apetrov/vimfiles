@@ -100,3 +100,5 @@ command Master execute "Dispatch git checkout master"
 "TODO it should be automatic using Gemfile.lock
 command SetSpringRspec let g:rspec_command = 'call Send_to_Tmux("spring rspec {spec}\n")'
 command! Path :echo join(split(&path, ","), "\n")
+
+command! Escape .!ruby -ne 'require "cgi"; puts CGI.escape($_.strip)'
