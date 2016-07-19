@@ -5,6 +5,7 @@ colorscheme zenburn
 set cursorline
 set guifont=Bitstream\ Vera\ Sans\ Mono:h13
 hi CursorLine guibg=#2D2D2D ctermbg=235
+set dictionary=/usr/share/dict/words
 
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
