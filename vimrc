@@ -61,10 +61,10 @@ if has("autocmd")
   autocmd BufRead,BufNewFile config, set filetype=ruby
   autocmd BufRead,BufNewFile Guardfile, set filetype=ruby
   " not necessary
-  " autocmd BufRead,BufNewFile *.rb, set makeprg=ruby\ %
+  autocmd BufRead,BufNewFile *.rb, set makeprg=ruby\ %
   " not sure how to make ruby and rspce at the same time. this solution breaks
   " ruby syntax and snippets but make rspec working
-  " autocmd BufRead,BufNewFile *_spec.rb, set filetype=ruby-rspec
+  autocmd BufRead,BufNewFile *_spec.rb, set filetype=ruby-rspec
 
   " Trim ending whitespaces
   autocmd FileWritePre    * StripWhitespace

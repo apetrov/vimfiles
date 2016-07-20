@@ -73,7 +73,7 @@ vmap <Leader>d :call CommitToTmux()<CR>
 map <Leader>f :A<CR>
 map <Leader>w :w<CR>
 map <Leader>F :AV<CR>
-map <leader>r :Dispatch ruby %<CR><CR>
+map <leader>r :make<CR>
 map <leader>p :Dispatch Git pull<CR>
 map <leader>P :Dispatch Git push<CR>
 map <Leader>c :Gcommit<CR>
@@ -82,6 +82,7 @@ map <Leader>s :Gstatus<CR>
 map <Leader>B vir"ay"bdirV%dk"apmagg=G`a<CR>
 " extract local variable to the method
 map <Leader>M ^"adiwdf="sDdd[m%odef "apoendO"spvap=<CR>
+" move current line outside current ruby block
 map <Leader>E ddvar^[%kp
 map gb :Gblame<CR>
 map gl :Glog<CR>
