@@ -3,6 +3,7 @@ set pastetoggle=<F2>
 colorscheme zenburn
 
 set cursorline
+set wildmenu
 set guifont=Bitstream\ Vera\ Sans\ Mono:h13
 hi CursorLine guibg=#2D2D2D ctermbg=235
 set dictionary=/usr/share/dict/words
