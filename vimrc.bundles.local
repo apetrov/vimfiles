@@ -60,3 +60,10 @@ Bundle 'nanotech/jellybeans.vim'
 Bundle 'danro/rename.vim'
 " Align text tablular
 Bundle 'godlygeek/tabular.git'
+
+"required by vim-notes
+Bundle 'xolox/vim-misc'
+Bundle 'xolox/vim-notes'
+
+
+Bundle 'plasticboy/vim-markdown'

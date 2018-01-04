@@ -33,7 +33,7 @@ Bundle 'tpope/vim-rails'
 " support bundles
 Bundle 'tpope/vim-bundler'
 " Run rspec (incl. via TMUX)
-Bundle 'thoughtbot/vim-rspec'
+Plugin 'thoughtbot/vim-rspec'
 
 " Trim whitespaces
 Bundle 'ntpeters/vim-better-whitespace'
