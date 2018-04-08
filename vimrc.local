@@ -78,8 +78,8 @@ map <Leader>f :A<CR>
 map <Leader>w :w<CR>
 map <Leader>F :AV<CR>
 map <leader>r :make<CR>
-map <leader>p :Dispatch Git pull<CR>
-map <leader>P :Dispatch Git push<CR>
+map <leader>p :Git pull<CR>
+map <leader>P :Git push<CR>
 map <Leader>c :Gcommit<CR>
 map <Leader>s :Gstatus<CR>
 " replace ruby block with its content

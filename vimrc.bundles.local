@@ -67,3 +67,8 @@ Bundle 'xolox/vim-notes'
 
 
 Bundle 'plasticboy/vim-markdown'
+
+Plugin 'mileszs/ack.vim'
+
+Bundle 'baverman/vial'
+Bundle 'baverman/vial-http'
