@@ -72,3 +72,4 @@ Plugin 'mileszs/ack.vim'
 
 Bundle 'baverman/vial'
 Bundle 'baverman/vial-http'
+Bundle 'justinmk/vim-sneak'
