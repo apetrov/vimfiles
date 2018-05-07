@@ -27,8 +27,11 @@ set showcmd
 set visualbell
 set noerrorbells
 
-" share clipboard with OSX
-set clipboard=unnamed
+if has('macunix')
+  set clipboard=unnamed
+else
+  set clipboard=unnamedplus
+endif
 
 "Make things faster
 set notimeout
