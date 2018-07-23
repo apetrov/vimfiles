@@ -112,3 +112,5 @@ command! FormatJson %!python -m json.tool
 
 
 let g:vim_markdown_folding_disabled = 1
+
+autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0

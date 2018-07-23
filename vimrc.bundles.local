@@ -1,6 +1,5 @@
 " End certain structures automatically. i.e. if/end
 Bundle 'tpope/vim-endwise.git'
-Bundle 'tpope/vim-abolish.git'
 " mappings by tpope
 Bundle 'tpope/vim-unimpaired'
 
@@ -32,6 +31,8 @@ Bundle 'kana/vim-textobj-syntax.git'
 Bundle 'kana/vim-textobj-line.git'
 " r,m,M text objects (ruby-block, method, class)
 Bundle 'nelstrom/vim-textobj-rubyblock'
+Bundle 'whatyouhide/vim-textobj-erb.git'
+Bundle 'bps/vim-textobj-python.git'
 
 " like vim-rails but for vanila ruby projects
 Bundle 'tpope/vim-rake'
@@ -49,11 +50,7 @@ Bundle 'jnurmine/Zenburn'
 Bundle 'tpope/vim-obsession'
 " Explore buffers
 Bundle 'jlanzarotta/bufexplorer'
-" Octave syntax
-Bundle 'jvirtanen/vim-octave'
 
-" Clojure REPL
-Bundle 'tpope/vim-fireplace'
 " Theme
 Bundle 'nanotech/jellybeans.vim'
 " Rename current file
@@ -70,6 +67,6 @@ Bundle 'plasticboy/vim-markdown'
 
 Plugin 'mileszs/ack.vim'
 
-Bundle 'baverman/vial'
-Bundle 'baverman/vial-http'
-Bundle 'justinmk/vim-sneak'
+"Bundle 'baverman/vial'
+"Bundle 'baverman/vial-http'
+"Bundle 'justinmk/vim-sneak'
