@@ -27,11 +27,8 @@ set showcmd
 set visualbell
 set noerrorbells
 
-if has('macunix')
-  set clipboard=unnamed
-else
-  set clipboard=unnamedplus
-endif
+" Works for both OSX and linux
+set clipboard=unnamed
 
 "Make things faster
 set notimeout
