@@ -55,6 +55,11 @@ function! UnwrapBlock()
   normal vir"ay"bdirV%dk"apmagg=G`a
 endfunction
 
+" Ruby extract local variable to method
+function! ExtractMethod()
+  let @a="^\"zdt=x\"xDddmv[mOdef \<C-r>z\<CR>\<C-r>x\<Esc>jo\<Esc>'v"
+  normal @a
+endfunction
 
 
 nnoremap <C-n> :call NumberToggle()<cr>
@@ -109,6 +114,7 @@ command! FormatJson %!python -m json.tool
 command! VariableToLetDefinition call VariableToLetDefinition()
 command! LetDefinitionToVariable call LetDefinitionToVariable()
 command! UnwrapBlock call UnwrapBlock()
+command! ExtractMethod call ExtractMethod()
 
 let g:vim_markdown_folding_disabled = 1
 
