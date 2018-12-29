@@ -40,6 +40,22 @@ function! CommitToTmux() range
   endfor
 endfunction
 
+function! VariableToLetDefinition()
+  let @a="^ilet(:\<Esc>ea){\<Esc>f=xA}"
+  normal @a
+endfunction
+
+function! LetDefinitionToVariable()
+  let @a="^f:x^dwds(f{i = \<Esc>f{ds{"
+  normal @a
+endfunction
+
+" Unwrap ruby block
+function! UnwrapBlock()
+  normal vir"ay"bdirV%dk"apmagg=G`a
+endfunction
+
+
 
 nnoremap <C-n> :call NumberToggle()<cr>
 
@@ -74,42 +90,25 @@ map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>d :call Send_to_Tmux(join([getline('.'),"\n"], ""))<CR>
 vmap <Leader>d :call CommitToTmux()<CR>
-map <Leader>f :A<CR>
 map <Leader>w :w<CR>
-map <Leader>F :AV<CR>
 map <leader>r :make<CR>
 map <leader>p :Git pull<CR>
 map <leader>P :Git push<CR>
 map <Leader>c :Gcommit<CR>
 map <Leader>s :Gstatus<CR>
-" replace ruby block with its content
-map <Leader>B vir"ay"bdirV%dk"apmagg=G`a<CR>
-" extract local variable to the method
-map <Leader>M ^"adiwdf="sDdd[m%odef "apoendO"spvap=<CR>
-" move current line outside current ruby block
-map <Leader>E ddvar^[%kp
 map gb :Gblame<CR>
 map gl :Glog<CR>
 map gq :cclose<CR>
-command! MDHeaderBreak :norm yyp:.s/\w/-/g<CR>:.s/\s/-/g<CR>
 
-
-function Gist() range
-  echo system('echo '.shellescape(join(getline(a:firstline, a:lastline), "\n")).'| gist -p --copy')
-endfunction
-
-command! -range=% -nargs=0 Gist :<line1>,<line2>call Gist()
-
-command Schema execute "Dispatch bundle exec rake db:create db:test:load_schema"
-command Deploy execute "Dispatch bundle exec cap production deploy"
-command Master execute "Dispatch git checkout master"
-"TODO it should be automatic using Gemfile.lock
-command SetSpringRspec let g:rspec_command = 'call Send_to_Tmux("spring rspec {spec}\n")'
+command! DeployProduction execute "Dispatch git push -f production master"
+command! DeployStaging execute "Dispatch git push -f staging master"
+command! Master execute "Dispatch git checkout master"
 command! Path :echo join(split(&path, ","), "\n")
-
 command! Escape .!ruby -ne 'require "cgi"; puts CGI.escape($_.strip)'
 command! FormatJson %!python -m json.tool
-
+command! VariableToLetDefinition call VariableToLetDefinition()
+command! LetDefinitionToVariable call LetDefinitionToVariable()
+command! UnwrapBlock call UnwrapBlock()
 
 let g:vim_markdown_folding_disabled = 1
 
