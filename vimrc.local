@@ -40,12 +40,12 @@ function! CommitToTmux() range
   endfor
 endfunction
 
-function! VariableToLetDefinition()
+function! ExtractLetDefinition()
   let @a="^ilet(:\<Esc>ea){\<Esc>f=xA}"
   normal @a
 endfunction
 
-function! LetDefinitionToVariable()
+function! InlineLetDefinition()
   let @a="^f:x^dwds(f{i = \<Esc>f{ds{"
   normal @a
 endfunction
@@ -111,8 +111,8 @@ command! Master execute "Dispatch git checkout master"
 command! Path :echo join(split(&path, ","), "\n")
 command! Escape .!ruby -ne 'require "cgi"; puts CGI.escape($_.strip)'
 command! FormatJson %!python -m json.tool
-command! VariableToLetDefinition call VariableToLetDefinition()
-command! LetDefinitionToVariable call LetDefinitionToVariable()
+command! ExtractLetDefinition call ExtractLetDefinition()
+command! InlineLetDefinition call InlineLetDefinition()
 command! UnwrapBlock call UnwrapBlock()
 command! ExtractMethod call ExtractMethod()
 
