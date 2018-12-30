@@ -61,6 +61,31 @@ function! ExtractMethod()
   normal @a
 endfunction
 
+" convert
+"   a, b, c
+" into
+"
+"  attr_accessor :a, :b, :c
+"  def initialize(a, b, c)
+"    @a, @b, @c = a, b, c
+"  end
+"
+function! NewClassCtor()
+ruby << EOF
+  buffer = Vim::Buffer.current
+  line = buffer.line
+  n = buffer.line_number
+  indent = line.match(/^\s*/).to_s
+  args =  line.split(",").map(&:strip)
+  line = args.map{|t| ":#{t}"}.join(", ")
+  buffer[n] = "#{indent}attr_accessor #{line}"
+  buffer.append(n,"#{indent}def initialize(#{args.join(', ')})")
+  line1 = args.map{|t| "@#{t}"}.join(", ")
+  line2 = args.join(", ")
+  buffer.append(n+1,"#{indent}  #{line1} = #{line2}")
+  buffer.append(n+2,"#{indent}end")
+EOF
+endfunction
 
 nnoremap <C-n> :call NumberToggle()<cr>
 
@@ -110,11 +135,11 @@ command! DeployStaging execute "Dispatch git push -f staging master"
 command! Master execute "Dispatch git checkout master"
 command! Path :echo join(split(&path, ","), "\n")
 command! Escape .!ruby -ne 'require "cgi"; puts CGI.escape($_.strip)'
-command! FormatJson %!python -m json.tool
 command! ExtractLetDefinition call ExtractLetDefinition()
 command! InlineLetDefinition call InlineLetDefinition()
 command! UnwrapBlock call UnwrapBlock()
 command! ExtractMethod call ExtractMethod()
+command! NewClassCtor call NewClassCtor()
 
 let g:vim_markdown_folding_disabled = 1
 
