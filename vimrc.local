@@ -127,7 +127,6 @@ map <leader>P :Git push<CR>
 map <Leader>c :Gcommit<CR>
 map <Leader>s :Gstatus<CR>
 map gb :Gblame<CR>
-map gl :Glog<CR>
 map gq :cclose<CR>
 
 command! DeployProduction execute "Dispatch git push -f production master"

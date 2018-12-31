@@ -72,8 +72,6 @@ if has("autocmd")
   autocmd FilterWritePre  * StripWhitespace
   autocmd BufWritePre     * StripWhitespace
 
-  autocmd FileType clojure map <leader>e :Eval<CR>
-
   " As I use only narrow screen displays screen realestate is very valuable
   au WinEnter * :setlocal number
   au WinLeave * :setlocal nonumber
