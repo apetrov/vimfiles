@@ -18,8 +18,6 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 " comment in/out
 Bundle 'tpope/vim-commentary.git'
-" fuzzy search
-Bundle 'ctrlpvim/ctrlp.vim'
 " Fast find in files
 Bundle 'rking/ag.vim'
 
@@ -45,3 +43,6 @@ endif
 call vundle#end()
 filetype plugin indent on
 syntax on
+
+" fzf
+set rtp+=~/.fzf
