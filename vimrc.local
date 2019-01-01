@@ -128,6 +128,7 @@ map <Leader>c :Gcommit<CR>
 map <Leader>s :Gstatus<CR>
 map gb :Gblame<CR>
 map gq :cclose<CR>
+nnoremap <c-p> :FZF<cr>
 
 command! DeployProduction execute "Dispatch git push -f production master"
 command! DeployStaging execute "Dispatch git push -f staging master"
