@@ -48,9 +48,7 @@ Bundle 'tpope/vim-projectionist'
 Bundle 'jnurmine/Zenburn'
 " Keep current session in file
 Bundle 'tpope/vim-obsession'
-" Explore buffers
-Bundle 'jlanzarotta/bufexplorer'
-
+"
 " Theme
 Bundle 'nanotech/jellybeans.vim'
 " Rename current file
