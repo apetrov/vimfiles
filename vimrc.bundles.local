@@ -60,6 +60,8 @@ Bundle 'godlygeek/tabular.git'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-notes'
 
+" Buffer management
+Bundle 'jlanzarotta/bufexplorer'
 
 Bundle 'plasticboy/vim-markdown'
 
