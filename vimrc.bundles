@@ -3,6 +3,9 @@ if &compatible
 end
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
+" fzf
+set rtp+=~/.fzf
+
 call vundle#begin()
 " Vundle plugin manager
 Bundle 'gmarik/Vundle.vim'
@@ -43,6 +46,3 @@ endif
 call vundle#end()
 filetype plugin indent on
 syntax on
-
-" fzf
-set rtp+=~/.fzf

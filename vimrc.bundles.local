@@ -28,10 +28,11 @@ Bundle 'kana/vim-textobj-entire.git'
 Bundle 'kana/vim-textobj-indent.git'
 " y text object (same color)
 Bundle 'kana/vim-textobj-syntax.git'
-Bundle 'kana/vim-textobj-line.git'
 " r,m,M text objects (ruby-block, method, class)
 Bundle 'nelstrom/vim-textobj-rubyblock'
+" E text object(Erb)
 Bundle 'whatyouhide/vim-textobj-erb.git'
+" f, c text object (function, class)
 Bundle 'bps/vim-textobj-python.git'
 
 " like vim-rails but for vanila ruby projects
@@ -43,22 +44,19 @@ Bundle 'jgdavey/tslime.vim'
 Bundle 'christoomey/vim-tmux-navigator'
 
 " project configuration. similar to vim-rails
+" not in use directly
 Bundle 'tpope/vim-projectionist'
-" Theme
+" Themes
 Bundle 'jnurmine/Zenburn'
+Bundle 'nanotech/jellybeans.vim'
 " Keep current session in file
 Bundle 'tpope/vim-obsession'
 "
-" Theme
-Bundle 'nanotech/jellybeans.vim'
 " Rename current file
 Bundle 'danro/rename.vim'
 " Align text tablular
+" :Tabilarize/=
 Bundle 'godlygeek/tabular.git'
-
-"required by vim-notes
-Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-notes'
 
 " Buffer management
 Bundle 'jlanzarotta/bufexplorer'
