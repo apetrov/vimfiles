@@ -9,6 +9,9 @@ set rtp+=~/.fzf
 call vundle#begin()
 " Vundle plugin manager
 Bundle 'gmarik/Vundle.vim'
+
+Bundle 'junegunn/fzf.vim'
+
 " % extension
 Bundle 'tmhedberg/matchit'
 " git client
