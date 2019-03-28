@@ -1,7 +1,3 @@
-snippet table
-	echo "copy(select * from ${1:trackings_20150513}) to STDOUT with csv;" | psql -U postgres -h ${2:db05}.virool ${3:analytics_production} > ${4:test}.csv
-	cat $4.csv | psql -U postgres -h ${5:localhost} -c "truncate ${6:trackings};COPY $6 FROM STDIN DELIMITER ',' CSV;" ${7:virool_development}
-
 snippet story
 	As a ${1:user}, I want ${2:to} so that ${3}.
 
