@@ -159,9 +159,7 @@ map <Space>gL :Glog %<CR>
 map <Space>gr :Gread<CR>
 map <Space>gw :Gwrite<CR>
 map <Space>ge :Gvsplit<CR>
-" disabling as it doesn't work
-" map <Space>gd :only<CR>:Gvsplit<CR><C-w><C-l>:diffthis<CR>:diffupdate<CR>
-
+map <Space>gd :Gdiff<CR>
 
 map <Space>ff :FZF<CR>
 map <Space>fs :w<CR>
