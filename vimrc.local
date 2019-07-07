@@ -1,6 +1,8 @@
 set pastetoggle=<F2>
 
-colorscheme zenburn
+" colorscheme zenburn
+set background=dark
+colorscheme space_vim_theme
 
 let g:netrw_banner = 0
 

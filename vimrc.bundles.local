@@ -70,4 +70,5 @@ Plugin 'mileszs/ack.vim'
 "Bundle 'baverman/vial-http'
 "Bundle 'justinmk/vim-sneak'
 Plugin 'fatih/vim-go'
+Plugin 'liuchengxu/space-vim-theme'
 
