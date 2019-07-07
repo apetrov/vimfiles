@@ -164,7 +164,6 @@ map <Space>gd :Gdiff<CR>
 map <Space>ff :FZF<CR>
 map <Space>fs :w<CR>
 map <Space>fD :!rm %<CR>:bd<CR>
-map <Space>fD :!rm %<CR>:bd<CR>
 
 map <Space>xdw :StripWhitespace<CR>
 map <Space>xt :Tabularize/
