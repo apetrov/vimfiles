@@ -141,6 +141,13 @@ map <Space>bs :call Send_to_Tmux(join([getline('.'),"\n"], ""))<CR>
 vmap <Space>bs :call CommitToTmux()<CR>
 map <Space>bd :bd<CR>
 map <Space>bb :Buffers<CR>
+map <Space>bN :vnew<CR>
+map <Space>bn :bn!<CR>
+map <Space>bp :bp!<CR>
+map <Space>bfr :set ft=ruby<CR>
+map <Space>bfp :set ft=python<CR>
+map <Space>bfs :set ft=sh<CR>
+map <Space>bY ggyG
 " Evaluate current line
 nnoremap <Space>be A=<ESC>0yt=A<C-r>=<C-r>"<CR><ESC>
 
@@ -149,16 +156,30 @@ map <Space>gf :Git fetch<CR>
 map <Space>gP :Git push<CR>
 map <Space>gc :Gcommit<CR>
 map <Space>gs :Gstatus<CR>
-map <Space>gb :Gblame<CR>
+map <Space>gB :Gblame<CR>
+map <Space>gl :Glog<CR>
+map <Space>gL :Glog %<CR>
 map <Space>ge <C-W>v:Gedit %<CR>
 
 map <Space>ff :FZF<CR>
 map <Space>fs :w<CR>
+map <Space>fD :!rm %<CR>:bd<CR>
+map <Space>fD :!rm %<CR>:bd<CR>
+
+map <Space>xdw :StripWhitespace<CR>
+map <Space>xt :Tabularize/
+vmap <Space>xt :Tabularize/
 
 map <Space>wq :wq<CR>
+map <Space>wv <C-w><C-v>
+map <Space>ws <C-w><C-s>
+map <Space>wo :only<CR>
 map <Space>wQ :q!<CR>
 map <Space>wcq :cclose<CR>
 map <Space>wco :copen<CR>
+
+map <Space>du :Dispatch! docker-compose up<CR>
+map <Space>dd :Dispatch! docker-compose down<CR>
 
 map <Space>tr :call NumberToggle()<CR>
 map <Space>tn :set nu<CR>
