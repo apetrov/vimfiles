@@ -161,7 +161,8 @@ map <Space>gl :Glog<CR>
 map <Space>gL :Glog %<CR>
 map <Space>gr :Gread<CR>
 map <Space>gw :Gwrite<CR>
-map <Space>ge <C-W>v:Gedit %<CR>
+map <Space>ge :Gvsplit<CR>
+map <Space>gd :only<CR>:Gvsplit<CR>:diffthis<CR>
 
 map <Space>ff :FZF<CR>
 map <Space>fs :w<CR>
