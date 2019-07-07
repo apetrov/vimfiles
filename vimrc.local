@@ -144,9 +144,6 @@ map <Space>bb :Buffers<CR>
 map <Space>bN :vnew<CR>
 map <Space>bn :bn!<CR>
 map <Space>bp :bp!<CR>
-map <Space>bfr :set ft=ruby<CR>
-map <Space>bfp :set ft=python<CR>
-map <Space>bfs :set ft=sh<CR>
 map <Space>bY ggyG
 " Evaluate current line
 nnoremap <Space>be A=<ESC>0yt=A<C-r>=<C-r>"<CR><ESC>
@@ -189,3 +186,7 @@ map <Space>dd :Dispatch! docker-compose down<CR>
 map <Space>tr :call NumberToggle()<CR>
 map <Space>tn :set nu<CR>
 map <Space>tN :set nonu<CR>
+map <Space>tr :set ft=ruby<CR>
+map <Space>tp :set ft=python<CR>
+map <Space>ts :set ft=sh<CR>
+map <Space>tg :set ft=go<CR>
