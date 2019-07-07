@@ -108,29 +108,7 @@ nmap <down> :cnfile!<CR>
 nnoremap j gj
 nnoremap k gk
 map Y y$
-" Evaluate current line
-nnoremap Q A=<ESC>0yt=A<C-r>=<C-r>"<CR><ESC>
 
-map <leader>q :wq<CR>
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>d :call Send_to_Tmux(join([getline('.'),"\n"], ""))<CR>
-vmap <Leader>d :call CommitToTmux()<CR>
-map <Leader>w :w<CR>
-map <leader>r :make<CR>
-map <leader>p :Git pull<CR>
-map <leader>P :Git push<CR>
-map <Leader>c :Gcommit<CR>
-map <Leader>s :Gstatus<CR>
-map gb :Gblame<CR>
-map gq :cclose<CR>
-nnoremap <C-P> :FZF<CR>
-noremap <C-B> :Buffers<CR>
-
-command! DeployProduction execute "Dispatch git push -f production master"
-command! DeployStaging execute "Dispatch git push -f staging master"
-command! Master execute "Dispatch git checkout master"
 command! Path :echo join(split(&path, ","), "\n")
 command! Escape .!ruby -ne 'require "cgi"; puts CGI.escape($_.strip)'
 command! ExtractLetDefinition call ExtractLetDefinition()
@@ -146,3 +124,40 @@ command! Buffers call fzf#run(fzf#wrap(
 let g:vim_markdown_folding_disabled = 1
 
 autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
+
+map <Space>mtf :call RunCurrentSpecFile()<CR>
+map <Space>mts :call RunNearestSpec()<CR>
+map <Space>mtl :call RunLastSpec()<CR>
+map <Space>mgg :GoDef<CR>
+map <Space>mu :UnwrapBlock<CR>
+map <Space>mem :ExtractMethod<CR>
+map <Space>mel :ExtractLetDefinition<CR>
+map <Space>mil :InlineLetDefinition<CR>
+map <Space>mc :NewClassCtor<CR>
+
+map <Space>bs :call Send_to_Tmux(join([getline('.'),"\n"], ""))<CR>
+vmap <Space>bs :call CommitToTmux()<CR>
+map <Space>bd :bd<CR>
+map <Space>bb :Buffers<CR>
+" Evaluate current line
+nnoremap <Space>be A=<ESC>0yt=A<C-r>=<C-r>"<CR><ESC>
+
+map <Space>gp :Git pull<CR>
+map <Space>gf :Git fetch<CR>
+map <Space>gP :Git push<CR>
+map <Space>gc :Gcommit<CR>
+map <Space>gs :Gstatus<CR>
+map <Space>gb :Gblame<CR>
+map <Space>ge <C-W>v:Gedit %<CR>
+
+map <Space>ff :FZF<CR>
+map <Space>fs :w<CR>
+
+map <Space>wq :wq<CR>
+map <Space>wQ :q!<CR>
+map <Space>wcq :cclose<CR>
+map <Space>wco :copen<CR>
+
+map <Space>tr :call NumberToggle()<CR>
+map <Space>tn :set nu<CR>
+map <Space>tN :set nonu<CR>
