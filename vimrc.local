@@ -99,10 +99,6 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-" [a and ]a to move between arguments
-nmap ]a :next!<CR>
-nmap [a :Next!<CR>
-
 nmap <left> :bp!<CR>
 nmap <right> :bn!<CR>
 nmap <up> :cpfile!<CR>
