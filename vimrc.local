@@ -159,6 +159,8 @@ map <Space>gs :Gstatus<CR>
 map <Space>gB :Gblame<CR>
 map <Space>gl :Glog<CR>
 map <Space>gL :Glog %<CR>
+map <Space>gr :Gread<CR>
+map <Space>gw :Gwrite<CR>
 map <Space>ge <C-W>v:Gedit %<CR>
 
 map <Space>ff :FZF<CR>
