@@ -188,3 +188,4 @@ map <Space>tr :set ft=ruby<CR>
 map <Space>tp :set ft=python<CR>
 map <Space>ts :set ft=sh<CR>
 map <Space>tg :set ft=go<CR>
+map <Space>td :diffoff<CR>
