@@ -155,7 +155,7 @@ map <Space>bY ggyG
 " Evaluate current line
 nnoremap <Space>be A=<ESC>0yt=A<C-r>=<C-r>"<CR><ESC>
 
-map <Space>gp :Git pull<CR>
+map <Space>gp :Git pull --rebase<CR>
 map <Space>gf :Git fetch<CR>
 map <Space>gP :Git push<CR>
 map <Space>gc :Gcommit<CR>
