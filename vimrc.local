@@ -119,6 +119,13 @@ command! UnwrapBlock call UnwrapBlock()
 command! ExtractMethod call ExtractMethod()
 command! NewClassCtor call NewClassCtor()
 
+" load files changed in current branch into quickfix window
+" require "git files"
+" git diff --name-only $(git merge-base HEAD master)
+" based on https://blog.jez.io/cli-code-review/
+command! -bar GChangedFiles call setqflist(map(systemlist("git files"), '{"filename": v:val, "lnum": 1}')) | copen
+command! -bar GBaseDiff execute 'Gdiff' system("git merge-base HEAD master")
+
 " https://github.com/junegunn/fzf/wiki/Examples-(vim)
 command! Buffers call fzf#run(fzf#wrap(
     \ {'source': map(range(1, bufnr('$')), 'bufname(v:val)')}))
@@ -160,6 +167,8 @@ map <Space>gr :Gread<CR>
 map <Space>gw :Gwrite<CR>
 map <Space>ge :Gvsplit<CR>
 map <Space>gd :Gdiff<CR>
+map <Space>gD :GBaseDiff<CR>
+map <Space>gR :GChangedFiles<CR>
 
 map <Space>ff :FZF<CR>
 map <Space>fs :w<CR>
