@@ -191,6 +191,8 @@ map <Space>dd :Dispatch! docker-compose down<CR>
 
 map <Space>tr :call NumberToggle()<CR>
 map <Space>tn :set nu<CR>
+map <Space>tw :set wrap<CR>
+map <Space>tW :set nowrap<CR>
 map <Space>tN :set nonu<CR>
 map <Space>tr :set ft=ruby<CR>
 map <Space>tp :set ft=python<CR>
