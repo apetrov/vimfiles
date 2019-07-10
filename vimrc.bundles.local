@@ -13,7 +13,6 @@ Bundle 'rizzatti/funcoo.vim'
 Bundle "MarcWeber/vim-addon-mw-utils"
 " Dependency. not used by itself
 Bundle "tomtom/tlib_vim"
-" Snippets
 Bundle "garbas/vim-snipmate"
 Bundle 'honza/vim-snippets'
 
@@ -35,40 +34,26 @@ Bundle 'whatyouhide/vim-textobj-erb.git'
 " f, c text object (function, class)
 Bundle 'bps/vim-textobj-python.git'
 
-" like vim-rails but for vanila ruby projects
-Bundle 'tpope/vim-rake'
-
 " send commands from a vim to TMUX
 Bundle 'jgdavey/tslime.vim'
 " navigate TMUX as in vim
 Bundle 'christoomey/vim-tmux-navigator'
 
-" project configuration. similar to vim-rails
-" not in use directly
-Bundle 'tpope/vim-projectionist'
 " Themes
 Bundle 'jnurmine/Zenburn'
 Bundle 'nanotech/jellybeans.vim'
-" Keep current session in file
-Bundle 'tpope/vim-obsession'
-"
-" Rename current file
-Bundle 'danro/rename.vim'
+Bundle 'liuchengxu/space-vim-theme'
+
 " Align text tablular
 " :Tabilarize/=
 Bundle 'godlygeek/tabular.git'
+Bundle 'plasticboy/vim-markdown'
+" Trim whitespaces
+Bundle 'ntpeters/vim-better-whitespace'
 
 " Buffer management
 Bundle 'jlanzarotta/bufexplorer'
+" Rename current file
+Bundle 'danro/rename.vim'
 
-Bundle 'plasticboy/vim-markdown'
-
-Plugin 'mileszs/ack.vim'
-
-
-"Bundle 'baverman/vial'
-"Bundle 'baverman/vial-http'
-"Bundle 'justinmk/vim-sneak'
-Plugin 'fatih/vim-go'
-Plugin 'liuchengxu/space-vim-theme'
-
+Bundle 'fatih/vim-go'
