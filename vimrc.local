@@ -181,6 +181,7 @@ vmap <Space>xt :Tabularize/
 map <Space>wq :wq<CR>
 map <Space>wv <C-w><C-v>
 map <Space>ws <C-w><C-s>
+map <Space>wS <C-w>t<C-w>H
 map <Space>wo :only<CR>
 map <Space>wQ :q!<CR>
 map <Space>wcq :cclose<CR>
