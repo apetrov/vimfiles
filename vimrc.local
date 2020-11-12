@@ -196,6 +196,12 @@ map <Space>tf :set foldmethod=indent<CR>
 
 map <Space>do :windo diffthis<CR>
 map <Space>dO :windo diffoff<CR>
+" new bullet task
+map <Space>tt 0i-<Space>[ ] <ESC>
+" complete buttet task
+map <Space>td 0f[ci[X<ESC>
+" open buttet task
+map <Space>to 0f[ci[<Space><ESC>
 
 
 
