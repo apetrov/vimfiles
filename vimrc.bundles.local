@@ -37,7 +37,7 @@ Bundle 'bps/vim-textobj-python.git'
 " Autocomplete Python/Go.
 " To install:
 " cd .vim/bundle/YouCompleteMe && python install.py --go-completer
-Bundle 'Valloric/YouCompleteMe'
+" Bundle 'Valloric/YouCompleteMe'
 
 " send commands from a vim to TMUX
 Bundle 'jgdavey/tslime.vim'
