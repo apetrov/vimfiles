@@ -60,6 +60,7 @@ if has("autocmd")
   autocmd BufRead,BufNewFile config.ru, set filetype=ruby
   autocmd BufRead,BufNewFile config, set filetype=ruby
   autocmd BufRead,BufNewFile Guardfile, set filetype=ruby
+	autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
   " not necessary
   autocmd BufRead,BufNewFile *.rb, set makeprg=ruby\ %
   " not sure how to make ruby and rspce at the same time. this solution breaks
@@ -67,10 +68,10 @@ if has("autocmd")
   " autocmd BufRead,BufNewFile *_spec.rb, set filetype=ruby-rspec
 
   " Trim ending whitespaces
-  autocmd FileWritePre    * StripWhitespace
-  autocmd FileAppendPre   * StripWhitespace
-  autocmd FilterWritePre  * StripWhitespace
-  autocmd BufWritePre     * StripWhitespace
+  " autocmd FileWritePre    * StripWhitespace
+  " autocmd FileAppendPre   * StripWhitespace
+  " autocmd FilterWritePre  * StripWhitespace
+  " autocmd BufWritePre     * StripWhitespace
 
   " As I use only narrow screen displays screen realestate is very valuable
   au WinEnter * :setlocal number
