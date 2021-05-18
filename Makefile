@@ -1,11 +1,14 @@
 clean:
-				rm -rf ~/.vim
+	rm -rf ~/.vim
 
 submodules:
-				git submodule update --init --recursive
+	git submodule update --init --recursive
 
 bundles:
-				vim -E -s -u "$(HOME)/.vim/vimrc.bundles" +BundleInstall +qall
+	vim -E -s -u "$(HOME)/.vim/vimrc.bundles" +BundleInstall +qall
 
-install: submodules bundles clean
-				ln -s $$(pwd) ~/.vim
+link:
+	ln -s $$(pwd) ~/.vim
+
+all: submodules clean link bundles  
+	echo "done"
