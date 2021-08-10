@@ -37,6 +37,7 @@ Bundle 'tpope/vim-bundler'
 Bundle 'thoughtbot/vim-rspec'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-haml'
+Bundle 'lpenz/vimcommander'
 
 if filereadable(expand("~/.vim/vimrc.bundles.local"))
   source ~/.vim/vimrc.bundles.local

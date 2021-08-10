@@ -63,3 +63,5 @@ Bundle 'jlanzarotta/bufexplorer'
 Bundle 'danro/rename.vim'
 
 Bundle 'fatih/vim-go'
+
+Bundle 'freitass/todo.txt-vim.git'

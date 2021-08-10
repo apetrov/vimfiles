@@ -63,6 +63,7 @@ if has("autocmd")
 	autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
   " not necessary
   autocmd BufRead,BufNewFile *.rb, set makeprg=ruby\ %
+  autocmd BufRead,BufNewFile *.htm,*.html,*.erb setlocal tabstop=2 shiftwidth=2 softtabstop=2
   " not sure how to make ruby and rspce at the same time. this solution breaks
   " ruby syntax and snippets but make rspec working
   " autocmd BufRead,BufNewFile *_spec.rb, set filetype=ruby-rspec
