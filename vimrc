@@ -59,6 +59,8 @@ function SetPythonPath()
     let l:path="app/templates/".expand("%:p:h:t")
     let &path=&path.",".l:path
   endif
+  setlocal path+=/opt/homebrew/Cellar/python@3.9/3.9.5/Frameworks/Python.framework/Versions/3.9/lib/python3.9/
+  setlocal path+=/Users/apetrov/env86/lib/python3.9/site-packages
 endfunction
 
 if has("autocmd")
