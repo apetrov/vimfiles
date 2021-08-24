@@ -52,6 +52,15 @@ set wildignore+=*~,._*
 let g:closetag_html_style=1
 let g:html_indent_tags = 'li\|p'
 
+function SetPythonPath()
+  setlocal suffixesadd+=.py,.html 
+  setlocal path+=app/templates
+  if expand("%:t") == "routes.py"
+    let l:path="app/templates/".expand("%:p:h:t")
+    let &path=&path.",".l:path
+  endif
+endfunction
+
 if has("autocmd")
   autocmd BufRead,BufNewFile Gemfile set filetype=ruby
   autocmd BufRead,BufNewFile Gemfile.lock set filetype=ruby
@@ -64,6 +73,7 @@ if has("autocmd")
   " not necessary
   autocmd BufRead,BufNewFile *.rb, set makeprg=ruby\ %
   autocmd BufRead,BufNewFile *.htm,*.html,*.erb setlocal tabstop=2 shiftwidth=2 softtabstop=2
+  au FileType python call SetPythonPath()
   " not sure how to make ruby and rspce at the same time. this solution breaks
   " ruby syntax and snippets but make rspec working
   " autocmd BufRead,BufNewFile *_spec.rb, set filetype=ruby-rspec
