@@ -2,6 +2,14 @@ set pastetoggle=<F2>
 
 " colorscheme zenburn
 set background=dark
+
+
+" https://superuser.com/questions/402448/vim-configuration-slow-in-terminal-iterm2-but-not-in-macvim
+set nocursorline
+set nocursorcolumn
+set lazyredraw
+set scrolljump=8
+
 colorscheme space_vim_theme
 
 let g:netrw_banner = 0
