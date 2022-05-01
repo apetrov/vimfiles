@@ -23,9 +23,6 @@ Bundle 'tpope/vim-commentary.git'
 
 Bundle 'junegunn/fzf.vim'
 " Fast find in files
-" OSX
-Bundle 'rking/ag.vim'
-" Linux
 Bundle 'mileszs/ack.vim'
 
 " Ruby
@@ -37,7 +34,6 @@ Bundle 'tpope/vim-bundler'
 Bundle 'thoughtbot/vim-rspec'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-haml'
-Bundle 'lpenz/vimcommander'
 
 Bundle 'tpope/vim-fireplace'
 if filereadable(expand("~/.vim/vimrc.bundles.local"))
