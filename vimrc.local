@@ -147,6 +147,9 @@ map <Space>mts :call RunNearestSpec()<CR>
 map <Space>mtl :call RunLastSpec()<CR>
 map <Space>mgg :GoDef<CR>
 map <Space>mu :UnwrapBlock<CR>
+" clojure fireplace Eval
+vmap <Space>msr :Eval<CR>
+
 map <Space>mem :ExtractMethod<CR>
 map <Space>mel :ExtractLetDefinition<CR>
 map <Space>mil :InlineLetDefinition<CR>
