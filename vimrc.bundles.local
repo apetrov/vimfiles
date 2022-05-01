@@ -62,6 +62,8 @@ Bundle 'jlanzarotta/bufexplorer'
 " Rename current file
 Bundle 'danro/rename.vim'
 
-Bundle 'fatih/vim-go'
 
-Bundle 'freitass/todo.txt-vim.git'
+
+" LSP
+Bundle 'prabirshrestha/vim-lsp'
+Bundle 'mattn/vim-lsp-settings'
