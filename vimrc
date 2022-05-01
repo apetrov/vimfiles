@@ -97,11 +97,6 @@ if has("autocmd")
   au FileType sql execute 'setlocal dict+=~/.vim/word/sql.txt'
 end
 
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-endif
-
 if filereadable(expand("~/.vim/vimrc.status"))
   source ~/.vim/vimrc.status
 endif
