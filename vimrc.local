@@ -52,16 +52,6 @@ function! CommitToTmux() range
   endfor
 endfunction
 
-function! ExtractLetDefinition()
-  let @a="^ilet(:\<Esc>ea){\<Esc>f=xA}"
-  normal @a
-endfunction
-
-function! InlineLetDefinition()
-  let @a="^f:x^dwds(f{i = \<Esc>f{ds{"
-  normal @a
-endfunction
-
 " Unwrap ruby block
 function! UnwrapBlock()
   normal vir"ay"bdirV%dk"apmagg=G`a
@@ -72,33 +62,6 @@ function! ExtractMethod()
   let @a="^\"zdt=x\"xDddmv[mOdef \<C-r>z\<CR>\<C-r>x\<Esc>jo\<Esc>'v"
   normal @a
 endfunction
-
-" convert
-"   a, b, c
-" into
-"
-"  attr_accessor :a, :b, :c
-"  def initialize(a, b, c)
-"    @a, @b, @c = a, b, c
-"  end
-"
-function! NewClassCtor()
-ruby << EOF
-  buffer = Vim::Buffer.current
-  line = buffer.line
-  n = buffer.line_number
-  indent = line.match(/^\s*/).to_s
-  args =  line.split(",").map(&:strip)
-  line = args.map{|t| ":#{t}"}.join(", ")
-  buffer[n] = "#{indent}attr_accessor #{line}"
-  buffer.append(n,"#{indent}def initialize(#{args.join(', ')})")
-  line1 = args.map{|t| "@#{t}"}.join(", ")
-  line2 = args.join(", ")
-  buffer.append(n+1,"#{indent}  #{line1} = #{line2}")
-  buffer.append(n+2,"#{indent}end")
-EOF
-endfunction
-
 
 " Use dot command in visual mode
 vnoremap . :norm.<CR>
@@ -120,7 +83,6 @@ nnoremap k gk
 map Y y$
 
 command! Path :echo join(split(&path, ","), "\n")
-command! Escape .!ruby -ne 'require "cgi"; puts CGI.escape($_.strip)'
 command! ExtractLetDefinition call ExtractLetDefinition()
 command! InlineLetDefinition call InlineLetDefinition()
 command! UnwrapBlock call UnwrapBlock()
@@ -151,8 +113,6 @@ map <Space>mu :UnwrapBlock<CR>
 vmap <Space>msr :Eval<CR>
 
 map <Space>mem :ExtractMethod<CR>
-map <Space>mel :ExtractLetDefinition<CR>
-map <Space>mil :InlineLetDefinition<CR>
 map <Space>mc :NewClassCtor<CR>
 
 map <Space>bs :call Send_to_Tmux(join([getline('.'),"\n"], ""))<CR>
@@ -170,7 +130,7 @@ nnoremap <Space>be A=<ESC>0yt=A<C-r>=<C-r>"<CR><ESC>
 map <Space>gp :Git pull --rebase<CR>
 map <Space>gf :Git fetch<CR>
 map <Space>gP :Git push<CR>
-map <Space>gs :Gstatus<CR>
+map <Space>gs :Git<CR>
 map <Space>gB :Gblame<CR>
 map <Space>gl :Glog<CR>
 map <Space>gL :Glog %<CR>
@@ -212,11 +172,13 @@ map <Space>w/ <C-w><C-v>
 map <Space>1 <C-w>H
 map <Space>2 <C-w>L
 
-command PySyntax !python3 -m py_compile %
+map <Space>gg :LspDefinition<CR>
+map <Space>mrn :LspRename<CR>
 
+command PySyntax !python3 -m py_compile %
 
 
 digraphs as 8336
 digraphs iS 8305
 
-
+let g:lsp_diagnostics_enabled = 0 

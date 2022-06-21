@@ -13,6 +13,8 @@ Bundle 'gmarik/Vundle.vim'
 " % extension
 Bundle 'tmhedberg/matchit'
 Bundle 'tpope/vim-fugitive'
+" GBrowse for github
+Bundle 'tpope/vim-rhubarb.git' 
 Bundle 'tpope/vim-dispatch'
 " . extension
 Bundle 'tpope/vim-repeat'
