@@ -83,8 +83,6 @@ function! s:on_lsp_buffer_enabled() abort
     setlocal signcolumn=yes
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
     nmap <buffer> <space>gg <plug>(lsp-definition)
-    nmap <buffer> <space>gs <plug>(lsp-document-symbol-search)
-    nmap <buffer> <space>gS <plug>(lsp-workspace-symbol-search)
     nmap <buffer> <space>gr <plug>(lsp-references)
     nmap <buffer> <space>gi <plug>(lsp-implementation)
     nmap <buffer> <space>gt <plug>(lsp-type-definition)
