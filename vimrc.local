@@ -182,3 +182,35 @@ digraphs as 8336
 digraphs iS 8305
 
 let g:lsp_diagnostics_enabled = 0 
+
+if empty(glob('~/.vim/plugged/vim-lsp'))
+  echo "vim-lsp not installed. Please run :PlugInstall"
+else
+  if executable('pylsp')
+      " pip install python-lsp-server
+      au User lsp_setup call lsp#register_server({
+          \ 'name': 'pylsp',
+          \ 'cmd': {server_info->['pylsp']},
+          \ 'allowlist': ['python'],
+          \ })
+  endif
+
+  function! s:on_lsp_buffer_enabled() abort
+      setlocal omnifunc=lsp#complete
+      setlocal signcolumn=yes
+      if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+      nmap <buffer> <space>gg <plug>(lsp-definition)
+      nmap <buffer> <space>gr <plug>(lsp-references)
+      nmap <buffer> <space>gi <plug>(lsp-implementation)
+      nmap <buffer> <space>gt <plug>(lsp-type-definition)
+      nmap <buffer> <space>rn <plug>(lsp-rename)
+
+      let g:lsp_format_sync_timeout = 1000
+  endfunction
+
+  augroup lsp_install
+      au!
+      " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+      autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+  augroup END
+end

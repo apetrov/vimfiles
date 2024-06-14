@@ -1,98 +1,63 @@
 " End certain structures automatically. i.e. if/end
-Bundle 'tpope/vim-endwise.git'
+Plug 'tpope/vim-endwise'
 " mappings by tpope
-Bundle 'tpope/vim-unimpaired'
+Plug 'tpope/vim-unimpaired'
 
 " Resize windows automatically
-Bundle 'roman/golden-ratio'
+Plug 'roman/golden-ratio'
 " Dependency. not used by itself
-Bundle 'rizzatti/funcoo.vim'
+Plug 'rizzatti/funcoo.vim'
 
 " Snippets
 " Dependency. not used by itself
-Bundle "MarcWeber/vim-addon-mw-utils"
+Plug 'MarcWeber/vim-addon-mw-utils'
 " Dependency. not used by itself
-Bundle "tomtom/tlib_vim"
-Bundle "garbas/vim-snipmate"
-Bundle 'honza/vim-snippets'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
 let g:snipMate = { 'snippet_version' : 1 }
 
 " Textobj
 " Change ruby block style do..end vs {}
-Bundle 'jgdavey/vim-blockle'
+Plug 'jgdavey/vim-blockle'
 " Define custom textblocks
-Bundle 'kana/vim-textobj-user.git'
+Plug 'kana/vim-textobj-user'
 " e text object (entire buffer)
-Bundle 'kana/vim-textobj-entire.git'
+Plug 'kana/vim-textobj-entire'
 " i text object (same indent)
-Bundle 'kana/vim-textobj-indent.git'
+Plug 'kana/vim-textobj-indent'
 " y text object (same color)
-Bundle 'kana/vim-textobj-syntax.git'
+Plug 'kana/vim-textobj-syntax'
 " r,m,M text objects (ruby-block, method, class)
-Bundle 'nelstrom/vim-textobj-rubyblock'
+" Plug 'nelstrom/vim-textobj-rubyblock'
 " E text object(Erb)
-Bundle 'whatyouhide/vim-textobj-erb.git'
+Plug 'whatyouhide/vim-textobj-erb'
 " f, c text object (function, class)
-Bundle 'bps/vim-textobj-python.git'
-
-" Autocomplete Python/Go.
-" To install:
-" cd .vim/bundle/YouCompleteMe && python install.py --go-completer
-" Bundle 'Valloric/YouCompleteMe'
+Plug 'bps/vim-textobj-python'
 
 " send commands from a vim to TMUX
-Bundle 'jgdavey/tslime.vim'
+Plug 'jgdavey/tslime.vim'
 " navigate TMUX as in vim
-Bundle 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator'
 
 " Themes
-Bundle 'jnurmine/Zenburn'
-Bundle 'nanotech/jellybeans.vim'
-Bundle 'liuchengxu/space-vim-theme'
+Plug 'jnurmine/Zenburn'
+Plug 'nanotech/jellybeans.vim'
+Plug 'liuchengxu/space-vim-theme'
 
 " Align text tablular
 " :Tabilarize/=
-Bundle 'godlygeek/tabular.git'
-Bundle 'plasticboy/vim-markdown'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 " Trim whitespaces
-Bundle 'ntpeters/vim-better-whitespace'
+Plug 'ntpeters/vim-better-whitespace'
 
 " Buffer management
-Bundle 'jlanzarotta/bufexplorer'
+Plug 'jlanzarotta/bufexplorer'
 " Rename current file
-Bundle 'danro/rename.vim'
-
+Plug 'danro/rename.vim'
 
 
 " LSP
-Bundle 'prabirshrestha/vim-lsp'
-Bundle 'mattn/vim-lsp-settings'
-
-
-if executable('pylsp')
-    " pip install python-lsp-server
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pylsp',
-        \ 'cmd': {server_info->['pylsp']},
-        \ 'allowlist': ['python'],
-        \ })
-endif
-
-function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
-    setlocal signcolumn=yes
-    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer> <space>gg <plug>(lsp-definition)
-    nmap <buffer> <space>gr <plug>(lsp-references)
-    nmap <buffer> <space>gi <plug>(lsp-implementation)
-    nmap <buffer> <space>gt <plug>(lsp-type-definition)
-    nmap <buffer> <space>rn <plug>(lsp-rename)
-
-    let g:lsp_format_sync_timeout = 1000
-endfunction
-
-augroup lsp_install
-    au!
-    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
-    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'

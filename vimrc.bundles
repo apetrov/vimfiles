@@ -1,39 +1,38 @@
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" Vundle plugin manager
-Bundle 'gmarik/Vundle.vim'
-
+call plug#begin()
 " % extension
-Bundle 'tmhedberg/matchit'
-Bundle 'tpope/vim-fugitive'
+Plug 'tmhedberg/matchit'
+Plug 'tpope/vim-fugitive'
 " GBrowse for github
-Bundle 'tpope/vim-rhubarb.git' 
-Bundle 'tpope/vim-dispatch'
+Plug 'tpope/vim-rhubarb' 
+Plug 'tpope/vim-dispatch'
 " . extension
-Bundle 'tpope/vim-repeat'
+Plug 'tpope/vim-repeat'
 " manage surroundings
-Bundle 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 " comment in/out
-Bundle 'tpope/vim-commentary.git'
+Plug 'tpope/vim-commentary'
 
-Bundle 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim'
 " Fast find in files
-Bundle 'mileszs/ack.vim'
+Plug 'mileszs/ack.vim'
 
 " Ruby
 " project configuration. similar to vim-rails  not in use directly
-Bundle 'tpope/vim-projectionist'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'tpope/vim-rake'
-Bundle 'tpope/vim-bundler'
-Bundle 'thoughtbot/vim-rspec'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-haml'
+Plug 'tpope/vim-projectionist'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rake'
+Plug 'tpope/vim-bundler'
+Plug 'thoughtbot/vim-rspec'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-haml'
 
-Bundle 'tpope/vim-fireplace'
+Plug 'tpope/vim-fireplace'
+
+
+Plug 'liuchengxu/space-vim-theme'
 
 if filereadable(expand("~/.vim/vimrc.bundles.local"))
   source ~/.vim/vimrc.bundles.local
 endif
 
-call vundle#end()
+call plug#end()
