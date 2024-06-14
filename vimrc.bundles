@@ -1,11 +1,4 @@
-if &compatible
-  set nocompatible
-end
-filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
-" fzf
-set rtp+=~/.fzf
-
 call vundle#begin()
 " Vundle plugin manager
 Bundle 'gmarik/Vundle.vim'
@@ -38,10 +31,9 @@ Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-haml'
 
 Bundle 'tpope/vim-fireplace'
+
 if filereadable(expand("~/.vim/vimrc.bundles.local"))
   source ~/.vim/vimrc.bundles.local
 endif
 
 call vundle#end()
-filetype plugin indent on
-syntax on
