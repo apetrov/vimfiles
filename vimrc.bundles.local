@@ -60,3 +60,5 @@ Plug 'danro/rename.vim'
 " LSP
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
+
+Plug 'github/copilot.vim'

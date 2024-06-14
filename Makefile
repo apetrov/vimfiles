@@ -26,12 +26,12 @@ all: clean link plug/get plug/install
 all/vim: all
 	echo done
 
-all/nvim: 
+all/nvim:
 	VIM=nvim make all || true
 	mkdir -p $(NVIM_PATH)
 	ln -s $(VIM_PATH)/vimrc $(NVIM_PATH)/init.vim
 
-clean: 
+clean:
 	rm -rf $(PLUG) $(PLUG_PATH) $(AUTOLOAD_PATH) || true
 .PHONY: clean
 
@@ -44,5 +44,5 @@ link:
 plug/get:
 	curl -fLo $(PLUG) --create-dirs $(PLUG_URL)
 
-plug/install: 
+plug/install:
 	$(VIM) -E -s -u "$(BUNDLE_FILE)" +PlugInstall +qall
