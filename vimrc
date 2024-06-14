@@ -11,7 +11,6 @@ if &compatible
 end
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
 " fzf
 set rtp+=~/.fzf
 
