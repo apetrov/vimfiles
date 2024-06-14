@@ -1,3 +1,4 @@
+let g:snipMate = { 'snippet_version' : 1 }
 set pastetoggle=<F2>
 
 " colorscheme zenburn

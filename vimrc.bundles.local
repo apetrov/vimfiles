@@ -15,7 +15,6 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
-let g:snipMate = { 'snippet_version' : 1 }
 
 " Textobj
 " Change ruby block style do..end vs {}
@@ -29,7 +28,7 @@ Plug 'kana/vim-textobj-indent'
 " y text object (same color)
 Plug 'kana/vim-textobj-syntax'
 " r,m,M text objects (ruby-block, method, class)
-" Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'nelstrom/vim-textobj-rubyblock'
 " E text object(Erb)
 Plug 'whatyouhide/vim-textobj-erb'
 " f, c text object (function, class)
