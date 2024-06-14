@@ -12,7 +12,9 @@ Plug 'tpope/vim-surround'
 " comment in/out
 Plug 'tpope/vim-commentary'
 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
 " Fast find in files
 Plug 'mileszs/ack.vim'
 
