@@ -10,6 +10,7 @@ set nowrap
 set autowrite
 set shell=/bin/bash "zsh cause multiple issues, it's easier to use bash
 "set shell=/bin/zsh
+
 set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
 
@@ -18,12 +19,10 @@ set nobackup
 set noswapfile
 set autoread
 
-
 set history=1000
 set showcmd
 set visualbell
 set noerrorbells
-
 
 "Make things faster
 set notimeout
@@ -31,13 +30,12 @@ set ttimeout
 set ttimeoutlen=100
 
 set tags=.git/tags;
-set splitbelow
 set splitright
 set winwidth=84
 
-
 " Works for both OSX and linux
 set clipboard=unnamed
+
 set wildignore=*.swp,*.bak,*.pyc,*.class
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.class,.svn,*.gem
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
@@ -45,11 +43,8 @@ set wildignore+=vendor/gems/*,vendor/cache/*,.bundle/*,.sass-cache/*,.git/*,cook
 set wildignore+=log/*,target/*,.DS_Store/*,bin/*
 set wildignore+=*~,._*
 
-
-
 " colorscheme zenburn
 set background=dark
-set cursorline
 set guifont=Bitstream\ Vera\ Sans\ Mono:h13
 set t_Co=256  "necessary for TMUX
 hi CursorLine guibg=#2D2D2D ctermbg=235
@@ -83,6 +78,7 @@ let g:vim_markdown_folding_disabled = 1
 let g:lsp_diagnostics_enabled = 0 
 let g:closetag_html_style=1
 let g:html_indent_tags = 'li\|p'
+let mapleader=" "
 
 function! NumberToggle()
   if(&relativenumber == 1)
@@ -114,7 +110,6 @@ function! ExtractMethod()
   normal @a
 endfunction
 
-
 command! Path :echo join(split(&path, ","), "\n")
 command! ExtractLetDefinition call ExtractLetDefinition()
 command! InlineLetDefinition call InlineLetDefinition()
@@ -132,8 +127,6 @@ command! -bar GChanges call setqflist(map(systemlist("git files"), '{"filename":
 command! Buffers call fzf#run(fzf#wrap(
     \ {'source': map(range(1, bufnr('$')), 'bufname(v:val)')}))
 
-
-let mapleader=" "
 
 " Use dot command in visual mode
 vnoremap . :norm.<CR>
@@ -153,7 +146,6 @@ nmap <down> :cnfile!<CR>
 nnoremap j gj
 nnoremap k gk
 map Y y$
-
 
 map <Leader>mtf :call RunCurrentSpecFile()<CR>
 map <Leader>mts :call RunNearestSpec()<CR>
@@ -202,9 +194,6 @@ map <Leader>2 <C-w>L
 map <Leader>gg :LspDefinition<CR>
 map <Leader>mrn :LspRename<CR>
 
-digraphs as 8336
-digraphs iS 8305
-
 if empty(glob('~/.vim/plugged/vim-lsp'))
   echo "vim-lsp not installed. Please run :PlugInstall"
 else
@@ -221,11 +210,11 @@ else
       setlocal omnifunc=lsp#complete
       setlocal signcolumn=yes
       if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-      nmap <buffer> <space>gg <plug>(lsp-definition)
-      nmap <buffer> <space>gr <plug>(lsp-references)
-      nmap <buffer> <space>gi <plug>(lsp-implementation)
-      nmap <buffer> <space>gt <plug>(lsp-type-definition)
-      nmap <buffer> <space>rn <plug>(lsp-rename)
+      nmap <buffer> <Leader>gg <plug>(lsp-definition)
+      nmap <buffer> <Leader>gr <plug>(lsp-references)
+      nmap <buffer> <Leader>gi <plug>(lsp-implementation)
+      nmap <buffer> <Leader>gt <plug>(lsp-type-definition)
+      nmap <buffer> <Leader>rn <plug>(lsp-rename)
 
       let g:lsp_format_sync_timeout = 1000
   endfunction
@@ -245,7 +234,7 @@ if has("autocmd")
   autocmd BufRead,BufNewFile config.ru, set filetype=ruby
   autocmd BufRead,BufNewFile config, set filetype=ruby
   autocmd BufRead,BufNewFile Guardfile, set filetype=ruby
-	autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
+	autocmd FileType make set noexpandtab shiftwidth=4 softtabstop=0
   " not necessary
   autocmd BufRead,BufNewFile *.rb, set makeprg=ruby\ %
   autocmd BufRead,BufNewFile *_spec.py, set makeprg=mamba\ %
