@@ -33,8 +33,6 @@ Plug 'tpope/vim-fireplace'
 
 Plug 'liuchengxu/space-vim-theme'
 
-if filereadable(expand("~/.vim/vimrc.bundles.local"))
-  source ~/.vim/vimrc.bundles.local
-endif
+call SourceIfExists('~/.vim/vimrc.bundles.local')
 
 call plug#end()
