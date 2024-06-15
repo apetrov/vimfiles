@@ -1,8 +1,57 @@
+""Intent
+"set smartindent
+set autoindent
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set nowrap
+
+set autowrite
+set shell=/bin/bash "zsh cause multiple issues, it's easier to use bash
+"set shell=/bin/zsh
+set hlsearch      " highlight search terms
+set incsearch     " show search matches as you type
+
+" Avoid vim backup files
+set nobackup
+set noswapfile
+set autoread
+
+
+set history=1000
+set showcmd
+set visualbell
+set noerrorbells
+
+
+"Make things faster
+set notimeout
+set ttimeout
+set ttimeoutlen=100
+
+set tags=.git/tags;
+set splitbelow
+set splitright
+set winwidth=84
+
+
+" Works for both OSX and linux
+set clipboard=unnamed
+set wildignore=*.swp,*.bak,*.pyc,*.class
+set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.class,.svn,*.gem
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+set wildignore+=vendor/gems/*,vendor/cache/*,.bundle/*,.sass-cache/*,.git/*,cookbooks/*
+set wildignore+=log/*,target/*,.DS_Store/*,bin/*
+set wildignore+=*~,._*
+
+
 
 " colorscheme zenburn
 set background=dark
 set cursorline
 set guifont=Bitstream\ Vera\ Sans\ Mono:h13
+set t_Co=256  "necessary for TMUX
 hi CursorLine guibg=#2D2D2D ctermbg=235
 colorscheme space_vim_theme
 
@@ -11,7 +60,6 @@ set nocursorline
 set nocursorcolumn
 set lazyredraw
 set scrolljump=8
-
 
 set wildmenu
 set dictionary=/usr/share/dict/words
@@ -33,6 +81,8 @@ let g:rspec_runner = "os_x_iterm2"
 let g:rspec_command = "Dispatch rspec {spec}"
 let g:vim_markdown_folding_disabled = 1
 let g:lsp_diagnostics_enabled = 0 
+let g:closetag_html_style=1
+let g:html_indent_tags = 'li\|p'
 
 function! NumberToggle()
   if(&relativenumber == 1)
@@ -76,8 +126,7 @@ command! NewClassCtor call NewClassCtor()
 " require "git files"
 " git diff --name-only $(git merge-base HEAD master)
 " based on https://blog.jez.io/cli-code-review/
-command! -bar GChangedFiles call setqflist(map(systemlist("git files"), '{"filename": v:val, "lnum": 1}')) | copen
-command! -bar GBaseDiff execute 'Gdiff' system("git merge-base HEAD master")
+command! -bar GChanges call setqflist(map(systemlist("git files"), '{"filename": v:val, "lnum": 1}')) | copen
 
 " https://github.com/junegunn/fzf/wiki/Examples-(vim)
 command! Buffers call fzf#run(fzf#wrap(
@@ -109,9 +158,7 @@ map Y y$
 map <Leader>mtf :call RunCurrentSpecFile()<CR>
 map <Leader>mts :call RunNearestSpec()<CR>
 map <Leader>mtl :call RunLastSpec()<CR>
-map <Leader>mgg :GoDef<CR>
 map <Leader>mu :UnwrapBlock<CR>
-vmap <Leader>msr :Eval<CR>
 
 map <Leader>mem :ExtractMethod<CR>
 map <Leader>mc :NewClassCtor<CR>
@@ -135,49 +182,28 @@ map <Leader>gl :Glog<CR>
 map <Leader>gL :Glog %<CR>
 map <Leader>gr :Gread<CR>
 map <Leader>gw :Gwrite<CR>
-map <Leader>ge :Gvsplit<CR>
-map <Leader>gd :Gdiff<CR>
-map <Leader>gD :GBaseDiff<CR>
-map <Leader>gR :GChangedFiles<CR>
+
+" Gvdiffsplit but order of panel is more natural
+map <Leader>gd :cclose<CR><C-w><C-v>:Gedit HEAD:%<CR>:windo diffthis<CR>
+map <Leader>gR :GChanges<CR>
 
 map <Leader>ff :FZF<CR>
 map <Leader>fs :w<CR>
-map <Leader>fD :!rm %<CR>:bd<CR>
 
-map <Leader>xdw :StripWhitespace<CR>
 map <Leader>xt :Tabularize/
 vmap <Leader>xt :Tabularize/
-
-map <Leader>wv <C-w><C-v>
-map <Leader>wn :vnew<CR>
-map <Leader>ws <C-w><C-s>
-map <Leader>wS <C-w>t<C-w>H
-map <Leader>wcq :cclose<CR>
-map <Leader>wco :copen<CR>
-
-map <Leader>tr :call NumberToggle()<CR>
-map <Leader>tn :set nu<CR>
-map <Leader>tw :set wrap<CR>
-map <Leader>tW :set nowrap<CR>
-map <Leader>tN :set nonu<CR>
-map <Leader>tr :set ft=ruby<CR>
-map <Leader>tp :set ft=python<CR>
-map <Leader>tf :set foldmethod=indent<CR>
 
 map <Leader>do :windo diffthis<CR>
 map <Leader>dO :windo diffoff<CR>
 
-map <Leader>w/ <C-w><C-v>
 map <Leader>1 <C-w>H
 map <Leader>2 <C-w>L
 
 map <Leader>gg :LspDefinition<CR>
 map <Leader>mrn :LspRename<CR>
 
-
 digraphs as 8336
 digraphs iS 8305
-
 
 if empty(glob('~/.vim/plugged/vim-lsp'))
   echo "vim-lsp not installed. Please run :PlugInstall"
@@ -209,4 +235,29 @@ else
       " call s:on_lsp_buffer_enabled only for languages that has the server registered.
       autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
   augroup END
+end
+
+if has("autocmd")
+  autocmd BufRead,BufNewFile Gemfile set filetype=ruby
+  autocmd BufRead,BufNewFile Gemfile.lock set filetype=ruby
+  autocmd BufRead,BufNewFile Rakefile set filetype=ruby
+  autocmd BufRead,BufNewFile Capfile, set filetype=ruby
+  autocmd BufRead,BufNewFile config.ru, set filetype=ruby
+  autocmd BufRead,BufNewFile config, set filetype=ruby
+  autocmd BufRead,BufNewFile Guardfile, set filetype=ruby
+	autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
+  " not necessary
+  autocmd BufRead,BufNewFile *.rb, set makeprg=ruby\ %
+  autocmd BufRead,BufNewFile *_spec.py, set makeprg=mamba\ %
+  autocmd BufRead,BufNewFile *.htm,*.html,*.erb setlocal tabstop=2 shiftwidth=2 softtabstop=2
+  " not sure how to make ruby and rspec work at the same time. this solution breaks
+  " ruby syntax and snippets but make rspec working
+  " autocmd BufRead,BufNewFile *_spec.rb, set filetype=ruby-rspec
+
+  " As I use only narrow screen displays screen realestate is very valuable
+  au WinEnter * :setlocal number
+  au WinLeave * :setlocal nonumber
+
+  au WinEnter * :set winfixheight
+  au WinEnter * :wincmd =
 end
