@@ -3,7 +3,7 @@ call plug#begin()
 Plug 'tmhedberg/matchit'
 Plug 'tpope/vim-fugitive'
 " GBrowse for github
-Plug 'tpope/vim-rhubarb' 
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-dispatch'
 " . extension
 Plug 'tpope/vim-repeat'
@@ -27,11 +27,6 @@ Plug 'tpope/vim-bundler'
 Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-haml'
-
-Plug 'tpope/vim-fireplace'
-
-
-Plug 'liuchengxu/space-vim-theme'
 
 call SourceIfExists('~/.vim/vimrc.bundles.local')
 
