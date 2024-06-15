@@ -1,9 +1,10 @@
-let g:snipMate = { 'snippet_version' : 1 }
-set pastetoggle=<F2>
 
 " colorscheme zenburn
 set background=dark
-
+set cursorline
+set guifont=Bitstream\ Vera\ Sans\ Mono:h13
+hi CursorLine guibg=#2D2D2D ctermbg=235
+colorscheme space_vim_theme
 
 " https://superuser.com/questions/402448/vim-configuration-slow-in-terminal-iterm2-but-not-in-macvim
 set nocursorline
@@ -11,18 +12,10 @@ set nocursorcolumn
 set lazyredraw
 set scrolljump=8
 
-colorscheme space_vim_theme
 
-let g:netrw_banner = 0
-
-set cursorline
 set wildmenu
-set guifont=Bitstream\ Vera\ Sans\ Mono:h13
-hi CursorLine guibg=#2D2D2D ctermbg=235
 set dictionary=/usr/share/dict/words
-
-" https://github.com/thoughtbot/vim-rspec#iterm-instead-of-terminal
-let g:rspec_runner = "os_x_iterm2"
+set pastetoggle=<F2>
 
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
@@ -32,7 +25,14 @@ else
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
-let g:rspec_command = "Dispatch docker-compose exec web rspec {spec}"
+
+let g:netrw_banner = 0
+let g:snipMate = { 'snippet_version' : 1 }
+" https://github.com/thoughtbot/vim-rspec#iterm-instead-of-terminal
+let g:rspec_runner = "os_x_iterm2"
+let g:rspec_command = "Dispatch rspec {spec}"
+let g:vim_markdown_folding_disabled = 1
+let g:lsp_diagnostics_enabled = 0 
 
 function! NumberToggle()
   if(&relativenumber == 1)
@@ -64,24 +64,6 @@ function! ExtractMethod()
   normal @a
 endfunction
 
-" Use dot command in visual mode
-vnoremap . :norm.<CR>
-
-" switch between panes with Ctrl+h|j|k|l combo
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
-nmap <left> :bp!<CR>
-nmap <right> :bn!<CR>
-nmap <up> :cpfile!<CR>
-nmap <down> :cnfile!<CR>
-
-" Smooth scrolling. keep cursor in center
-nnoremap j gj
-nnoremap k gk
-map Y y$
 
 command! Path :echo join(split(&path, ","), "\n")
 command! ExtractLetDefinition call ExtractLetDefinition()
@@ -101,88 +83,101 @@ command! -bar GBaseDiff execute 'Gdiff' system("git merge-base HEAD master")
 command! Buffers call fzf#run(fzf#wrap(
     \ {'source': map(range(1, bufnr('$')), 'bufname(v:val)')}))
 
-let g:vim_markdown_folding_disabled = 1
 
-autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
+let mapleader=" "
 
-map <Space>mtf :call RunCurrentSpecFile()<CR>
-map <Space>mts :call RunNearestSpec()<CR>
-map <Space>mtl :call RunLastSpec()<CR>
-map <Space>mgg :GoDef<CR>
-map <Space>mu :UnwrapBlock<CR>
-" clojure fireplace Eval
-vmap <Space>msr :Eval<CR>
+" Use dot command in visual mode
+vnoremap . :norm.<CR>
 
-map <Space>mem :ExtractMethod<CR>
-map <Space>mc :NewClassCtor<CR>
+" switch between panes with Ctrl+h|j|k|l combo
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
 
-map <Space>bs :call Send_to_Tmux(join([getline('.'),"\n"], ""))<CR>
-vmap <Space>bs :call CommitToTmux()<CR>
-map <Space>bd :bd<CR>
-map <Space>bb :Buffers<CR>
-map <Space>bN :vnew<CR>
-map <Space>bn :bn!<CR>
-map <Space>bp :bp!<CR>
-map <Space>bY ggyG
-map <Space>bq :wq<CR>
-" Evaluate current line
-nnoremap <Space>be A=<ESC>0yt=A<C-r>=<C-r>"<CR><ESC>
+nmap <left> :bp!<CR>
+nmap <right> :bn!<CR>
+nmap <up> :cpfile!<CR>
+nmap <down> :cnfile!<CR>
 
-map <Space>gp :Git pull --rebase<CR>
-map <Space>gf :Git fetch<CR>
-map <Space>gP :Git push<CR>
-map <Space>gs :Git<CR>
-map <Space>gB :Gblame<CR>
-map <Space>gl :Glog<CR>
-map <Space>gL :Glog %<CR>
-map <Space>gr :Gread<CR>
-map <Space>gw :Gwrite<CR>
-map <Space>ge :Gvsplit<CR>
-map <Space>gd :Gdiff<CR>
-map <Space>gD :GBaseDiff<CR>
-map <Space>gR :GChangedFiles<CR>
+" Smooth scrolling. keep cursor in center
+nnoremap j gj
+nnoremap k gk
+map Y y$
 
-map <Space>ff :FZF<CR>
-map <Space>fs :w<CR>
-map <Space>fD :!rm %<CR>:bd<CR>
 
-map <Space>xdw :StripWhitespace<CR>
-map <Space>xt :Tabularize/
-vmap <Space>xt :Tabularize/
+map <Leader>mtf :call RunCurrentSpecFile()<CR>
+map <Leader>mts :call RunNearestSpec()<CR>
+map <Leader>mtl :call RunLastSpec()<CR>
+map <Leader>mgg :GoDef<CR>
+map <Leader>mu :UnwrapBlock<CR>
+vmap <Leader>msr :Eval<CR>
 
-map <Space>wv <C-w><C-v>
-map <Space>wn :vnew<CR>
-map <Space>ws <C-w><C-s>
-map <Space>wS <C-w>t<C-w>H
-map <Space>wcq :cclose<CR>
-map <Space>wco :copen<CR>
+map <Leader>mem :ExtractMethod<CR>
+map <Leader>mc :NewClassCtor<CR>
 
-map <Space>tr :call NumberToggle()<CR>
-map <Space>tn :set nu<CR>
-map <Space>tw :set wrap<CR>
-map <Space>tW :set nowrap<CR>
-map <Space>tN :set nonu<CR>
-map <Space>tr :set ft=ruby<CR>
-map <Space>tp :set ft=python<CR>
-map <Space>tf :set foldmethod=indent<CR>
+map <Leader>bS :call Send_to_Tmux(join([getline('.'),"\n"], ""))<CR>
+vmap <Leader>bS :call CommitToTmux()<CR>
+map <Leader>bd :bd<CR>
+map <Leader>bb :Buffers<CR>
+map <Leader>bN :vnew<CR>
+map <Leader>bn :bn!<CR>
+map <Leader>bp :bp!<CR>
+map <Leader>bY ggyG
+map <Leader>bq :wq<CR>
 
-map <Space>do :windo diffthis<CR>
-map <Space>dO :windo diffoff<CR>
+map <Leader>gp :Git pull --rebase<CR>
+map <Leader>gf :Git fetch<CR>
+map <Leader>gP :Git push<CR>
+map <Leader>gs :Git<CR>
+map <Leader>gB :Gblame<CR>
+map <Leader>gl :Glog<CR>
+map <Leader>gL :Glog %<CR>
+map <Leader>gr :Gread<CR>
+map <Leader>gw :Gwrite<CR>
+map <Leader>ge :Gvsplit<CR>
+map <Leader>gd :Gdiff<CR>
+map <Leader>gD :GBaseDiff<CR>
+map <Leader>gR :GChangedFiles<CR>
 
-map <Space>w/ <C-w><C-v>
-map <Space>1 <C-w>H
-map <Space>2 <C-w>L
+map <Leader>ff :FZF<CR>
+map <Leader>fs :w<CR>
+map <Leader>fD :!rm %<CR>:bd<CR>
 
-map <Space>gg :LspDefinition<CR>
-map <Space>mrn :LspRename<CR>
+map <Leader>xdw :StripWhitespace<CR>
+map <Leader>xt :Tabularize/
+vmap <Leader>xt :Tabularize/
 
-command PySyntax !python3 -m py_compile %
+map <Leader>wv <C-w><C-v>
+map <Leader>wn :vnew<CR>
+map <Leader>ws <C-w><C-s>
+map <Leader>wS <C-w>t<C-w>H
+map <Leader>wcq :cclose<CR>
+map <Leader>wco :copen<CR>
+
+map <Leader>tr :call NumberToggle()<CR>
+map <Leader>tn :set nu<CR>
+map <Leader>tw :set wrap<CR>
+map <Leader>tW :set nowrap<CR>
+map <Leader>tN :set nonu<CR>
+map <Leader>tr :set ft=ruby<CR>
+map <Leader>tp :set ft=python<CR>
+map <Leader>tf :set foldmethod=indent<CR>
+
+map <Leader>do :windo diffthis<CR>
+map <Leader>dO :windo diffoff<CR>
+
+map <Leader>w/ <C-w><C-v>
+map <Leader>1 <C-w>H
+map <Leader>2 <C-w>L
+
+map <Leader>gg :LspDefinition<CR>
+map <Leader>mrn :LspRename<CR>
 
 
 digraphs as 8336
 digraphs iS 8305
 
-let g:lsp_diagnostics_enabled = 0 
 
 if empty(glob('~/.vim/plugged/vim-lsp'))
   echo "vim-lsp not installed. Please run :PlugInstall"
