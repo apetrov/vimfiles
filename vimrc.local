@@ -43,12 +43,17 @@ set wildignore+=vendor/gems/*,vendor/cache/*,.bundle/*,.sass-cache/*,.git/*,cook
 set wildignore+=log/*,target/*,.DS_Store/*,bin/*
 set wildignore+=*~,._*
 
-" colorscheme zenburn
+try
+  "colorscheme zenburn
+  colorscheme space_vim_theme
+catch /^Vim\%((\a\+)\)\=:E185/
+    " deal with it
+endtry
 set background=dark
 set guifont=Bitstream\ Vera\ Sans\ Mono:h13
 set t_Co=256  "necessary for TMUX
 hi CursorLine guibg=#2D2D2D ctermbg=235
-colorscheme space_vim_theme
+
 
 " https://superuser.com/questions/402448/vim-configuration-slow-in-terminal-iterm2-but-not-in-macvim
 set nocursorline
