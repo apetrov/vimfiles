@@ -29,7 +29,6 @@ all/vim: all
 all/nvim:
 	#mkdir -p $(PACKER_PATH)
 	VIM=nvim make all || true
-	git clone --depth 1 https://github.com/wbthomason/packer.nvim $(PACKER_PATH)
 	mkdir -p $(NVIM_PATH)
 	ln -s $(VIM_PATH)/init.lua $(NVIM_PATH)/init.lua
 

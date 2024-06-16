@@ -2,8 +2,11 @@
 vim.cmd('source ~/.vim/vimrc')
 
 -- Ensure packer.nvim is loaded
-vim.cmd [[packadd packer.nvim]]
-
+local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  vim.cmd('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+end
+vim.cmd('packadd packer.nvim')
 
 vim.api.nvim_set_keymap('n', '<leader>cg', ':ChatGPT<CR>', { noremap = true, silent = true })
 
