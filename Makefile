@@ -49,3 +49,17 @@ plug/get:
 
 plug/install:
 	$(VIM) -E -s -u "$(BUNDLE_FILE)" +PlugInstall +qall
+
+
+PYTHON=python3.11
+jupyter:
+	$(PYTHON) -m venv .env
+	. .env/bin/activate && pip install jupyter jupynium
+
+JUPYNIUM_PORT=18898
+jupynium/server:
+		jupynium --nvim_listen_addr localhost:$(JUPYNIUM_PORT) 
+
+jupynium/nvim:
+		nvim --listen localhost:$(JUPYNIUM_PORT)   notebook.ju.py +JupyniumStartSync
+		# JupyniumStartSync

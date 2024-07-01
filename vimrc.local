@@ -192,12 +192,15 @@ vmap <Leader>xt :Tabularize/
 
 map <Leader>do :windo diffthis<CR>
 map <Leader>dO :windo diffoff<CR>
+map <Leader>tt :tabnext<CR>
+map <Leader>tn :tabnew<CR>
 
 map <Leader>1 <C-w>H
 map <Leader>2 <C-w>L
 
 map <Leader>gg :LspDefinition<CR>
 map <Leader>mrn :LspRename<CR>
+map <Leader>xs :JupyniumStartSync<CR>
 
 if empty(glob('~/.vim/plugged/vim-lsp'))
   echo "vim-lsp not installed. Please run :PlugInstall"
