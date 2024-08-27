@@ -1,3 +1,5 @@
+-- TODO
+-- Move vim bundles to nvim lazy
 -- Source the existing vimrc if you want to include it
 vim.cmd('source ~/.vim/vimrc')
 
@@ -24,6 +26,9 @@ function ClearChatGPTPrompt()
 end
 
 
+-- Define common options for key mappings
+local opts = { silent = true, expr = true }
+local noremap_silent_opts = { noremap = true, silent = true }
 
 require('lazy').setup({
   {
@@ -55,7 +60,18 @@ require('lazy').setup({
   },
 
   {
-    "tpope/vim-fugitive"
+    "tpope/vim-fugitive",
+    config = function()
+      vim.keymap.set('n', '<Leader>gp', ':Git pull --rebase<CR>', noremap_silent_opts)
+      vim.keymap.set('n', '<Leader>gf', ':Git fetch<CR>', noremap_silent_opts)
+      vim.keymap.set('n', '<Leader>gP', ':Git push<CR>', noremap_silent_opts)
+      vim.keymap.set('n', '<Leader>gs', ':Git<CR>', noremap_silent_opts)
+      vim.keymap.set('n', '<Leader>gB', ':Gblame<CR>', noremap_silent_opts)
+      vim.keymap.set('n', '<Leader>gl', ':Glog<CR>', nonremap_silent_opts)
+      vim.keymap.set('n', '<Leader>gL', ':Glog %<CR>', noremap_silent_opts)
+      vim.keymap.set('n', '<Leader>gr', ':Gread<CR>', nonremap_silent_opts)
+      vim.keymap.set('n', '<Leader>gw', ':Gwrite<CR>', norermap_silent_opts)
+    end
   },
 
   {
@@ -70,18 +86,21 @@ require('lazy').setup({
       "nvim-tree/nvim-web-devicons",
       "MunifTanjim/nui.nvim",
     }
+  },
+
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      local builtin = require('telescope.builtin')
+      vim.keymap.set('n', '<leader>ff', builtin.find_files, { noremap = true, silent = true })
+      vim.keymap.set('n', '<leader>fg', builtin.live_grep, { noremap = true, silent = true })
+      vim.keymap.set('n', '<leader>bb', builtin.buffers, { noremap = true, silent = true })
+      vim.keymap.set('n', '<leader>fh', builtin.help_tags, { noremap = true, silent = true })
+    end
   }
 })
 
--- Define common options for key mappings
-local opts = { silent = true, expr = true }
-local noremap_silent_opts = { noremap = true, silent = true }
 -- Key mappings for Copilot
 vim.keymap.set('i', '<C-J>', 'copilot#Accept("<CR>")', opts)
 vim.keymap.set('i', '<C-K>', 'copilot#Cancel()', opts)
-
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>bb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})

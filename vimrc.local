@@ -170,16 +170,6 @@ map <Leader>bp :bp!<CR>
 map <Leader>bY ggyG
 map <Leader>bq :wq<CR>
 
-map <Leader>gp :Git pull --rebase<CR>
-map <Leader>gf :Git fetch<CR>
-map <Leader>gP :Git push<CR>
-map <Leader>gs :Git<CR>
-map <Leader>gB :Gblame<CR>
-map <Leader>gl :Glog<CR>
-map <Leader>gL :Glog %<CR>
-map <Leader>gr :Gread<CR>
-map <Leader>gw :Gwrite<CR>
-
 " Gvdiffsplit but order of panel is more natural
 map <Leader>gd :cclose<CR><C-w><C-v>:Gedit HEAD:%<CR>:windo diffthis<CR>
 map <Leader>gR :GChanges<CR>
