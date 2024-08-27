@@ -47,6 +47,10 @@ require('lazy').setup({
           n = 1,
         }
       })
+
+      vim.keymap.set('n', '<leader>cg', ':ChatGPT<CR>', noremap_silent_opts)
+      vim.keymap.set('n', '<leader>cc', ':lua ClearChatGPTPrompt()<CR>', noremap_silent_opts)
+
     end
   },
 
@@ -71,15 +75,10 @@ require('lazy').setup({
 
 -- Define common options for key mappings
 local opts = { silent = true, expr = true }
+local noremap_silent_opts = { noremap = true, silent = true }
 -- Key mappings for Copilot
 vim.keymap.set('i', '<C-J>', 'copilot#Accept("<CR>")', opts)
 vim.keymap.set('i', '<C-K>', 'copilot#Cancel()', opts)
---
--- Define options for normal mode key mappings
-local noremap_silent_opts = { noremap = true, silent = true }
--- Key mappings for ChatGPT
-vim.keymap.set('n', '<leader>cg', ':ChatGPT<CR>', noremap_silent_opts)
-vim.keymap.set('n', '<leader>cc', ':lua ClearChatGPTPrompt()<CR>', noremap_silent_opts)
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
