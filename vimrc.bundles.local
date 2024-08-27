@@ -52,7 +52,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'ntpeters/vim-better-whitespace'
 
 " Buffer management
-Plug 'jlanzarotta/bufexplorer'
+" Plug 'jlanzarotta/bufexplorer'
 " Rename current file
 Plug 'danro/rename.vim'
 
