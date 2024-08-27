@@ -1,14 +1,18 @@
 -- Source the existing vimrc if you want to include it
 vim.cmd('source ~/.vim/vimrc')
 
--- Ensure packer.nvim is loaded
-local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.cmd('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
-vim.cmd('packadd packer.nvim')
-
-
+vim.opt.rtp:prepend(lazypath)
 
 -- Function to clear the ChatGPT input prompt
 function ClearChatGPTPrompt()
@@ -19,6 +23,51 @@ function ClearChatGPTPrompt()
   end
 end
 
+
+
+require('lazy').setup({
+  {
+    "jackMort/ChatGPT.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "folke/trouble.nvim",
+      "nvim-telescope/telescope.nvim"
+    },
+    config = function()
+      require("chatgpt").setup({
+        popup_layout = {},
+        openai_params = {
+          model = "gpt-4o",
+          frequency_penalty = 0,
+          presence_penalty = 0,
+          max_tokens = 1000,
+          temperature = 0,
+          top_p = 1,
+          n = 1,
+        }
+      })
+    end
+  },
+
+  {
+    "tpope/vim-fugitive"
+  },
+
+  {
+    "kiyoon/jupynium.nvim"
+  },
+
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
+    }
+  }
+})
 
 -- Define common options for key mappings
 local opts = { silent = true, expr = true }
@@ -37,46 +86,3 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>bb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-
--- Configure packer.nvim
-return require('packer').startup(function(use)
-  use({
-    "jackMort/ChatGPT.nvim",
-    config = function()
-      require("chatgpt").setup({
-          popup_layout = { },
-          openai_params = {
-                model = "gpt-4o",
-                frequency_penalty = 0,
-                presence_penalty = 0,
-                max_tokens = 1000,
-                temperature = 0,
-                top_p = 1,
-                n = 1,
-              }
-        })
-
-    end,
-    requires = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "folke/trouble.nvim",
-      "nvim-telescope/telescope.nvim"
-    }
-  })
-
-	use({ "kiyoon/jupynium.nvim" })
-
-  use {
-    "nvim-neo-tree/neo-tree.nvim",
-      branch = "v3.x",
-      requires = {
-        "nvim-lua/plenary.nvim",
-        "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-        "MunifTanjim/nui.nvim",
-        -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
-      }
-  }
-
-end)
-
