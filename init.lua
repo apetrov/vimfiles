@@ -98,9 +98,37 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>bb', builtin.buffers, { noremap = true, silent = true })
       vim.keymap.set('n', '<leader>fh', builtin.help_tags, { noremap = true, silent = true })
     end
-  }
+  },
+  { 'tpope/vim-endwise' },
+  { 'tpope/vim-unimpaired' },
+  { 'roman/golden-ratio' },
+  { 'rizzatti/funcoo.vim' },
+  { 'jgdavey/tslime.vim' },
+  { 'christoomey/vim-tmux-navigator' },
+  { 'jnurmine/Zenburn' },
+  { 'nanotech/jellybeans.vim' },
+  { 'liuchengxu/space-vim-theme',
+    config = function()
+      vim.cmd('colorscheme space_vim_theme')
+    end
+  },
+  { 'plasticboy/vim-markdown' },
+  { 'ntpeters/vim-better-whitespace' },
+  { 'danro/rename.vim' },
+  { 'prabirshrestha/vim-lsp' },
+  { 'mattn/vim-lsp-settings' },
+  { 
+    'github/copilot.vim',
+    config = function()
+      vim.keymap.set('i', '<C-J>', 'copilot#Accept("<CR>")', opts)
+      vim.keymap.set('i', '<C-K>', 'copilot#Cancel()', opts)
+    end
+  },
+  { 'jgdavey/vim-blockle' },
+  { 'kana/vim-textobj-user' },
+  { 'kana/vim-textobj-entire' },
+  { 'kana/vim-textobj-indent' },
+  { 'kana/vim-textobj-syntax' },
+  { 'nelstrom/vim-textobj-rubyblock' },
+  { 'bps/vim-textobj-python' }
 })
-
--- Key mappings for Copilot
-vim.keymap.set('i', '<C-J>', 'copilot#Accept("<CR>")', opts)
-vim.keymap.set('i', '<C-K>', 'copilot#Cancel()', opts)
