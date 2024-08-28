@@ -1,41 +1,3 @@
-""Intent
-"set smartindent
-set autoindent
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
-set nowrap
-
-set autowrite
-set shell=/bin/bash "zsh cause multiple issues, it's easier to use bash
-"set shell=/bin/zsh
-
-set hlsearch      " highlight search terms
-set incsearch     " show search matches as you type
-
-" Avoid vim backup files
-set nobackup
-set noswapfile
-set autoread
-
-set history=1000
-set showcmd
-set visualbell
-set noerrorbells
-
-"Make things faster
-set notimeout
-set ttimeout
-set ttimeoutlen=100
-
-set tags=.git/tags;
-set splitright
-set winwidth=84
-
-" Works for both OSX and linux
-set clipboard=unnamed
-
 set wildignore=*.swp,*.bak,*.pyc,*.class
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.class,.svn,*.gem
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
@@ -65,17 +27,8 @@ set wildmenu
 set dictionary=/usr/share/dict/words
 set pastetoggle=<F2>
 
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
 
 
-let g:netrw_banner = 0
-let g:snipMate = { 'snippet_version' : 1 }
 " https://github.com/thoughtbot/vim-rspec#iterm-instead-of-terminal
 let g:rspec_runner = "os_x_iterm2"
 let g:rspec_command = "Dispatch rspec {spec}"

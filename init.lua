@@ -185,7 +185,25 @@ require('lazy').setup({
   },
   { "neovim/nvim-lspconfig",
     config=function()
-      require('lspconfig').pylsp.setup{}
+      require('lspconfig').pylsp.setup{
+        settings = {
+          pylsp = {
+            plugins = {
+              -- skip all this noise
+              pylint = {enabled = false},        -- Disable pylint
+              pyflakes = {enabled = false},      -- Disable pyflakes
+              pycodestyle = {enabled = false},   -- Disable pycodestyle
+              flake8 = {enabled = false},        -- Disable flake8
+              mccabe = {enabled = false},        -- Disable mccabe
+              pydocstyle = {enabled = false},    -- Disable pydocstyle
+              mypy = {enabled = false},          -- Disable mypy
+              yapf = {enabled = false},          -- Disable yapf
+              autopep8 = {enabled = false},      -- Disable autopep8
+              rope_autoimport = {enabled = false},-- Disable rope autoimport
+            },
+          },
+        }
+      }
 
       vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, opts)
       vim.keymap.set('n', '<leader>gg', vim.lsp.buf.definition, opts)
