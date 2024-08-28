@@ -128,21 +128,56 @@ require('lazy').setup({
   { 'nanotech/jellybeans.vim' },
   { 'liuchengxu/space-vim-theme',
     config = function()
-      vim.cmd('colorscheme space_vim_theme')
+      -- vim.cmd('colorscheme space_vim_theme')
     end
   },
   { 'plasticboy/vim-markdown' },
   { 'ntpeters/vim-better-whitespace' },
   { 'danro/rename.vim' },
-  { 'prabirshrestha/vim-lsp' },
-  { 'mattn/vim-lsp-settings' },
-  { 
+  -- { 'prabirshrestha/vim-lsp' },
+  -- { 'mattn/vim-lsp-settings' },
+  {
     'github/copilot.vim',
     config = function()
       vim.keymap.set('i', '<C-J>', 'copilot#Accept("<CR>")', opts)
       vim.keymap.set('i', '<C-K>', 'copilot#Cancel()', opts)
     end
   },
+  {
+    "catppuccin/nvim", name = "catppuccin", priority = 1000,
+    config= function()
+      vim.cmd.colorscheme "catppuccin-macchiato"
+    end
+
+  },
+
+  -- LSP
+  { 'williamboman/mason.nvim',
+    config=function()
+      require('mason').setup({
+      })
+    end
+  },
+
+  { "williamboman/mason-lspconfig.nvim", 
+    config=function()
+      require('mason-lspconfig').setup({
+        ensure_installed = { "pylsp", "ruby_lsp"}
+      })
+    end
+  },
+  { "neovim/nvim-lspconfig",
+    config=function()
+      require('lspconfig').pylsp.setup{}
+
+      vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, opts)
+      vim.keymap.set('n', '<leader>gg', vim.lsp.buf.definition, opts)
+      vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+      vim.keymap.set({ 'n', 'v'}, '<leader>ca', vim.lsp.buf.code_action, opts)
+    end
+  },
+
+
   { 'jgdavey/vim-blockle' },
   {
     'nelstrom/vim-textobj-rubyblock',

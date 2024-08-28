@@ -188,41 +188,8 @@ map <Leader>tn :tabnew<CR>
 map <Leader>1 <C-w>H
 map <Leader>2 <C-w>L
 
-map <Leader>gg :LspDefinition<CR>
-map <Leader>mrn :LspRename<CR>
 map <Leader>xs :JupyniumStartSync<CR>
 
-if empty(glob('~/.vim/plugged/vim-lsp'))
-  echo "vim-lsp not installed. Please run :PlugInstall"
-else
-  if executable('pylsp')
-      " pip install python-lsp-server
-      au User lsp_setup call lsp#register_server({
-          \ 'name': 'pylsp',
-          \ 'cmd': {server_info->['pylsp']},
-          \ 'allowlist': ['python'],
-          \ })
-  endif
-
-  function! s:on_lsp_buffer_enabled() abort
-      setlocal omnifunc=lsp#complete
-      setlocal signcolumn=yes
-      if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-      nmap <buffer> <Leader>gg <plug>(lsp-definition)
-      nmap <buffer> <Leader>gr <plug>(lsp-references)
-      nmap <buffer> <Leader>gi <plug>(lsp-implementation)
-      nmap <buffer> <Leader>gt <plug>(lsp-type-definition)
-      nmap <buffer> <Leader>rn <plug>(lsp-rename)
-
-      let g:lsp_format_sync_timeout = 1000
-  endfunction
-
-  augroup lsp_install
-      au!
-      " call s:on_lsp_buffer_enabled only for languages that has the server registered.
-      autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-  augroup END
-end
 
 if has("autocmd")
   autocmd BufRead,BufNewFile Gemfile set filetype=ruby
