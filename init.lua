@@ -99,6 +99,25 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>fh', builtin.help_tags, { noremap = true, silent = true })
     end
   },
+
+
+  { 'tmhedberg/matchit'},
+  { 'tpope/vim-fugitive' },
+  { 'tpope/vim-rhubarb'},
+  { 'tpope/vim-dispatch'},
+  { 'tpope/vim-repeat' },
+  { 'tpope/vim-surround'},
+  { 'tpope/vim-commentary'},
+  { 'junegunn/fzf.vim'},
+  { 'mileszs/ack.vim', cmd = 'Ack' },
+  { 'tpope/vim-projectionist' },
+  { 'vim-ruby/vim-ruby' },
+  { 'tpope/vim-rake' },
+  { 'tpope/vim-bundler' },
+  { 'thoughtbot/vim-rspec' },
+  { 'tpope/vim-rails' },
+  { 'tpope/vim-haml' },
+
   { 'tpope/vim-endwise' },
   { 'tpope/vim-unimpaired' },
   { 'roman/golden-ratio' },
@@ -125,10 +144,28 @@ require('lazy').setup({
     end
   },
   { 'jgdavey/vim-blockle' },
-  { 'kana/vim-textobj-user' },
-  { 'kana/vim-textobj-entire' },
-  { 'kana/vim-textobj-indent' },
-  { 'kana/vim-textobj-syntax' },
-  { 'nelstrom/vim-textobj-rubyblock' },
-  { 'bps/vim-textobj-python' }
+  {
+    'nelstrom/vim-textobj-rubyblock',
+    dependencies = { 'kana/vim-textobj-user' }
+  },
+  {
+    'kana/vim-textobj-entire',
+    dependencies = { 'kana/vim-textobj-user' }
+  },
+  {
+    'kana/vim-textobj-indent',
+    dependencies = { 'kana/vim-textobj-user' }
+  },
+  {
+    'kana/vim-textobj-syntax',
+    dependencies = { 'kana/vim-textobj-user' }
+  },
+  {
+    'whatyouhide/vim-textobj-erb',
+    dependencies = { 'kana/vim-textobj-user' }
+  },
+  {
+    'bps/vim-textobj-python',
+    dependencies = { 'kana/vim-textobj-user' }
+  }
 })

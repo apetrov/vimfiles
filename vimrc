@@ -12,7 +12,6 @@ function! SourceIfExists(file)
   endif
 endfunction
 
-call SourceIfExists('~/.vim/vimrc.bundles')
 " implicit call SourceIfExists('~/.vim/vimrc.bundles.local')
 call SourceIfExists('~/.vim/vimrc.status')
 call SourceIfExists('~/.vim/vimrc.local')
