@@ -5,38 +5,6 @@ set wildignore+=vendor/gems/*,vendor/cache/*,.bundle/*,.sass-cache/*,.git/*,cook
 set wildignore+=log/*,target/*,.DS_Store/*,bin/*
 set wildignore+=*~,._*
 
-try
-  "colorscheme zenburn
-  colorscheme space_vim_theme
-catch /^Vim\%((\a\+)\)\=:E185/
-    " deal with it
-endtry
-set background=dark
-set guifont=Bitstream\ Vera\ Sans\ Mono:h13
-set t_Co=256  "necessary for TMUX
-hi CursorLine guibg=#2D2D2D ctermbg=235
-
-
-" https://superuser.com/questions/402448/vim-configuration-slow-in-terminal-iterm2-but-not-in-macvim
-set nocursorline
-set nocursorcolumn
-set lazyredraw
-set scrolljump=8
-
-set wildmenu
-set dictionary=/usr/share/dict/words
-set pastetoggle=<F2>
-
-
-
-" https://github.com/thoughtbot/vim-rspec#iterm-instead-of-terminal
-let g:rspec_runner = "os_x_iterm2"
-let g:rspec_command = "Dispatch rspec {spec}"
-let g:vim_markdown_folding_disabled = 1
-let g:lsp_diagnostics_enabled = 0 
-let g:closetag_html_style=1
-let g:html_indent_tags = 'li\|p'
-let mapleader=" "
 
 function! NumberToggle()
   if(&relativenumber == 1)
@@ -81,19 +49,6 @@ command! NewClassCtor call NewClassCtor()
 " based on https://blog.jez.io/cli-code-review/
 command! -bar GChanges call setqflist(map(systemlist("git files"), '{"filename": v:val, "lnum": 1}')) | copen
 
-" https://github.com/junegunn/fzf/wiki/Examples-(vim)
-command! Buffers call fzf#run(fzf#wrap(
-    \ {'source': map(range(1, bufnr('$')), 'bufname(v:val)')}))
-
-
-" Use dot command in visual mode
-vnoremap . :norm.<CR>
-
-" switch between panes with Ctrl+h|j|k|l combo
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
 
 nmap <left> :bp!<CR>
 nmap <right> :bn!<CR>
@@ -116,7 +71,6 @@ map <Leader>mc :NewClassCtor<CR>
 map <Leader>bS :call Send_to_Tmux(join([getline('.'),"\n"], ""))<CR>
 vmap <Leader>bS :call CommitToTmux()<CR>
 map <Leader>bd :bd<CR>
-map <Leader>bb :Buffers<CR>
 map <Leader>bN :vnew<CR>
 map <Leader>bn :bn!<CR>
 map <Leader>bp :bp!<CR>

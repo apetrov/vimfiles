@@ -30,6 +30,9 @@ end
 local opts = { silent = true, expr = true }
 local noremap_silent_opts = { noremap = true, silent = true }
 
+
+vim.g.mapleader = ' '
+
 require('lazy').setup({
   {
     "jackMort/ChatGPT.nvim",
@@ -67,9 +70,9 @@ require('lazy').setup({
       vim.keymap.set('n', '<Leader>gP', ':Git push<CR>', noremap_silent_opts)
       vim.keymap.set('n', '<Leader>gs', ':Git<CR>', noremap_silent_opts)
       vim.keymap.set('n', '<Leader>gB', ':Gblame<CR>', noremap_silent_opts)
-      vim.keymap.set('n', '<Leader>gl', ':Glog<CR>', nonremap_silent_opts)
+      vim.keymap.set('n', '<Leader>gl', ':Glog<CR>', noremap_silent_opts)
       vim.keymap.set('n', '<Leader>gL', ':Glog %<CR>', noremap_silent_opts)
-      vim.keymap.set('n', '<Leader>gr', ':Gread<CR>', nonremap_silent_opts)
+      vim.keymap.set('n', '<Leader>gr', ':Gread<CR>', noremap_silent_opts)
       vim.keymap.set('n', '<Leader>gw', ':Gwrite<CR>', norermap_silent_opts)
     end
   },
@@ -239,3 +242,62 @@ require('lazy').setup({
     dependencies = { 'kana/vim-textobj-user' }
   }
 })
+
+
+vim.opt.autoindent = true
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+vim.opt.expandtab = true
+vim.opt.wrap = false
+vim.opt.autowrite = true
+vim.opt.shell = "/bin/bash"  -- Use bash instead of zsh to avoid issues
+
+vim.opt.hlsearch = true  -- Highlight search terms
+vim.opt.incsearch = true  -- Show search matches as you type
+
+-- Avoid Vim backup files
+vim.opt.backup = false
+vim.opt.swapfile = false
+vim.opt.autoread = true
+vim.opt.history = 1000
+vim.opt.showcmd = true
+vim.opt.visualbell = true
+vim.opt.errorbells = false
+
+-- Make things faster
+vim.opt.timeout = false
+vim.opt.ttimeout = true
+vim.opt.ttimeoutlen = 100
+vim.opt.splitright = true
+vim.opt.winwidth = 84
+
+-- Works for both OSX and linux
+vim.opt.clipboard = "unnamed"
+-- not working from here
+
+
+-- Disable cursor line highlighting
+vim.opt.cursorline = false
+
+-- Disable cursor column highlighting
+vim.opt.cursorcolumn = false
+
+-- Enable lazy redraw
+vim.opt.lazyredraw = true
+
+-- Set the number of lines to scroll when the cursor moves off the screen
+vim.opt.scrolljump = 8
+
+-- Enable the enhanced command-line completion mode
+vim.opt.wildmenu = true
+
+
+-- Visual mode key mapping: repeat last command with '.'
+vim.api.nvim_set_keymap('v', '.', ':norm.<CR>', opts)
+
+
+vim.api.nvim_set_keymap('n', '<C-j>', '<C-W>j', noremap_silent_opts)
+vim.api.nvim_set_keymap('n', '<C-k>', '<C-W>k', noremap_silent_opts)
+vim.api.nvim_set_keymap('n', '<C-h>', '<C-W>h', noremap_silent_opts)
+vim.api.nvim_set_keymap('n', '<C-l>', '<C-W>l', noremap_silent_opts)
