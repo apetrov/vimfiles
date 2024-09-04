@@ -88,7 +88,10 @@ require('lazy').setup({
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
       "MunifTanjim/nui.nvim",
-    }
+    },
+    config = function()
+      vim.api.nvim_set_keymap('n', '<leader>fa', ':Neotree toggle<CR>', { noremap = true, silent = true })
+    end
   },
 
   {
