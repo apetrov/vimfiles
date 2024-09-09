@@ -253,9 +253,10 @@ require('lazy').setup({
     version = false, -- set this if you want to always pull the latest change
     opts = {
       ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
+      -- provider = "copilot", -- Recommend using Claude
       provider = "openai", -- Recommend using Claude
       openai = {
-        endpoint="https://api.openai.com/v1/chat/completions",
+        endpoint="https://api.openai.com/v1",
         model = "gpt-4o",
         api_key_name = "OPENAI_API_KEY",
         temperature = 0,
