@@ -247,6 +247,26 @@ require('lazy').setup({
 
 
   {
+	  "folke/which-key.nvim",
+	  event = "VeryLazy",
+	  opts = {
+		  -- your configuration comes here
+		  -- or leave it empty to use the default settings
+		  -- refer to the configuration section below
+	  },
+	  keys = {
+		  {
+			  "<leader>?",
+			  function()
+				  require("which-key").show({ global = false })
+			  end,
+			  desc = "Buffer Local Keymaps (which-key)",
+		  },
+	  },
+  },
+
+
+  {
     "yetone/avante.nvim",
     event = "VeryLazy",
     lazy = false,
@@ -418,3 +438,8 @@ vim.api.nvim_set_keymap('n', '<C-j>', '<C-W>j', noremap_silent_opts)
 vim.api.nvim_set_keymap('n', '<C-k>', '<C-W>k', noremap_silent_opts)
 vim.api.nvim_set_keymap('n', '<C-h>', '<C-W>h', noremap_silent_opts)
 vim.api.nvim_set_keymap('n', '<C-l>', '<C-W>l', noremap_silent_opts)
+
+
+vim.api.nvim_set_keymap('n', '<leader>tt', ':tabnext<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>tn', ':tabnew<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>tp', ':tabprevious<CR>', { noremap = true, silent = true })
