@@ -77,11 +77,6 @@ map <Leader>bp :bp!<CR>
 map <Leader>bY ggyG
 map <Leader>bq :wq<CR>
 
-" Gvdiffsplit but order of panel is more natural
-map <Leader>gd :cclose<CR><C-w><C-v>:Gedit HEAD:%<CR>:windo diffthis<CR>
-map <Leader>gR :GChanges<CR>
-
-map <Leader>ff :FZF<CR>
 map <Leader>fs :w<CR>
 
 map <Leader>xt :Tabularize/
@@ -89,8 +84,6 @@ vmap <Leader>xt :Tabularize/
 
 map <Leader>do :windo diffthis<CR>
 map <Leader>dO :windo diffoff<CR>
-map <Leader>tt :tabnext<CR>
-map <Leader>tn :tabnew<CR>
 
 map <Leader>1 <C-w>H
 map <Leader>2 <C-w>L

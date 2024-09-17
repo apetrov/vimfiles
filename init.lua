@@ -139,11 +139,11 @@ require('lazy').setup({
       "TmuxNavigatePrevious",
     },
     keys = {
-      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
-      { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+      { "<C-h>", "<cmd>TmuxNavigateLeft<cr>", mode = { "n", "t" } },
+      { "<C-j>", "<cmd>TmuxNavigateDown<cr>", mode = { "n", "t" } },
+      { "<C-k>", "<cmd>TmuxNavigateUp<cr>", mode = { "n", "t" } },
+      { "<C-l>", "<cmd>TmuxNavigateRight<cr>", mode = { "n", "t" } },
+      { "<C-\\>", "<cmd>TmuxNavigatePrevious<cr>", mode = { "n", "t" } },
     },
   },
 
@@ -432,12 +432,6 @@ vim.opt.wildmenu = true
 
 -- Visual mode key mapping: repeat last command with '.'
 vim.api.nvim_set_keymap('v', '.', ':norm.<CR>', opts)
-
-
-vim.api.nvim_set_keymap('n', '<C-j>', '<C-W>j', noremap_silent_opts)
-vim.api.nvim_set_keymap('n', '<C-k>', '<C-W>k', noremap_silent_opts)
-vim.api.nvim_set_keymap('n', '<C-h>', '<C-W>h', noremap_silent_opts)
-vim.api.nvim_set_keymap('n', '<C-l>', '<C-W>l', noremap_silent_opts)
 
 
 vim.api.nvim_set_keymap('n', '<leader>tt', ':tabnext<CR>', { noremap = true, silent = true })
