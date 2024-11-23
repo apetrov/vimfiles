@@ -3,6 +3,10 @@
 *.backup
 *.swp
 
+# Ignore python environment
+.env/
+kernel.json
+
 # Ignore vim sessions
 Session.vim
 .netrwhist
