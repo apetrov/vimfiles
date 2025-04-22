@@ -174,50 +174,47 @@ require('lazy').setup({
 
   },
 
-  -- LSP
-  { 'williamboman/mason.nvim',
-    config=function()
-      require('mason').setup({
-      })
-    end
-  },
-
-  { "williamboman/mason-lspconfig.nvim", 
-    config=function()
-      require('mason-lspconfig').setup({
-        ensure_installed = { "pylsp", "ruby_lsp"}
-      })
-    end
-  },
-  { "neovim/nvim-lspconfig",
-    config=function()
-      require('lspconfig').pylsp.setup{
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      -- Configure pylsp
+      local lspconfig = require("lspconfig")
+      lspconfig.pylsp.setup({
+        cmd = { "pylsp" }, -- Assumes pylsp is in your PATH (predictor env)
+        filetypes = { "python" },
         settings = {
           pylsp = {
             plugins = {
-              -- skip all this noise
-              pylint = {enabled = false},        -- Disable pylint
-              pyflakes = {enabled = false},      -- Disable pyflakes
-              pycodestyle = {enabled = false},   -- Disable pycodestyle
-              flake8 = {enabled = false},        -- Disable flake8
-              mccabe = {enabled = false},        -- Disable mccabe
-              pydocstyle = {enabled = false},    -- Disable pydocstyle
-              mypy = {enabled = false},          -- Disable mypy
-              yapf = {enabled = false},          -- Disable yapf
-              autopep8 = {enabled = false},      -- Disable autopep8
-              rope_autoimport = {enabled = false},-- Disable rope autoimport
+              pycodestyle = { enabled = true }, -- Linting with pycodestyle
+              flake8 = { enabled = false }, -- Disable flake8 if you prefer pycodestyle
+              pylint = { enabled = false }, -- Disable pylint (optional)
+              jedi_completion = { enabled = true }, -- Code completion
+              rope_completion = { enabled = true }, -- Optional: better refactoring
             },
           },
-        }
-      }
+        },
+      })
 
-      vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, opts)
-      vim.keymap.set('n', '<leader>gg', vim.lsp.buf.definition, opts)
-      vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-      vim.keymap.set({ 'n', 'v'}, '<leader>ca', vim.lsp.buf.code_action, opts)
-    end
+      -- Optional: Keybindings for LSP
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+        callback = function(ev)
+          local opts = { buffer = ev.buf }
+          vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts) -- Go to definition
+          vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, opts)
+          vim.keymap.set('n', '<leader>gg', vim.lsp.buf.definition, opts)
+          vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+          vim.keymap.set({ 'n', 'v'}, '<leader>ca', vim.lsp.buf.code_action, opts)
+        end,
+      })
+
+    vim.lsp.set_log_level("debug")
+    vim.api.nvim_create_user_command('LspDefinition', function()
+      vim.lsp.buf.definition()
+    end, { desc = 'Go to definition using LSP' })
+
+    end,
   },
-
 
   { 'jgdavey/vim-blockle' },
   {
@@ -428,7 +425,6 @@ vim.opt.scrolljump = 8
 
 -- Enable the enhanced command-line completion mode
 vim.opt.wildmenu = true
-
 
 -- Visual mode key mapping: repeat last command with '.'
 vim.api.nvim_set_keymap('v', '.', ':norm.<CR>', opts)
