@@ -53,11 +53,21 @@ require('lazy').setup({
           temperature = 0,
           top_p = 1,
           n = 1,
-        }
+        },
+        edit_with_instructions = {
+            keymaps = {
+                accept = "<C-y>",
+            },
+        },
       })
 
       vim.keymap.set('n', '<leader>cg', ':ChatGPT<CR>', noremap_silent_opts)
       vim.keymap.set('n', '<leader>cc', ':lua ClearChatGPTPrompt()<CR>', noremap_silent_opts)
+      vim.keymap.set({'n', 'v'}, '<leader>ce', ':ChatGPTEditWithInstructions<CR>', {
+        noremap = true,
+        silent = true,
+        desc = 'ChatGPT Edit with Instructions'
+      })
 
     end
   },
