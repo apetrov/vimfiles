@@ -272,7 +272,6 @@ require('lazy').setup({
 	  },
   },
 
-
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
@@ -280,14 +279,18 @@ require('lazy').setup({
     version = false, -- set this if you want to always pull the latest change
     opts = {
       ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
-      -- provider = "copilot", -- Recommend using Claude
       provider = "openai", -- Recommend using Claude
-      openai = {
-        endpoint="https://api.openai.com/v1",
-        model = "gpt-4o",
-        api_key_name = "OPENAI_API_KEY",
-        temperature = 0,
-        max_tokens = 4096,
+      providers = {
+        openai = {
+          endpoint = "https://api.openai.com/v1",
+          model = "gpt-4o",
+          api_key_name = "OPENAI_API_KEY",
+          extra_request_body = {
+            temperature = 0,
+            max_completion_tokens = 8192, -- Increased to include reasoning tokens
+            reasoning_effort = "medium", -- low|medium|high, for reasoning models
+          },
+        },
       },
       behaviour = {
         auto_suggestions = false, -- Experimental stage
@@ -376,7 +379,7 @@ require('lazy').setup({
       },
       {
         -- Make sure to set this up properly if you have lazy=true
-        'MeanderingProgrammer/render-markdown.nvim',
+        "MeanderingProgrammer/render-markdown.nvim",
         opts = {
           file_types = { "markdown", "Avante" },
         },
@@ -384,6 +387,8 @@ require('lazy').setup({
       },
     },
   },
+
+
 
 })
 
@@ -438,7 +443,6 @@ vim.opt.wildmenu = true
 
 -- Visual mode key mapping: repeat last command with '.'
 vim.api.nvim_set_keymap('v', '.', ':norm.<CR>', opts)
-
 
 vim.api.nvim_set_keymap('n', '<leader>tt', ':tabnext<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>tn', ':tabnew<CR>', { noremap = true, silent = true })
