@@ -165,7 +165,16 @@ require('lazy').setup({
     end
   },
   { 'plasticboy/vim-markdown' },
-  { 'ntpeters/vim-better-whitespace' },
+  {
+    'ntpeters/vim-better-whitespace' ,
+    config = function()
+      vim.keymap.set('n', '<leader>ss', ':StripWhitespace<CR>', {
+        noremap = true,
+        silent = true,
+        desc = 'Strip trailing whitespace'
+      })
+    end
+  },
   { 'danro/rename.vim' },
   -- { 'prabirshrestha/vim-lsp' },
   -- { 'mattn/vim-lsp-settings' },
