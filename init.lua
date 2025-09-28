@@ -456,3 +456,12 @@ vim.api.nvim_set_keymap('v', '.', ':norm.<CR>', opts)
 vim.api.nvim_set_keymap('n', '<leader>tt', ':tabnext<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>tn', ':tabnew<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>tp', ':tabprevious<CR>', { noremap = true, silent = true })
+
+vim.keymap.set('n', '<leader>fc', function()
+    vim.fn.setreg('f', vim.fn.expand('%:t'))
+end, { desc = 'Copy file name to f register' })
+
+vim.keymap.set('n', '<leader>fp', function()
+    vim.fn.setreg('f', vim.fn.expand('%'))
+end, { desc = 'Copy full file path to f register' })
+
