@@ -176,8 +176,6 @@ require('lazy').setup({
     end
   },
   { 'danro/rename.vim' },
-  -- { 'prabirshrestha/vim-lsp' },
-  -- { 'mattn/vim-lsp-settings' },
   {
     'github/copilot.vim',
     config = function()
@@ -191,48 +189,6 @@ require('lazy').setup({
       vim.cmd.colorscheme "catppuccin-macchiato"
     end
 
-  },
-
-  {
-    "neovim/nvim-lspconfig",
-    config = function()
-      -- Configure pylsp
-      local lspconfig = require("lspconfig")
-      lspconfig.pylsp.setup({
-        cmd = { "pylsp" }, -- Assumes pylsp is in your PATH (predictor env)
-        filetypes = { "python" },
-        settings = {
-          pylsp = {
-            plugins = {
-              pycodestyle = { enabled = true }, -- Linting with pycodestyle
-              flake8 = { enabled = false }, -- Disable flake8 if you prefer pycodestyle
-              pylint = { enabled = false }, -- Disable pylint (optional)
-              jedi_completion = { enabled = true }, -- Code completion
-              rope_completion = { enabled = true }, -- Optional: better refactoring
-            },
-          },
-        },
-      })
-
-      -- Optional: Keybindings for LSP
-      vim.api.nvim_create_autocmd("LspAttach", {
-        group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-        callback = function(ev)
-          local opts = { buffer = ev.buf }
-          vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts) -- Go to definition
-          vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, opts)
-          vim.keymap.set('n', '<leader>gg', vim.lsp.buf.definition, opts)
-          vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-          vim.keymap.set({ 'n', 'v'}, '<leader>ca', vim.lsp.buf.code_action, opts)
-        end,
-      })
-
-    vim.lsp.set_log_level("debug")
-    vim.api.nvim_create_user_command('LspDefinition', function()
-      vim.lsp.buf.definition()
-    end, { desc = 'Go to definition using LSP' })
-
-    end,
   },
 
   { 'jgdavey/vim-blockle' },
