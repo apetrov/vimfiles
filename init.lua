@@ -354,6 +354,72 @@ require('lazy').setup({
   },
 
 
+  -- LSP Configuration for Python using pyright
+  {
+    "neovim/nvim-lspconfig",
+    ft = { "python" },
+    config = function()
+      local lspconfig = require("lspconfig")
+
+      lspconfig.pyright.setup({
+        -- Tell pyright to look for the executable in the active venv
+        cmd = { "pyright-langserver", "--stdio" },
+        settings = {
+          python = {
+            analysis = {
+              autoSearchPaths = true,
+              useLibraryCodeForTypes = true,
+              diagnosticMode = "workspace",
+            },
+          },
+        },
+        -- Optional: restart the server when you reinstall it
+        on_init = function(client)
+          client.notify = function(...) end -- silence noisy init messages
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+        callback = function(ev)
+          local opts = { buffer = ev.buf }
+          vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, opts)
+          -- vim.keymap.set("n", "K",  vim.lsp.buf.hover, opts)
+          vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+          vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+          vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, opts)
+          vim.keymap.set("n", "<leader>f", function()
+            vim.lsp.buf.format({ async = true })
+          end, opts)
+        end,
+      })
+    end,
+  },
+
+  -- Completion
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = { "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer", "hrsh7th/cmp-path" },
+    config = function()
+      local cmp = require("cmp")
+      cmp.setup({
+        sources = {
+          { name = "nvim_lsp" },
+          { name = "buffer" },
+          { name = "path" },
+        },
+        mapping = cmp.mapping.preset.insert({
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then cmp.select_next_item() else fallback() end
+          end, { "i", "s" }),
+        }),
+        snippet = { expand = function(args) vim.snippet.expand(args.body) end },
+      })
+    end,
+  },
 
 })
 
