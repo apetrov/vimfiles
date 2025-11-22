@@ -179,7 +179,12 @@ require('lazy').setup({
   {
     'github/copilot.vim',
     config = function()
-      vim.keymap.set('i', '<C-J>', 'copilot#Accept("<CR>")', opts)
+      vim.keymap.set('i', '<C-J>',
+        function()
+          return vim.fn["copilot#Accept"]("")
+        end,
+        { expr = true, replace_keycodes = false }
+      )
       vim.keymap.set('i', '<C-K>', 'copilot#Cancel()', opts)
     end
   },
