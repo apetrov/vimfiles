@@ -359,6 +359,51 @@ require('lazy').setup({
   },
 
 
+  {
+    "mfussenegger/nvim-dap",
+    ft = { "python" },
+    dependencies = {
+      "rcarriga/nvim-dap-ui",
+      "nvim-neotest/nvim-nio",
+      "mfussenegger/nvim-dap-python",
+    },
+    config = function()
+      local dap = require("dap")
+      local dapui = require("dapui")
+      dapui.setup()
+
+      local python_path = vim.fn.exepath("python3")
+      if python_path == "" then
+        python_path = "python3"
+      end
+      require("dap-python").setup(python_path)
+
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
+      end
+
+      local function map(lhs, rhs, desc)
+        vim.keymap.set("n", lhs, rhs, { noremap = true, silent = true, desc = desc })
+      end
+
+      map("<leader>dc", dap.continue, "DAP continue")
+      map("<leader>db", dap.toggle_breakpoint, "DAP toggle breakpoint")
+      map("<leader>di", dap.step_into, "DAP step into")
+      map("<leader>do", dap.step_over, "DAP step over")
+      map("<leader>dO", dap.step_out, "DAP step out")
+      map("<leader>dr", dap.repl.toggle, "DAP toggle REPL")
+      map("<leader>dl", dap.run_last, "DAP run last")
+      map("<leader>du", dapui.toggle, "DAP UI toggle")
+    end,
+  },
+
+
   -- LSP Configuration for Python using pyright
   {
     "neovim/nvim-lspconfig",
@@ -466,4 +511,3 @@ end, { desc = 'Copy file name to f register' })
 vim.keymap.set('n', '<leader>fp', function()
     vim.fn.setreg('f', vim.fn.expand('%'))
 end, { desc = 'Copy full file path to f register' })
-
