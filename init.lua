@@ -105,6 +105,12 @@ require('lazy').setup({
   },
 
   {
+    "sindrets/diffview.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+  },
+
+  {
     "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
@@ -192,6 +198,20 @@ require('lazy').setup({
     "catppuccin/nvim", name = "catppuccin", priority = 1000,
     config= function()
       vim.cmd.colorscheme "catppuccin-macchiato"
+
+      local diff_change_highlight = {
+        bg = "#4a3a3a",
+        fg = "#ffd0d0",
+        ctermbg = "DarkRed",
+        ctermfg = "White",
+      }
+
+      vim.api.nvim_set_hl(0, "DiffChange", diff_change_highlight)
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        callback = function()
+          vim.api.nvim_set_hl(0, "DiffChange", diff_change_highlight)
+        end,
+      })
     end
 
   },
