@@ -82,6 +82,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<Leader>gB', ':Gblame<CR>', noremap_silent_opts)
       vim.keymap.set('n', '<Leader>gl', ':Glog<CR>', noremap_silent_opts)
       vim.keymap.set('n', '<Leader>gL', ':Glog %<CR>', noremap_silent_opts)
+      vim.keymap.set('n', '<Leader>gD', ':Gvdiffsplit %<CR>', noremap_silent_opts)
       vim.keymap.set('n', '<Leader>gr', ':Gread<CR>', noremap_silent_opts)
       vim.keymap.set('n', '<Leader>gw', ':Gwrite<CR>', norermap_silent_opts)
     end
@@ -108,6 +109,9 @@ require('lazy').setup({
     "sindrets/diffview.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+    config = function()
+      vim.keymap.set('n', '<Leader>gd', ':DiffviewOpen origin/master...HEAD --imply-local<CR>', noremap_silent_opts)
+    end,
   },
 
   {
@@ -409,9 +413,7 @@ vim.api.nvim_set_keymap('n', '<leader>tn', ':tabnew<CR>', { noremap = true, sile
 vim.api.nvim_set_keymap('n', '<leader>tp', ':tabprevious<CR>', { noremap = true, silent = true })
 
 vim.keymap.set('n', '<leader>fc', function()
-    vim.fn.setreg('f', vim.fn.expand('%:t'))
-end, { desc = 'Copy file name to f register' })
-
-vim.keymap.set('n', '<leader>fp', function()
-    vim.fn.setreg('f', vim.fn.expand('%'))
-end, { desc = 'Copy full file path to f register' })
+    local relative_path = vim.fn.expand('%')
+    vim.fn.setreg('"', relative_path)
+    vim.fn.setreg('+', relative_path)
+end, { desc = 'Copy relative file path' })
