@@ -1,10 +1,12 @@
+vim.loader.enable()
+
 -- TODO
 -- Move vim bundles to nvim lazy
 -- Source the existing vimrc if you want to include it
-vim.cmd('source ~/.vim/vimrc')
+vim.cmd.source(vim.fs.abspath("~/.vim/vimrc"))
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
@@ -17,7 +19,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Function to clear the ChatGPT input prompt
-function ClearChatGPTPrompt()
+local function clear_chatgpt_prompt()
   local bufnr = vim.fn.bufnr('%')
   local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
   if #lines > 0 then
@@ -27,7 +29,7 @@ end
 
 
 -- Define common options for key mappings
-local opts = { silent = true, expr = true }
+local expr_silent_opts = { silent = true, expr = true }
 local noremap_silent_opts = { noremap = true, silent = true }
 
 
@@ -61,9 +63,9 @@ require('lazy').setup({
         },
       })
 
-      vim.keymap.set('n', '<leader>cg', ':ChatGPT<CR>', noremap_silent_opts)
-      vim.keymap.set('n', '<leader>cc', ':lua ClearChatGPTPrompt()<CR>', noremap_silent_opts)
-      vim.keymap.set({'n', 'v'}, '<leader>ce', ':ChatGPTEditWithInstructions<CR>', {
+      vim.keymap.set('n', '<leader>cg', '<cmd>ChatGPT<cr>', noremap_silent_opts)
+      vim.keymap.set('n', '<leader>cc', clear_chatgpt_prompt, noremap_silent_opts)
+      vim.keymap.set({'n', 'v'}, '<leader>ce', '<cmd>ChatGPTEditWithInstructions<cr>', {
         noremap = true,
         silent = true,
         desc = 'ChatGPT Edit with Instructions'
@@ -75,16 +77,16 @@ require('lazy').setup({
   {
     "tpope/vim-fugitive",
     config = function()
-      vim.keymap.set('n', '<Leader>gp', ':Git pull --rebase<CR>', noremap_silent_opts)
-      vim.keymap.set('n', '<Leader>gf', ':Git fetch<CR>', noremap_silent_opts)
-      vim.keymap.set('n', '<Leader>gP', ':Git push<CR>', noremap_silent_opts)
-      vim.keymap.set('n', '<Leader>gs', ':Git<CR>', noremap_silent_opts)
-      vim.keymap.set('n', '<Leader>gB', ':Gblame<CR>', noremap_silent_opts)
-      vim.keymap.set('n', '<Leader>gl', ':Glog<CR>', noremap_silent_opts)
-      vim.keymap.set('n', '<Leader>gL', ':Glog %<CR>', noremap_silent_opts)
-      vim.keymap.set('n', '<Leader>gD', ':Gvdiffsplit %<CR>', noremap_silent_opts)
-      vim.keymap.set('n', '<Leader>gr', ':Gread<CR>', noremap_silent_opts)
-      vim.keymap.set('n', '<Leader>gw', ':Gwrite<CR>', norermap_silent_opts)
+      vim.keymap.set('n', '<Leader>gp', '<cmd>Git pull --rebase<cr>', noremap_silent_opts)
+      vim.keymap.set('n', '<Leader>gf', '<cmd>Git fetch<cr>', noremap_silent_opts)
+      vim.keymap.set('n', '<Leader>gP', '<cmd>Git push<cr>', noremap_silent_opts)
+      vim.keymap.set('n', '<Leader>gs', '<cmd>Git<cr>', noremap_silent_opts)
+      vim.keymap.set('n', '<Leader>gB', '<cmd>Gblame<cr>', noremap_silent_opts)
+      vim.keymap.set('n', '<Leader>gl', '<cmd>Glog<cr>', noremap_silent_opts)
+      vim.keymap.set('n', '<Leader>gL', '<cmd>Glog %<cr>', noremap_silent_opts)
+      vim.keymap.set('n', '<Leader>gD', '<cmd>Gvdiffsplit %<cr>', noremap_silent_opts)
+      vim.keymap.set('n', '<Leader>gr', '<cmd>Gread<cr>', noremap_silent_opts)
+      vim.keymap.set('n', '<Leader>gw', '<cmd>Gwrite<cr>', noremap_silent_opts)
     end
   },
 
@@ -101,7 +103,7 @@ require('lazy').setup({
       "MunifTanjim/nui.nvim",
     },
     config = function()
-      vim.api.nvim_set_keymap('n', '<leader>fa', ':Neotree toggle<CR>', { noremap = true, silent = true })
+      vim.keymap.set('n', '<leader>fa', '<cmd>Neotree toggle<cr>', { noremap = true, silent = true })
     end
   },
 
@@ -110,7 +112,7 @@ require('lazy').setup({
     dependencies = { "nvim-lua/plenary.nvim" },
     cmd = { "DiffviewOpen", "DiffviewFileHistory" },
     config = function()
-      vim.keymap.set('n', '<Leader>gd', ':DiffviewOpen origin/master...HEAD --imply-local<CR>', noremap_silent_opts)
+      vim.keymap.set('n', '<Leader>gd', '<cmd>DiffviewOpen origin/master...HEAD --imply-local<cr>', noremap_silent_opts)
     end,
   },
 
@@ -128,7 +130,6 @@ require('lazy').setup({
 
 
   { 'tmhedberg/matchit'},
-  { 'tpope/vim-fugitive' },
   { 'tpope/vim-rhubarb'},
   { 'tpope/vim-dispatch'},
   { 'tpope/vim-repeat' },
@@ -178,7 +179,7 @@ require('lazy').setup({
   {
     'ntpeters/vim-better-whitespace' ,
     config = function()
-      vim.keymap.set('n', '<leader>ss', ':StripWhitespace<CR>', {
+      vim.keymap.set('n', '<leader>ss', '<cmd>StripWhitespace<cr>', {
         noremap = true,
         silent = true,
         desc = 'Strip trailing whitespace'
@@ -195,7 +196,7 @@ require('lazy').setup({
         end,
         { expr = true, replace_keycodes = false }
       )
-      vim.keymap.set('i', '<C-K>', 'copilot#Cancel()', opts)
+      vim.keymap.set('i', '<C-K>', 'copilot#Cancel()', expr_silent_opts)
     end
   },
   {
@@ -317,10 +318,7 @@ require('lazy').setup({
     "neovim/nvim-lspconfig",
     ft = { "python" },
     config = function()
-      local lspconfig = require("lspconfig")
-
-      lspconfig.pyright.setup({
-        -- Tell pyright to look for the executable in the active venv
+      vim.lsp.config("pyright", {
         cmd = { "pyright-langserver", "--stdio" },
         settings = {
           python = {
@@ -331,11 +329,8 @@ require('lazy').setup({
             },
           },
         },
-        -- Optional: restart the server when you reinstall it
-        on_init = function(client)
-          client.notify = function(...) end -- silence noisy init messages
-        end,
       })
+      vim.lsp.enable("pyright")
 
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -406,11 +401,11 @@ vim.opt.scrolljump = 8
 vim.opt.wildmenu = true
 
 -- Visual mode key mapping: repeat last command with '.'
-vim.api.nvim_set_keymap('v', '.', ':norm.<CR>', opts)
+vim.keymap.set('v', '.', '<cmd>norm .<cr>', { silent = true })
 
-vim.api.nvim_set_keymap('n', '<leader>tt', ':tabnext<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>tn', ':tabnew<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>tp', ':tabprevious<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>tt', '<cmd>tabnext<cr>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>tn', '<cmd>tabnew<cr>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>tp', '<cmd>tabprevious<cr>', { noremap = true, silent = true })
 
 vim.keymap.set('n', '<leader>fc', function()
     local relative_path = vim.fn.expand('%')
