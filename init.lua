@@ -348,7 +348,10 @@ require('lazy').setup({
       })
     end,
   },
-
+}, {
+  rocks = {
+    enabled = false,
+  },
 })
 
 
