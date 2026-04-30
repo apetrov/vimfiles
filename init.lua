@@ -410,6 +410,14 @@ vim.keymap.set('n', '<leader>tt', '<cmd>tabnext<cr>', { noremap = true, silent =
 vim.keymap.set('n', '<leader>tn', '<cmd>tabnew<cr>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>tp', '<cmd>tabprevious<cr>', { noremap = true, silent = true })
 
+vim.keymap.set('n', '<leader>r', function()
+  require('run_current_file').run()
+end, {
+  noremap = true,
+  silent = true,
+  desc = 'Run current file',
+})
+
 vim.keymap.set('n', '<leader>fc', function()
     local relative_path = vim.fn.expand('%')
     vim.fn.setreg('"', relative_path)
