@@ -27,15 +27,16 @@ all/vim: all
 	echo done
 
 all/nvim:
-	#mkdir -p $(PACKER_PATH)
 	VIM=nvim make all || true
 	mkdir -p $(NVIM_PATH)
 	ln -s $(VIM_PATH)/init.lua $(NVIM_PATH)/init.lua
+	ln -s $(VIM_PATH)/lua $(NVIM_PATH)/lua
 
-PACKER_PATH=$(HOME)/.local/share/nvim/site/pack/packer/start/packer.nvim
+PACKER_PATH=$(HOME)/.local/share/nvim/site/pack/packer
+PACKER_COMPILED_PATH=$(NVIM_PATH)/plugin/packer_compiled.lua
 
 clean:
-	rm -rf $(PLUG) $(PLUG_PATH) $(AUTOLOAD_PATH) $(NVIM_PATH)/init.lua  $(PACKER_PATH) || true
+	rm -rf $(PLUG) $(PLUG_PATH) $(AUTOLOAD_PATH) $(NVIM_PATH)/init.lua $(NVIM_PATH)/lua $(PACKER_PATH) $(PACKER_COMPILED_PATH) || true
 .PHONY: clean
 
 link:
