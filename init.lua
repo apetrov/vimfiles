@@ -189,6 +189,9 @@ require('lazy').setup({
   { 'danro/rename.vim' },
   {
     'github/copilot.vim',
+    init = function()
+      vim.g.copilot_npx_command = 0
+    end,
     config = function()
       vim.keymap.set('i', '<C-J>',
         function()
