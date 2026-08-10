@@ -37,44 +37,6 @@ vim.g.mapleader = ' '
 
 require('lazy').setup({
   {
-    "jackMort/ChatGPT.nvim",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "folke/trouble.nvim",
-      "nvim-telescope/telescope.nvim"
-    },
-    config = function()
-      require("chatgpt").setup({
-        popup_layout = {},
-        openai_params = {
-          model = "gpt-4o",
-          frequency_penalty = 0,
-          presence_penalty = 0,
-          max_tokens = 1000,
-          temperature = 0,
-          top_p = 1,
-          n = 1,
-        },
-        edit_with_instructions = {
-            keymaps = {
-                accept = "<C-y>",
-            },
-        },
-      })
-
-      vim.keymap.set('n', '<leader>cg', '<cmd>ChatGPT<cr>', noremap_silent_opts)
-      vim.keymap.set('n', '<leader>cc', clear_chatgpt_prompt, noremap_silent_opts)
-      vim.keymap.set({'n', 'v'}, '<leader>ce', '<cmd>ChatGPTEditWithInstructions<cr>', {
-        noremap = true,
-        silent = true,
-        desc = 'ChatGPT Edit with Instructions'
-      })
-
-    end
-  },
-
-  {
     "tpope/vim-fugitive",
     config = function()
       vim.keymap.set('n', '<Leader>gp', '<cmd>Git pull --rebase<cr>', noremap_silent_opts)
@@ -187,21 +149,6 @@ require('lazy').setup({
     end
   },
   { 'danro/rename.vim' },
-  {
-    'github/copilot.vim',
-    init = function()
-      vim.g.copilot_npx_command = 0
-    end,
-    config = function()
-      vim.keymap.set('i', '<C-J>',
-        function()
-          return vim.fn["copilot#Accept"]("")
-        end,
-        { expr = true, replace_keycodes = false }
-      )
-      vim.keymap.set('i', '<C-K>', 'copilot#Cancel()', expr_silent_opts)
-    end
-  },
   {
     "catppuccin/nvim", name = "catppuccin", priority = 1000,
     config= function()
