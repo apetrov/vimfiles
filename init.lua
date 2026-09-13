@@ -1,5 +1,9 @@
 vim.loader.enable()
 
+local sock = string.format("/tmp/nvim-%s.sock", vim.fn.fnamemodify(vim.fn.getcwd(), ":t"))
+vim.fn.serverstart(sock)
+vim.env.NVIM_LISTEN_ADDRESS = sock -- some MCP servers look for this
+
 -- TODO
 -- Move vim bundles to nvim lazy
 -- Source the existing vimrc if you want to include it
