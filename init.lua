@@ -72,7 +72,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<Leader>gB', '<cmd>Gblame<cr>', noremap_silent_opts)
       vim.keymap.set('n', '<Leader>gl', '<cmd>Glog<cr>', noremap_silent_opts)
       vim.keymap.set('n', '<Leader>gL', '<cmd>Glog %<cr>', noremap_silent_opts)
-      vim.keymap.set('n', '<Leader>gD', '<cmd>Gvdiffsplit %<cr>', noremap_silent_opts)
+      vim.keymap.set('n', '<Leader>gD', '<cmd>vsplit<cr><cmd>Gedit HEAD:%<cr><cmd>windo diffthis<cr>', noremap_silent_opts)
       vim.keymap.set('n', '<Leader>gr', '<cmd>Gread<cr>', noremap_silent_opts)
       vim.keymap.set('n', '<Leader>gw', '<cmd>Gwrite<cr>', noremap_silent_opts)
     end
