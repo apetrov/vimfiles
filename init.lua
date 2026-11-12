@@ -41,6 +41,28 @@ vim.g.mapleader = ' '
 
 require('lazy').setup({
   {
+    "zbirenbaum/copilot.lua",
+    -- Loading the plugin must not start its server; only CopilotStart may do so.
+    lazy = true,
+    module = false,
+    cmd = "CopilotStart",
+    config = function()
+      vim.api.nvim_create_user_command("CopilotStart", function()
+        local copilot = require("copilot")
+        if copilot.setup_done then
+          require("copilot.command").enable()
+        else
+          copilot.setup({
+            suggestion = {
+              auto_trigger = true,
+              keymap = { accept = "<C-j>" },
+            },
+          })
+        end
+      end, { desc = "Start Copilot in this Neovim instance" })
+    end,
+  },
+  {
     "tpope/vim-fugitive",
     config = function()
       vim.keymap.set('n', '<Leader>gp', '<cmd>Git pull --rebase<cr>', noremap_silent_opts)
