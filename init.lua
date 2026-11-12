@@ -399,3 +399,7 @@ vim.keymap.set('n', '<leader>fc', function()
     vim.fn.setreg('"', relative_path)
     vim.fn.setreg('+', relative_path)
 end, { desc = 'Copy relative file path' })
+
+vim.keymap.set('n', '<leader>f%', function()
+  vim.fn.setreg('*', vim.fn.getreg('%'))
+end, { desc = 'Copy filename register to clipboard' })
