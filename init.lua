@@ -368,6 +368,10 @@ vim.opt.shell = "/bin/bash"  -- Use bash instead of zsh to avoid issues
 vim.opt.hlsearch = true  -- Highlight search terms
 vim.opt.incsearch = true  -- Show search matches as you type
 
+-- Use ripgrep for searches that populate quickfix.
+vim.opt.grepprg = "rg --vimgrep --smart-case"
+vim.opt.grepformat = "%f:%l:%c:%m"
+
 -- Avoid Vim backup files
 vim.opt.backup = false
 vim.opt.swapfile = false
