@@ -150,7 +150,6 @@ require('lazy').setup({
   { 'tpope/vim-surround'},
   { 'tpope/vim-commentary'},
   { 'junegunn/fzf.vim'},
-  { 'mileszs/ack.vim', cmd = 'Ack' },
   { 'tpope/vim-projectionist' },
   { 'vim-ruby/vim-ruby' },
   { 'tpope/vim-rake' },

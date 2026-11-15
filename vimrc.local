@@ -5,6 +5,10 @@ set wildignore+=vendor/gems/*,vendor/cache/*,.bundle/*,.sass-cache/*,.git/*,cook
 set wildignore+=log/*,target/*,.DS_Store/*,bin/*
 set wildignore+=*~,._*
 
+" Use ripgrep for searches that populate quickfix.
+set grepprg=rg\ --vimgrep\ --smart-case\ --
+set grepformat=%f:%l:%c:%m
+
 
 function! NumberToggle()
   if(&relativenumber == 1)

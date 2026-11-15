@@ -16,6 +16,18 @@ cd  vimfiles && make all
 *  vimrc.status
 *  vimrc.local
 
+### Search with ripgrep
+
+Requires `rg` on your PATH (`brew install ripgrep` on macOS).
+
+* `:grep pattern` — search the current directory into quickfix.
+* `:grep "multiple words" path/` — search a specific directory.
+* `:copen` / `:cclose` — open / close quickfix.
+* `]q` / `[q` — jump to the next / previous result.
+
+Searches respect ignore files and use smart case: lowercase patterns ignore case;
+patterns containing uppercase letters match case.
+
 ### CodeCompanion with Codex (Neovim)
 
 Requires Neovim 0.12+, Node.js/npm (`npx`), and a ChatGPT account with Codex access.
