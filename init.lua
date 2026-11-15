@@ -41,6 +41,32 @@ vim.g.mapleader = ' '
 
 require('lazy').setup({
   {
+    "olimorris/codecompanion.nvim",
+    version = "^20.2.0",
+    cmd = { "CodeCompanionChat", "CodeCompanionActions" },
+    dependencies = { "nvim-lua/plenary.nvim" },
+    keys = {
+      { "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", mode = { "n", "v" }, desc = "Toggle Codex chat" },
+    },
+    opts = {
+      interactions = {
+        chat = { adapter = "codex" },
+      },
+      adapters = {
+        acp = {
+          codex = function()
+            return require("codecompanion.adapters").extend("codex", {
+              commands = {
+                default = { "npx", "--yes", "@agentclientprotocol/codex-acp" },
+              },
+              defaults = { auth_method = "chat-gpt" },
+            })
+          end,
+        },
+      },
+    },
+  },
+  {
     "zbirenbaum/copilot.lua",
     -- Loading the plugin must not start its server; only CopilotStart may do so.
     lazy = true,

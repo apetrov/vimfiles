@@ -16,6 +16,18 @@ cd  vimfiles && make all
 *  vimrc.status
 *  vimrc.local
 
+### CodeCompanion with Codex (Neovim)
+
+Requires Neovim 0.12+, Node.js/npm (`npx`), and a ChatGPT account with Codex access.
+Lazy installs CodeCompanion on the next Neovim startup.
+
+* `:CodeCompanionChat` — open a chat using Codex.
+* `Space a c` — toggle the chat (also works with a visual selection).
+
+The Codex ACP adapter runs through `npx --yes @agentclientprotocol/codex-acp`;
+the first chat downloads it and may ask you to sign in with ChatGPT.
+Codex is configured for chat; inline prompts require a separate HTTP adapter.
+
 ### Copilot (Neovim)
 
 Copilot stays unloaded in each Neovim instance until you run `:CopilotStart`.
