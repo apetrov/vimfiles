@@ -25,11 +25,6 @@ function! CommitToTmux() range
   endfor
 endfunction
 
-" Unwrap ruby block
-function! UnwrapBlock()
-  normal vir"ay"bdirV%dk"apmagg=G`a
-endfunction
-
 " Ruby extract local variable to method
 function! ExtractMethod()
   let @a="^\"zdt=x\"xDddmv[mOdef \<C-r>z\<CR>\<C-r>x\<Esc>jo\<Esc>'v"
@@ -39,7 +34,6 @@ endfunction
 command! Path :echo join(split(&path, ","), "\n")
 command! ExtractLetDefinition call ExtractLetDefinition()
 command! InlineLetDefinition call InlineLetDefinition()
-command! UnwrapBlock call UnwrapBlock()
 command! ExtractMethod call ExtractMethod()
 command! NewClassCtor call NewClassCtor()
 
@@ -63,7 +57,6 @@ map Y y$
 map <Leader>mtf :call RunCurrentSpecFile()<CR>
 map <Leader>mts :call RunNearestSpec()<CR>
 map <Leader>mtl :call RunLastSpec()<CR>
-map <Leader>mu :UnwrapBlock<CR>
 
 map <Leader>mem :ExtractMethod<CR>
 map <Leader>mc :NewClassCtor<CR>
