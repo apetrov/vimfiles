@@ -41,6 +41,75 @@ vim.g.mapleader = ' '
 
 require('lazy').setup({
   {
+    "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    lazy = false,
+    build = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter").install({ "python", "ruby" })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("UserTreesitter", { clear = true }),
+        pattern = { "python", "ruby" },
+        callback = function(event)
+          -- Parsers install asynchronously on the first startup.
+          pcall(vim.treesitter.start, event.buf)
+        end,
+      })
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    branch = "main",
+    lazy = false,
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      -- Upstream Ruby @parameter.outer captures the entire argument list.
+      local ruby_arguments = {}
+      for _, node in ipairs({ "argument_list", "method_parameters", "block_parameters", "lambda_parameters" }) do
+        table.insert(ruby_arguments, string.format([[
+          (%s . (_) @parameter.inner @parameter.outer . ","? @parameter.outer)
+          (%s "," @parameter.outer . (_) @parameter.inner @parameter.outer)
+        ]], node, node))
+      end
+      vim.treesitter.query.set("ruby", "user_arguments", table.concat(ruby_arguments, "\n"))
+
+      require("nvim-treesitter-textobjects").setup({
+        select = {
+          lookahead = true,
+          selection_modes = {
+            ["@function.outer"] = "V",
+            ["@function.inner"] = "V",
+            ["@class.outer"] = "V",
+            ["@class.inner"] = "V",
+          },
+        },
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("UserTreesitterTextobjects", { clear = true }),
+        pattern = { "python", "ruby" },
+        callback = function(event)
+          local textobjects = {
+            { "af", "@function.outer", "Around function/method" },
+            { "if", "@function.inner", "Inside function/method" },
+            { "ac", "@class.outer", "Around class" },
+            { "ic", "@class.inner", "Inside class" },
+            { "aa", "@parameter.outer", "Around argument/parameter" },
+            { "ia", "@parameter.inner", "Inside argument/parameter" },
+          }
+          for _, textobject in ipairs(textobjects) do
+            local query_group = event.match == "ruby" and textobject[2]:match("^@parameter%.")
+              and "user_arguments" or "textobjects"
+            vim.keymap.set({ "x", "o" }, textobject[1], function()
+              require("nvim-treesitter-textobjects.select").select_textobject(textobject[2], query_group)
+            end, { buffer = event.buf, desc = textobject[3] })
+          end
+        end,
+      })
+    end,
+  },
+  {
     "olimorris/codecompanion.nvim",
     version = "^20.2.0",
     cmd = { "CodeCompanionChat", "CodeCompanionActions" },
