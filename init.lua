@@ -46,11 +46,11 @@ require('lazy').setup({
     lazy = false,
     build = ":TSUpdate",
     config = function()
-      require("nvim-treesitter").install({ "python", "ruby" })
+      require("nvim-treesitter").install({ "python", "ruby", "go" })
 
       vim.api.nvim_create_autocmd("FileType", {
         group = vim.api.nvim_create_augroup("UserTreesitter", { clear = true }),
-        pattern = { "python", "ruby" },
+        pattern = { "python", "ruby", "go" },
         callback = function(event)
           -- Parsers install asynchronously on the first startup.
           pcall(vim.treesitter.start, event.buf)
@@ -73,6 +73,15 @@ require('lazy').setup({
         ]], node, node))
       end
       vim.treesitter.query.set("ruby", "user_arguments", table.concat(ruby_arguments, "\n"))
+      -- Select members rather than braces for linewise Go type interiors.
+      vim.treesitter.query.set("go", "user_types", [[
+        (type_declaration (type_spec [(struct_type) (interface_type)])) @class.outer
+        (type_declaration
+          (type_spec (struct_type
+            (field_declaration_list (_)+ @class.inner))))
+        (type_declaration
+          (type_spec (interface_type (_)+ @class.inner)))
+      ]])
 
       require("nvim-treesitter-textobjects").setup({
         select = {
@@ -88,19 +97,22 @@ require('lazy').setup({
 
       vim.api.nvim_create_autocmd("FileType", {
         group = vim.api.nvim_create_augroup("UserTreesitterTextobjects", { clear = true }),
-        pattern = { "python", "ruby" },
+        pattern = { "python", "ruby", "go" },
         callback = function(event)
           local textobjects = {
             { "af", "@function.outer", "Around function/method" },
             { "if", "@function.inner", "Inside function/method" },
-            { "ac", "@class.outer", "Around class" },
-            { "ic", "@class.inner", "Inside class" },
+            { "ac", "@class.outer", "Around class/struct/interface" },
+            { "ic", "@class.inner", "Inside class/struct/interface" },
             { "aa", "@parameter.outer", "Around argument/parameter" },
             { "ia", "@parameter.inner", "Inside argument/parameter" },
           }
           for _, textobject in ipairs(textobjects) do
             local query_group = event.match == "ruby" and textobject[2]:match("^@parameter%.")
               and "user_arguments" or "textobjects"
+            if event.match == "go" and textobject[2]:match("^@class%.") then
+              query_group = "user_types"
+            end
             vim.keymap.set({ "x", "o" }, textobject[1], function()
               require("nvim-treesitter-textobjects.select").select_textobject(textobject[2], query_group)
             end, { buffer = event.buf, desc = textobject[3] })

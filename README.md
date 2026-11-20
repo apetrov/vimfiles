@@ -30,16 +30,16 @@ patterns containing uppercase letters match case.
 
 ### Tree-sitter (Neovim)
 
-Python and Ruby use Tree-sitter syntax highlighting. Requires Neovim 0.12+,
+Python, Ruby, and Go use Tree-sitter syntax highlighting. Requires Neovim 0.12+,
 a C compiler, and Tree-sitter CLI 0.26.1+ (`brew install tree-sitter-cli` on macOS).
-Lazy installs the plugin and both parsers on startup. After the first parser
+Lazy installs the plugin and all three parsers on startup. After the first parser
 installation completes, reopen the file to enable highlighting.
 
 * `:TSUpdate` — update installed parsers (also runs when the plugin updates).
 * `:Inspect` — show the highlight groups under the cursor.
 * `:InspectTree` — view the syntax tree for the current file.
 
-Tree-sitter text objects work in Python and Ruby, in visual mode and with
+Tree-sitter text objects work in Python, Ruby, and Go, in visual mode and with
 operators such as `d`, `c`, and `y`:
 
 | Text objects | Around (`a`) / inside (`i`) |
@@ -47,6 +47,8 @@ operators such as `d`, `c`, and `y`:
 | `af` / `if` | Function or method / its body |
 | `ac` / `ic` | Class / its body |
 | `aa` / `ia` | Argument or parameter with separator / without separator |
+
+In Go, `ac` / `ic` target structs and interfaces.
 
 For example, `vaf` selects a method, `cif` changes its body, and `daa` deletes
 an argument. Functions and classes use linewise selection. These buffer-local
