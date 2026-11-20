@@ -1,4 +1,4 @@
-Alexander's VIM configuration
+Alexander's Neovim configuration
 =============================
 
 ### Install
@@ -7,14 +7,12 @@ Alexander's VIM configuration
 git clone https://github.com/apetrov/vimfiles
 cd  vimfiles && make all
 ```
-### Loading order
+The installer links `init.lua` and `lua/` into your Neovim config directory
+(`~/.config/nvim` by default). Open `nvim` to let Lazy install the plugins.
+Space is the leader key. Editor settings and mappings live in
+`lua/config/editor.lua`, and the statusline lives in `lua/config/statusline.lua`.
 
-* init.lua (in neovim, not in use otherwise)
-*  vimrc
-*  vimrc.bundles
-*  vimrc.bundles.local
-*  vimrc.status
-*  vimrc.local
+`:GChanges` opens the files reported by your `git files` alias in quickfix.
 
 ### Search with ripgrep
 

@@ -1,13 +1,12 @@
 vim.loader.enable()
 
 local sock = string.format("/tmp/nvim-%s.sock", vim.fn.fnamemodify(vim.fn.getcwd(), ":t"))
-vim.fn.serverstart(sock)
-vim.env.NVIM_LISTEN_ADDRESS = sock -- some MCP servers look for this
+local started, address = pcall(vim.fn.serverstart, sock)
+-- Keep Neovim's own address if another instance already owns the project socket.
+vim.env.NVIM_LISTEN_ADDRESS = started and address or vim.v.servername
 
--- TODO
--- Move vim bundles to nvim lazy
--- Source the existing vimrc if you want to include it
-vim.cmd.source(vim.fs.abspath("~/.vim/vimrc"))
+vim.g.mapleader = ' '
+require("config.editor")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
@@ -36,8 +35,6 @@ end
 local expr_silent_opts = { silent = true, expr = true }
 local noremap_silent_opts = { noremap = true, silent = true }
 
-
-vim.g.mapleader = ' '
 
 require('lazy').setup({
   {
@@ -436,6 +433,8 @@ require('lazy').setup({
   },
 })
 
+
+require("config.statusline")
 
 vim.opt.autoindent = true
 vim.opt.tabstop = 2

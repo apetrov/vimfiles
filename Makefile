@@ -1,56 +1,31 @@
-.DEFAULT_GOAL := all/vim
+.DEFAULT_GOAL := all
 
-VIMFILES_PATH=$(shell pwd)
-VIM_PATH=$(HOME)/.vim
-NVIM_PATH=$(HOME)/.config/nvim
-PLUG_URL=https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-BUNDLE_FILE=$(VIM_PATH)/vimrc.bundles
+NVIM_PATH := $(if $(XDG_CONFIG_HOME),$(XDG_CONFIG_HOME),$(HOME)/.config)/$(or $(NVIM_APPNAME),nvim)
 
-# vim specific
-VIM?=vim
-
-ifeq ($(VIM),vim)
-				AUTOLOAD_PATH=$(VIMFILES_PATH)/autoload
-				PLUG_PATH=$(VIMFILES_PATH)/plugged
-else
-				AUTOLOAD_PATH=$(HOME)/.local/share/nvim/site/autoload
-				PLUG_PATH=$(HOME)/.local/share/nvim/plugged
-endif
-
-PLUG=$(AUTOLOAD_PATH)/plug.vim
-
-all: clean link plug/get plug/install
-	echo "done"
-.PHONY: all
-
-all/vim: all
-	echo done
-
-all/nvim:
-	VIM=nvim make all || true
-	mkdir -p $(NVIM_PATH)
-	ln -s $(VIM_PATH)/init.lua $(NVIM_PATH)/init.lua
-	ln -s $(VIM_PATH)/lua $(NVIM_PATH)/lua
-
-PACKER_PATH=$(HOME)/.local/share/nvim/site/pack/packer
-PACKER_COMPILED_PATH=$(NVIM_PATH)/plugin/packer_compiled.lua
-
-clean:
-	rm -rf $(PLUG) $(PLUG_PATH) $(AUTOLOAD_PATH) $(NVIM_PATH)/init.lua $(NVIM_PATH)/lua $(PACKER_PATH) $(PACKER_COMPILED_PATH) || true
-.PHONY: clean
-
-link:
-	@if [ ! -L $(VIM_PATH) ]; then \
-		ln -s $(VIMFILES_PATH) $(VIM_PATH) ; \
-	fi
-.PHONY: link
-
-plug/get:
-	curl -fLo $(PLUG) --create-dirs $(PLUG_URL)
-
-plug/install:
-	$(VIM) -E -s -u "$(BUNDLE_FILE)" +PlugInstall +qall
-
+.PHONY: all all/nvim
+all all/nvim:
+	mkdir -p "$(NVIM_PATH)"
+	@for entry in init.lua lua; do \
+		target="$(NVIM_PATH)/$$entry"; \
+		if [ -L "$$target" ] && [ "$$target" -ef "$(CURDIR)/$$entry" ]; then \
+			continue; \
+		fi; \
+		if [ -e "$$target" ] || [ -L "$$target" ]; then \
+			echo "Existing Neovim config path: $$target" >&2; \
+			exit 1; \
+		fi; \
+	done
+	@for entry in init.lua lua; do \
+		source="$(CURDIR)/$$entry"; \
+		target="$(NVIM_PATH)/$$entry"; \
+		if [ -L "$$target" ] && [ "$$target" -ef "$$source" ]; then \
+			if [ "$$(readlink "$$target")" != "$$source" ]; then \
+				ln -sfn "$$source" "$$target" || exit 1; \
+			fi; \
+		else \
+			ln -s "$$source" "$(NVIM_PATH)/" || exit 1; \
+		fi; \
+	done
 
 PYTHON=python3.11
 jupyter:
